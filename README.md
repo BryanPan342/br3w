@@ -64,7 +64,7 @@ Github: *@BryanPan342*
 **Param Shah, Software Developer**
 
 ### Hardware Team
-<img src="img/Janice.jpg" width="250" height="250" >
+<img src="img/Janice.jpg" class="img-responsive" width="250" height="250" >
 
 **Janice Tsai, Software Developer**
 
