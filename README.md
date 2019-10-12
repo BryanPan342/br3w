@@ -43,7 +43,37 @@ Have an android emulator running
 
 
 ## Meet the Team
+### Project Leads
 <img src="https://drive.google.com/uc?export=view&id=1cSio232vG-iyZHJQtlWCrGx2OMfzfWEm" width="250" height="250">
 
-**Bryan Pan**, *@BryanPan342*
+**Bryan Pan, Software Lead**
+Insta: *@bryanthesnob*
+Github: *@BryanPan342*
+
+**Ashvin Nagarajan, Hardware Lead**
+
+### Software Team
+**Allison Chen, Software Developer**
+
+**Ashkan Faghihi, Software Developer**
+
+**Connie Chen, Software Developer**
+
+**Hubert Chen, Software Developer**
+
+**Param Shah, Software Developer**
+
+### Hardware Team
+<img src="https://drive.google.com/drive/u/0/folders/19vp-T3N7iOHl6JdDWOSmwerBsrM9PriH" width="250" height="250" >
+
+**Janice Tsai, Software Developer**
+
+**Meilin Cui, Software Developer**
+
+**Isha Gonugunta, Software Developer**
+
+**Monica Bellare, Software Developer**
+
+
+
 
