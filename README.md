@@ -47,7 +47,7 @@ Have an android emulator running
 
 **Bryan Pan, Software Lead**  
 Insta: *@bryanthesnob*  
-Github: *@BryanPan342* 
+Github: *@BryanPan342*  
 <img src="img/Bryan.jpeg" width="250">
 
 **Ashvin Nagarajan, Hardware Lead**
