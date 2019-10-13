@@ -44,9 +44,10 @@ Have an android emulator running
 
 ## Meet the Team
 ### Project Leads
-<img src="https://drive.google.com/uc?export=view&id=1cSio232vG-iyZHJQtlWCrGx2OMfzfWEm" width="250" height="250">
 
-**Bryan Pan, Software Lead**
+<img src="img/Bryan.jpeg">
+
+**Bryan Pan, Software Lead**  
 Insta: *@bryanthesnob*
 Github: *@BryanPan342*
 
@@ -64,7 +65,8 @@ Github: *@BryanPan342*
 **Param Shah, Software Developer**
 
 ### Hardware Team
-<img src="img/Janice.jpg" class="img-responsive" width="250" height="250" >
+
+<img src="img/Janice.jpg" >
 
 **Janice Tsai, Software Developer**
 
