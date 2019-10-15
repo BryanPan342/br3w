@@ -50,7 +50,7 @@ Have an android emulator running
 Insta: *@bryanthesnob*  
 Github: *@BryanPan342*  
 
-**Ashvin Nagarajan, Hardware Lead**
+**Ashvin Nagarajan, Hardware Lead**  
 <img src="img/Ashvin.jpg" width="250">  
 Insta: *@anagarajan1*  
 Github: *@ashvinnagarajan*
