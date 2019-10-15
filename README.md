@@ -51,10 +51,14 @@ Insta: *@bryanthesnob*
 Github: *@BryanPan342*  
 
 **Ashvin Nagarajan, Hardware Lead**
+<img src="img/Ashvin.jpg" width="250">  
+Insta: *@anagarajan1*  
+Github: *@ashvinnagarajan*
 
 ### Software Team
 **Allison Chen, Software Developer**  
 <img src="img/Allison.JPG" width="250">  
+Github: *@allisonchen23*  
 
 **Ashkan Faghihi, Software Developer**
 
