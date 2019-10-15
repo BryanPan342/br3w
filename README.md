@@ -54,7 +54,7 @@ Github: *@BryanPan342*
 
 ### Software Team
 **Allison Chen, Software Developer**  
-<img src="img/Allison.jpeg" width="250">  
+<img src="img/Allison.JPG" width="250">  
 
 **Ashkan Faghihi, Software Developer**
 
