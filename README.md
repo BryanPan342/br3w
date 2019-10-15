@@ -63,7 +63,7 @@ Github: *@allisonchen23*
 **Ashkan Faghihi, Software Developer**
 
 **Connie Chen, Software Developer**  
-<img src="img/Allison.JPG" width="250">  
+<img src="img/Connie.jpg" width="250">  
 Github: *@conniec218*  
 
 **Hubert Chen, Software Developer**
