@@ -62,7 +62,9 @@ Github: *@allisonchen23*
 
 **Ashkan Faghihi, Software Developer**
 
-**Connie Chen, Software Developer**
+**Connie Chen, Software Developer**  
+<img src="img/Allison.JPG" width="250">  
+Github: *@conniec218*  
 
 **Hubert Chen, Software Developer**
 
@@ -71,6 +73,7 @@ Github: *@allisonchen23*
 ### Hardware Team
 **Janice Tsai, Software Developer**  
 <img src="img/Janice.jpg" width="250">  
+Github: *@janicetsai1*
 
 **Meilin Cui, Software Developer**
 
