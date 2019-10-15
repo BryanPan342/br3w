@@ -53,7 +53,8 @@ Github: *@BryanPan342*
 **Ashvin Nagarajan, Hardware Lead**
 
 ### Software Team
-**Allison Chen, Software Developer**
+**Allison Chen, Software Developer**  
+<img src="img/Allison.jpeg" width="250">  
 
 **Ashkan Faghihi, Software Developer**
 
