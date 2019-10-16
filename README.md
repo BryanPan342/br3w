@@ -60,10 +60,10 @@ Github: *@ashvinnagarajan*
 <img src="img/Allison.JPG" width="250">  
 Github: *@allisonchen23*  
 
-**Param Shah, Software Developer**__
-<img src="img/Param.jpg" width="250">
-Insta: *@_param__*
-Github: *@paramshah10*
+**Param Shah, Software Developer**  
+<img src="img/Param.jpg" width="250">  
+Insta: *@\_param\_\_*  
+Github: *@paramshah10*  
 
 **Ashkan Faghihi, Software Developer**
 
