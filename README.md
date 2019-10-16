@@ -89,8 +89,9 @@ Github: *@cuimeilin*
 <img src="img/Isha.jpg" width="250">  
 Github: *@ishagonu*
 
-**Monica Bellare, Software Developer**
-
+**Monica Bellare, Software Developer**  
+<img src="img/Monica.jepg" width="250">  
+Github: *@monbell*
 
 
 
