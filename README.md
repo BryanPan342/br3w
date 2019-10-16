@@ -60,30 +60,38 @@ Github: *@ashvinnagarajan*
 <img src="img/Allison.JPG" width="250">  
 Github: *@allisonchen23*  
 
+**Ashkan Faghihi, Software Developer**  
+<img src="img/Ashkan.jpg" width="250">  
+Github: *@ashkan117*
+
+**Connie Chen, Software Developer**  
+<img src="img/Connie.jpg" width="250">  
+Github: *@conniec218*  
+
+**Hubert Chen, Software Developer**  
+<img src="img/Hubert.jpg" width="250">  
+Github: *@hubert94536*  
+
 **Param Shah, Software Developer**  
 <img src="img/Param.jpg" width="250">  
-Insta: *@\_param\_\_*  
 Github: *@paramshah10*  
-
-**Ashkan Faghihi, Software Developer**
-
-**Connie Chen, Software Developer**
-
-**Hubert Chen, Software Developer**
-<img src="img/hubert.jpg" width="250">
-Insta: *@hubes.c*
-Github: *@hubert94536*
 
 ### Hardware Team
 **Janice Tsai, Software Developer**  
 <img src="img/Janice.jpg" width="250">  
+Github: *@janicetsai1*
 
-**Meilin Cui, Software Developer**
+**Meilin Cui, Software Developer**  
+<img src="img/Meilin.jpg" width="250">  
+Github: *@cuimeilin*  
 
-**Isha Gonugunta, Software Developer**
+**Isha Gonugunta, Software Developer**  
+<img src="img/Isha.jpg" width="250">  
+Github: *@ishagonu*
 
-**Monica Bellare, Software Developer**
-
+**Monica Bellare, Software Developer**  
+<img src="img/Monica.jpeg" width="250">  
+Github: *@monbell*
 
 
 
