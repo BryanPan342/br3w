@@ -78,7 +78,7 @@ Github: *@hubert94536*
 Github: *@janicetsai1*
 
 **Meilin Cui, Software Developer**  
-<img src="img/Meilin.jpg" width="250"> 
+<img src="img/Meilin.jpg" width="250">  
 Github: *@cuimeilin*  
 
 **Isha Gonugunta, Software Developer**
