@@ -70,7 +70,7 @@ Github: *@paramshah10*
 **Connie Chen, Software Developer**
 
 **Hubert Chen, Software Developer**
-<img src="img/hubertjpg" width="250">
+<img src="img/hubert.jpg" width="250">
 Insta: *@hubes.c*
 Github: *@hubert94536*
 
