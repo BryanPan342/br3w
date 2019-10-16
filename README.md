@@ -70,6 +70,9 @@ Github: *@paramshah10*
 **Connie Chen, Software Developer**
 
 **Hubert Chen, Software Developer**
+<img src="img/hubertjpg" width="250">
+Insta: *@hubes.c*
+Github: *@hubert94536*
 
 ### Hardware Team
 **Janice Tsai, Software Developer**  
