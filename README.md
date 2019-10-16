@@ -67,7 +67,7 @@ Github: *@allisonchen23*
 Github: *@conniec218*  
 
 **Hubert Chen, Software Developer**  
-<!-- <img src="img/Hubert.jpg" width="250">  -->
+<img src="img/Hubert.jpg" width="250">  
 Github: *@hubert94536*  
 
 **Param Shah, Software Developer**
