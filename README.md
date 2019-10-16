@@ -61,7 +61,7 @@ Github: *@ashvinnagarajan*
 Github: *@allisonchen23*  
 
 **Param Shah, Software Developer**
-<img srr="img/Param.jpg" width="250">
+<img src="img/Param.jpg" width="250">
 Insta: *@_param__*
 Github: *@paramshah10*
 
