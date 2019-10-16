@@ -66,7 +66,9 @@ Github: *@allisonchen23*
 <img src="img/Connie.jpg" width="250">  
 Github: *@conniec218*  
 
-**Hubert Chen, Software Developer**
+**Hubert Chen, Software Developer**  
+<!-- <img src="img/Hubert.jpg" width="250">  -->
+Github: *@hubert94536*  
 
 **Param Shah, Software Developer**
 
@@ -75,7 +77,9 @@ Github: *@conniec218*
 <img src="img/Janice.jpg" width="250">  
 Github: *@janicetsai1*
 
-**Meilin Cui, Software Developer**
+**Meilin Cui, Software Developer**  
+<img src="img/Meilin.jpg" width="250"> 
+Github: *@cuimeilin*  
 
 **Isha Gonugunta, Software Developer**
 
