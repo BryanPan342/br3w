@@ -60,13 +60,16 @@ Github: *@ashvinnagarajan*
 <img src="img/Allison.JPG" width="250">  
 Github: *@allisonchen23*  
 
+**Param Shah, Software Developer**
+<img srr="img/Param.jpg" width="250">
+Insta: *@_param__*
+Github: *@paramshah10*
+
 **Ashkan Faghihi, Software Developer**
 
 **Connie Chen, Software Developer**
 
 **Hubert Chen, Software Developer**
-
-**Param Shah, Software Developer**
 
 ### Hardware Team
 **Janice Tsai, Software Developer**  
