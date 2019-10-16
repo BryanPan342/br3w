@@ -90,7 +90,7 @@ Github: *@cuimeilin*
 Github: *@ishagonu*
 
 **Monica Bellare, Software Developer**  
-<img src="img/Monica.jepg" width="250">  
+<img src="img/Monica.jpeg" width="250">  
 Github: *@monbell*
 
 
