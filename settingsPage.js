@@ -14,6 +14,7 @@ import {
   View,
   Text,
   StatusBar,
+  Picker
 } from 'react-native';
 
 import {
@@ -24,8 +25,18 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const App: () => React$Node = () => {
-  return (
+class SettingsPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            temperature: 0,
+            amount: 0
+        }
+    }
+  render() {
+      console.log(this.state.temperature);
+      console.log(this.state.amount);
+      return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
@@ -42,36 +53,37 @@ const App: () => React$Node = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>HLY SHIT IT WORKS!!!</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
+              <Text style={styles.sectionTitle}>HOLY SHIT IT WORKS!!!</Text>
             </View>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
+              <Text style={styles.sectionTitle}>Temperature</Text>
+              <Picker
+                selectedValue={this.state.temperature}
+                onValueChange={(itemValue) => 
+                    this.setState({temperature: itemValue})}>
+                <Picker.Item label="92 C" value="92" />
+                <Picker.Item label="93 C" value="93" />
+                <Picker.Item label="94 C" value="94" />
+                <Picker.Item label="95 C" value="95" />
+                <Picker.Item label="96 C" value="96" />
+              </Picker>
             </View>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
+              <Text style={styles.sectionTitle}>Amount</Text>
+              <Picker
+                selectedValue={this.state.amount}
+                onValueChange={(itemValue) => 
+                    this.setState({amount: itemValue})}>
+                <Picker.Item label="8 oz" value="8" />
+                <Picker.Item label="10 oz" value="10" />
+                <Picker.Item label="12 oz" value="12" />
+              </Picker>
             </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
           </View>
         </ScrollView>
       </SafeAreaView>
     </>
-  );
+  )}
 };
 
 const styles = StyleSheet.create({
@@ -123,17 +135,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
-
-// import {createAppContainer} from 'react-navigation';
-// import {createStackNavigator} from 'react-navigation-stack';
-// import SettingsPage from './settingsPage'
-
-// const MainNavigator = createStackNavigator({
-//   Home: {screen: SettingsPage},
-// //   Profile: {screen: ProfileScreen},
-// });
-
-// const App = createAppContainer(MainNavigator);
-
-// export default App;
+export default SettingsPage;
