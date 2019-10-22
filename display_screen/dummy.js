@@ -14,7 +14,7 @@ import {
   } from 'react-native/Libraries/NewAppScreen';
 
 
-export default class Display extends React.Component {
+export default class Dummy extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -40,15 +40,6 @@ export default class Display extends React.Component {
               )}
               <View style={styles.body}>
                 <Text>DUMMY PAGE</Text>
-                <Button 
-                title="Increase temperature by 1"
-                onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}>
-                </Button>
-                <Text>hi</Text>
-                <Button 
-                title="Settings"
-                onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}>
-                </Button>
               </View>
             </ScrollView>
           </SafeAreaView>

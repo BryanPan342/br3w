@@ -7,8 +7,10 @@ import {
   View,
   Text,
   StatusBar,
-  Button
+  Button,
 } from 'react-native';
+
+
 import {
     Colors,
   } from 'react-native/Libraries/NewAppScreen';
