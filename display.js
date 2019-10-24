@@ -35,12 +35,10 @@ class SettingsPage extends React.Component {
         }
     }
   render() {
-    const { navigation } = this.props;
+      const { navigation } = this.props;
     const {navigate} = navigation; 
-      console.log("settings page");
-      console.log(JSON.stringify(navigation.getParam('temperature','default-value')));  
-    //   console.log(this.state.temperature);
-    //   console.log(this.state.amount);
+    console.log("display page");
+    console.log(JSON.stringify(navigation.getParam('temperature','default-value')));  
       return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -58,7 +56,7 @@ class SettingsPage extends React.Component {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>settings page HOLY SH IT WORKS!!!</Text>
+              <Text style={styles.sectionTitle}>display page WOW SHIT IT WORKS!!!</Text>
             </View>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Temperature</Text>
@@ -83,10 +81,9 @@ class SettingsPage extends React.Component {
                 <Picker.Item label="10 oz" value="10" />
                 <Picker.Item label="12 oz" value="12" />
               </Picker>
-              <Button
-                title="navigate please"
-                onPress={() => navigate('Display', {temperature: this.state.temperature, amount: this.state.amount})}
-            />
+              <Button 
+                title="navigate pls"
+                onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}/>
             </View>
           </View>
         </ScrollView>
