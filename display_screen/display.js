@@ -40,10 +40,13 @@ export default class Display extends React.Component {
                 </View>
               )}
               <View style={styles.body}>
-                <StyledText>BR3W</StyledText>
-                <Text style={styles.text}>Temperature: {this.state.temp}</Text>
+                <TitleText>BR3W</TitleText>
+                <DefaultText>Temperature: {this.state.temp}</DefaultText>
+                <DefaultText>Amount of Coffee: {this.state.amount} oz</DefaultText>
+                <DefaultText>Time Remaining: {this.state.time_rem}</DefaultText>
+                {/* <Text style={styles.text}>Temperature: {this.state.temp}</Text>
                 <Text style={styles.text}>Amount of Coffee: {this.state.amount} oz</Text>
-                <Text style={styles.text}>Time Remaining: {this.state.time_rem}</Text>
+                <Text style={styles.text}>Time Remaining: {this.state.time_rem}</Text> */}
                 {/* this version of setState doesn't know previous states */}
                 {/* <Button 
                 title="Increase temperature by 1"
@@ -65,10 +68,13 @@ export default class Display extends React.Component {
   };
   
   const DefaultText = styled(Text)`
-    color: tomato;
+    color: #562f29;
+    font-size: 30;
+    font-family: BREVE2;
     `
-  const StyledText = styled(DefaultText)`
-    color: tomato;
+  const TitleText = styled(DefaultText)`
+    color: #bc846b;
+    font-size: 96;
   `
 
   const styles = StyleSheet.create({
@@ -78,7 +84,7 @@ export default class Display extends React.Component {
     },
     body: {
 
-      backgroundColor: "#55c6f6",
+      backgroundColor: "#fffff4", //"#55c6f6",
       flex: 1,
       flexDirection: "column",
       justifyContent: "space-around",
