@@ -8,11 +8,11 @@ import {
   Text,
   StatusBar,
   Button,
+  Image
 } from 'react-native';
 
 import styled from 'styled-components';
-
-
+// import {ImageButton} from 'react-native-image-button-text';
 import {
     Colors,
   } from 'react-native/Libraries/NewAppScreen';
@@ -39,11 +39,16 @@ export default class Display extends React.Component {
                   <Text style={styles.footer}>Engine: Hermes</Text>
                 </View>
               )}
+
               <View style={styles.body}>
-                <TitleText>BR3W</TitleText>
-                <DefaultText>Temperature: {this.state.temp}</DefaultText>
-                <DefaultText>Amount of Coffee: {this.state.amount} oz</DefaultText>
-                <DefaultText>Time Remaining: {this.state.time_rem}</DefaultText>
+                <SettingsImage source={require('../assets/images/settings.png')} />
+                <TitleText>B R 3 W</TitleText>
+                <View style={styles.bodyText}>
+                  <DefaultText>Temperature: {this.state.temp}</DefaultText>
+                  <DefaultText>Amount of Coffee: {this.state.amount} oz</DefaultText>
+                  <DefaultText>Time Remaining: {this.state.time_rem}</DefaultText>
+                </View>
+                
                 {/* <Text style={styles.text}>Temperature: {this.state.temp}</Text>
                 <Text style={styles.text}>Amount of Coffee: {this.state.amount} oz</Text>
                 <Text style={styles.text}>Time Remaining: {this.state.time_rem}</Text> */}
@@ -57,7 +62,7 @@ export default class Display extends React.Component {
                 onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}>
                 </Button> */}
                 <Button 
-                title="Settings"
+                title="Set Schedule"
                 onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}>
                 </Button>
               </View>
@@ -69,14 +74,24 @@ export default class Display extends React.Component {
   
   const DefaultText = styled(Text)`
     color: #562f29;
-    font-size: 30;
+    font-size: 36;
     font-family: BREVE2;
+    margin: 20px 0px;
+    align-self: center;
     `
   const TitleText = styled(DefaultText)`
     color: #bc846b;
     font-size: 96;
-  `
+    position: relative;
 
+  `
+  const SettingsImage = styled.Image`
+    width: 75px;
+    height: 75px;
+    margin-top: 15px;
+    align-self: flex-end;
+    margin-right: 15px;
+  `
   const styles = StyleSheet.create({
     engine: {
       position: 'absolute',
@@ -87,9 +102,13 @@ export default class Display extends React.Component {
       backgroundColor: "#fffff4", //"#55c6f6",
       flex: 1,
       flexDirection: "column",
-      justifyContent: "space-around",
+      // justifyContent: "space-around",
       alignItems: "center",
       // fontWeight: "bold",
+    },
+    bodyText: {
+      display: "flex",
+      marginBottom: 20,
     },
     button: {
       flex: 1,
