@@ -10,6 +10,8 @@ import {
   Button,
 } from 'react-native';
 
+import styled from 'styled-components';
+
 
 import {
     Colors,
@@ -30,10 +32,7 @@ export default class Display extends React.Component {
       return (
         <>
           <StatusBar barStyle="dark-content" />
-          <SafeAreaView>
-            <ScrollView
-              contentInsetAdjustmentBehavior="automatic"
-              style={styles.scrollView}>
+          <SafeAreaView style={styles.container}>
               {/* <Header /> */}
               {global.HermesInternal == null ? null : (
                 <View style={styles.engine}>
@@ -41,57 +40,68 @@ export default class Display extends React.Component {
                 </View>
               )}
               <View style={styles.body}>
-                <Text>BR3W</Text>
-                <Text>Temperature: {this.state.temp}</Text>
-                <Text>Amount of Coffee: {this.state.amount} oz</Text>
-                <Text>Time Remaining: {this.state.time_rem}</Text>
+                <StyledText>BR3W</StyledText>
+                <Text style={styles.text}>Temperature: {this.state.temp}</Text>
+                <Text style={styles.text}>Amount of Coffee: {this.state.amount} oz</Text>
+                <Text style={styles.text}>Time Remaining: {this.state.time_rem}</Text>
                 {/* this version of setState doesn't know previous states */}
                 {/* <Button 
                 title="Increase temperature by 1"
                 onPress={() => this.setState({temp: 100})}>
                 </Button> */}
-                <Button 
+                {/* <Button style={styles.button}
                 title="Increase temperature by 1"
                 onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}>
-                </Button>
-                <Text>hi</Text>
+                </Button> */}
                 <Button 
                 title="Settings"
                 onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}>
                 </Button>
               </View>
-            </ScrollView>
           </SafeAreaView>
         </>
       );
     };
   };
   
+  const DefaultText = styled(Text)`
+    color: tomato;
+    `
+  const StyledText = styled(DefaultText)`
+    color: tomato;
+  `
+
   const styles = StyleSheet.create({
-    scrollView: {
-      backgroundColor: Colors.lighter,
-    },
     engine: {
       position: 'absolute',
       right: 0,
     },
     body: {
-      backgroundColor: Colors.white,
+
+      backgroundColor: "#55c6f6",
+      flex: 1,
+      flexDirection: "column",
+      justifyContent: "space-around",
+      alignItems: "center",
+      // fontWeight: "bold",
+    },
+    button: {
+      flex: 1,
+    },
+    text: {
+      fontSize: 24,
+      fontWeight: "bold",
+      fontFamily: "Cochin",
+
+    },
+    title: {
+      fontSize: 96,
+      color: "#ffffff",
+      fontWeight: "normal",
     },
     sectionContainer: {
       marginTop: 32,
       paddingHorizontal: 24,
-    },
-    sectionTitle: {
-      fontSize: 24,
-      fontWeight: '600',
-      color: Colors.black,
-    },
-    sectionDescription: {
-      marginTop: 8,
-      fontSize: 18,
-      fontWeight: '400',
-      color: Colors.dark,
     },
     highlight: {
       fontWeight: '700',
@@ -103,5 +113,10 @@ export default class Display extends React.Component {
       padding: 4,
       paddingRight: 12,
       textAlign: 'right',
+    },
+    container: {
+      display: "flex",
+      flex: 1,
+      fontFamily: "breve2",
     },
   });
