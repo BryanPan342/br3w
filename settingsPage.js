@@ -37,11 +37,7 @@ class SettingsPage extends React.Component {
   render() {
     const { navigation } = this.props;
     const {navigate} = navigation; 
-      console.log("settings page");
-      console.log(JSON.stringify(navigation.getParam('temperature','default-value')));  
-    //   console.log(this.state.temperature);
-    //   console.log(this.state.amount);
-      return (
+    return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
