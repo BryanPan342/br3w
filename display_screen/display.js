@@ -11,51 +11,24 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-
 import styled from 'styled-components';
-// import {ImageButton} from 'react-native-image-button-text';
 import {
     Colors,
   } from 'react-native/Libraries/NewAppScreen';
 
-
+  // Create CustomButton to use later
   export const CustomButton = (props) => {
-    const { title = 'Enter', style = {}, textStyle = {}, onPress } = props;
+    const { style = {}, onPress } = props;
 
     return (
         <TouchableOpacity 
         onPress={onPress} 
         style={[styles.button, style]}>
           <SettingsImage source={require('../assets/images/settings.png')} />
-
-          {/* <Image source={require('../assets/images/settings.png')}
-          resizeMode='contain'
-          /> */}
         </TouchableOpacity>
     );
 };
 
-// const styles = StyleSheet.create({
-//   button: {
-//       display: 'flex',
-//       height: 50,
-//       borderRadius: 5,
-//       justifyContent: 'center',
-//       alignItems: 'center',
-
-//       backgroundColor: '#2AC062',
-//       shadowColor: '#2AC062',
-//       shadowOpacity: 0.4,
-//       shadowOffset: { height: 10, width: 0 },
-//       shadowRadius: 20,
-//   },
-
-//   text: {
-//       fontSize: 16,
-//       textTransform: 'uppercase',
-//       color: '#FFFFFF',
-//   },
-// });
 export default class Display extends React.Component {
     constructor(props) {
       super(props);
@@ -79,14 +52,15 @@ export default class Display extends React.Component {
               )}
 
               <View style={styles.body}>
-              {/* <SettingsImage source={require('../assets/images/settings.png')} /> */}
-
+              {/* Create a SettingsButton */}
               <SettingsButton 
                 title=""
                 onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}
                 >
                 </SettingsButton>
+
                 <TitleText>B R 3 W</TitleText>
+
                 <View style={styles.bodyText}>
                   <DefaultText>Temperature: {this.state.temp}</DefaultText>
                   <DefaultText>Amount of Coffee: {this.state.amount} oz</DefaultText>
@@ -104,6 +78,10 @@ export default class Display extends React.Component {
     };
   };
   
+  //Styled Components
+  // Hierarchy Summary:
+  //     Text > DefaultText > TitleText
+  //     CustomButton > SettingsButton
   const DefaultText = styled(Text)`
     color: #562f29;
     font-size: 36;
