@@ -8,7 +8,8 @@ import {
   Text,
   StatusBar,
   Button,
-  Image
+  Image,
+  TouchableOpacity,
 } from 'react-native';
 
 import styled from 'styled-components';
@@ -18,6 +19,43 @@ import {
   } from 'react-native/Libraries/NewAppScreen';
 
 
+  export const CustomButton = (props) => {
+    const { title = 'Enter', style = {}, textStyle = {}, onPress } = props;
+
+    return (
+        <TouchableOpacity 
+        onPress={onPress} 
+        style={[styles.button, style]}>
+          <SettingsImage source={require('../assets/images/settings.png')} />
+
+          {/* <Image source={require('../assets/images/settings.png')}
+          resizeMode='contain'
+          /> */}
+        </TouchableOpacity>
+    );
+};
+
+// const styles = StyleSheet.create({
+//   button: {
+//       display: 'flex',
+//       height: 50,
+//       borderRadius: 5,
+//       justifyContent: 'center',
+//       alignItems: 'center',
+
+//       backgroundColor: '#2AC062',
+//       shadowColor: '#2AC062',
+//       shadowOpacity: 0.4,
+//       shadowOffset: { height: 10, width: 0 },
+//       shadowRadius: 20,
+//   },
+
+//   text: {
+//       fontSize: 16,
+//       textTransform: 'uppercase',
+//       color: '#FFFFFF',
+//   },
+// });
 export default class Display extends React.Component {
     constructor(props) {
       super(props);
@@ -41,29 +79,23 @@ export default class Display extends React.Component {
               )}
 
               <View style={styles.body}>
-                <SettingsImage source={require('../assets/images/settings.png')} />
+              {/* <SettingsImage source={require('../assets/images/settings.png')} /> */}
+
+              <SettingsButton 
+                title=""
+                onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}
+                >
+                </SettingsButton>
                 <TitleText>B R 3 W</TitleText>
                 <View style={styles.bodyText}>
                   <DefaultText>Temperature: {this.state.temp}</DefaultText>
                   <DefaultText>Amount of Coffee: {this.state.amount} oz</DefaultText>
                   <DefaultText>Time Remaining: {this.state.time_rem}</DefaultText>
                 </View>
-                
-                {/* <Text style={styles.text}>Temperature: {this.state.temp}</Text>
-                <Text style={styles.text}>Amount of Coffee: {this.state.amount} oz</Text>
-                <Text style={styles.text}>Time Remaining: {this.state.time_rem}</Text> */}
-                {/* this version of setState doesn't know previous states */}
-                {/* <Button 
-                title="Increase temperature by 1"
-                onPress={() => this.setState({temp: 100})}>
-                </Button> */}
-                {/* <Button style={styles.button}
-                title="Increase temperature by 1"
-                onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}>
-                </Button> */}
                 <Button 
-                title="Set Schedule"
-                onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}>
+                title="start"
+                onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}
+                >
                 </Button>
               </View>
           </SafeAreaView>
@@ -83,54 +115,72 @@ export default class Display extends React.Component {
     color: #bc846b;
     font-size: 96;
     position: relative;
-
   `
-  const SettingsImage = styled.Image`
-    width: 75px;
-    height: 75px;
-    margin-top: 15px;
-    align-self: flex-end;
-    margin-right: 15px;
+  const SettingsImage = styled(Image)`
+     width: 75px;
+     height: 75px;
+     align-self: center;
   `
+  const SettingsButton = styled(CustomButton)`
+      display: flex;
+      height: 75px;
+      width: 75px;
+      border-radius: 25px;
+      margin-top: 15px;
+      align-self: flex-end;
+      margin-right: 15px;
+      opacity: 1;
+  `
+ 
   const styles = StyleSheet.create({
     engine: {
       position: 'absolute',
       right: 0,
     },
-    body: {
 
-      backgroundColor: "#fffff4", //"#55c6f6",
+    body: {
+      backgroundColor: "#fffff4", 
       flex: 1,
       flexDirection: "column",
-      // justifyContent: "space-around",
       alignItems: "center",
-      // fontWeight: "bold",
     },
+
     bodyText: {
       display: "flex",
       marginBottom: 20,
     },
+
     button: {
-      flex: 1,
+      display: 'flex',
+      height: 50,
+      width: 50,
+      borderRadius: 25,
+      justifyContent: 'center',
+      alignItems: 'center',
+      opacity: 0,
     },
+
     text: {
       fontSize: 24,
       fontWeight: "bold",
       fontFamily: "Cochin",
-
     },
+
     title: {
       fontSize: 96,
       color: "#ffffff",
       fontWeight: "normal",
     },
+
     sectionContainer: {
       marginTop: 32,
       paddingHorizontal: 24,
     },
+
     highlight: {
       fontWeight: '700',
     },
+
     footer: {
       color: Colors.dark,
       fontSize: 12,
@@ -139,6 +189,7 @@ export default class Display extends React.Component {
       paddingRight: 12,
       textAlign: 'right',
     },
+
     container: {
       display: "flex",
       flex: 1,
