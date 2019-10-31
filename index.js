@@ -9,7 +9,5 @@ import Dummy from './display_screen/dummy';
 import AppNavigator from './display_screen/navigation';
 import {name as appName} from './app.json';
 
-//  AppRegistry.registerComponent(appName, () => AppNavigator);
-//AppRegistry.registerComponent(appName, () => Navigate);
-AppRegistry.registerComponent(appName, () => Display);
+AppRegistry.registerComponent(appName, () => App);
 
