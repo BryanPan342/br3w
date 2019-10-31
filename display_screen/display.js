@@ -18,11 +18,11 @@ import {
 
   // Create CustomButton to use later
   export const CustomButton = (props) => {
+    
     const { style = {}, onPress } = props;
-
     return (
         <TouchableOpacity 
-        onPress={onPress} 
+        // onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})} 
         style={[styles.button, style]}>
           <SettingsImage source={require('../assets/images/settings.png')} />
         </TouchableOpacity>
@@ -40,6 +40,8 @@ export default class Display extends React.Component {
       }
     }
     render() {
+      const { navigation } = this.props;
+      const {navigate} = navigation; 
       return (
         <>
           <StatusBar barStyle="dark-content" />
@@ -55,7 +57,8 @@ export default class Display extends React.Component {
               {/* Create a SettingsButton */}
               <SettingsButton 
                 title=""
-                onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}
+                onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}
+                // onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}
                 >
                 </SettingsButton>
 
@@ -68,7 +71,8 @@ export default class Display extends React.Component {
                 </View>
                 <Button 
                 title="start"
-                onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}
+                // onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}
+                onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}
                 >
                 </Button>
               </View>
