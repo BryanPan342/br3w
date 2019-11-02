@@ -18,11 +18,13 @@ import {
 
   // Create CustomButton to use later
   export const CustomButton = (props) => {
-    
+
     const { style = {}, onPress } = props;
     return (
-        <TouchableOpacity 
-        // onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})} 
+        <TouchableOpacity
+        onPress={onPress}
+        // onPress={() => {onPress}} //{temperature: this.state.temperature, amount: this.state.amount})}> SettingsPage
+
         style={[styles.button, style]}>
           <SettingsImage source={require('../assets/images/settings.png')} />
         </TouchableOpacity>
@@ -41,7 +43,7 @@ export default class Display extends React.Component {
     }
     render() {
       const { navigation } = this.props;
-      const {navigate} = navigation; 
+      const {navigate} = navigation;
       return (
         <>
           <StatusBar barStyle="dark-content" />
@@ -55,10 +57,12 @@ export default class Display extends React.Component {
 
               <View style={styles.body}>
               {/* Create a SettingsButton */}
-              <SettingsButton 
+              <SettingsButton
                 title=""
-                onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}
+                // onPress={() =>{console.log("Hello")}} //navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}}
                 // onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}
+                // onPress={() => {this.props.navigation.navigate('SettingsPage')}}
+                onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}
                 >
                 </SettingsButton>
 
@@ -69,7 +73,7 @@ export default class Display extends React.Component {
                   <DefaultText>Amount of Coffee: {this.state.amount} oz</DefaultText>
                   <DefaultText>Time Remaining: {this.state.time_rem}</DefaultText>
                 </View>
-                <Button 
+                <Button
                 title="start"
                 // onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}
                 onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}
@@ -81,7 +85,7 @@ export default class Display extends React.Component {
       );
     };
   };
-  
+
   //Styled Components
   // Hierarchy Summary:
   //     Text > DefaultText > TitleText
@@ -113,7 +117,7 @@ export default class Display extends React.Component {
       margin-right: 15px;
       opacity: 1;
   `
- 
+
   const styles = StyleSheet.create({
     engine: {
       position: 'absolute',
@@ -121,7 +125,7 @@ export default class Display extends React.Component {
     },
 
     body: {
-      backgroundColor: "#fffff4", 
+      backgroundColor: "#fffff4",
       flex: 1,
       flexDirection: "column",
       alignItems: "center",

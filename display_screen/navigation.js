@@ -7,9 +7,9 @@
 //     dummy: {screen: DummyScreen},
 //   }
 //   );
-  
+
 //   const Navigate = createAppContainer(MainNavigator);
-  
+
 //   export default Navigate;
 
 import React from 'react';
@@ -30,7 +30,7 @@ class HomeScreen extends React.Component {
 const AppNavigator = createStackNavigator({
   Home: {
     screen: HomeScreen,
-  },
+  }
 });
 
 export default createAppContainer(AppNavigator);
