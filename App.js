@@ -6,6 +6,7 @@ import BluetoothConnect from './BluetoothConnect';
 
 const MainNavigator = createStackNavigator({
   Loading: {screen: BluetoothConnect},
+  Display: {screen: Display},
   Settings: {screen: SettingsPage}
 });
 
