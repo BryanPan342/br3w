@@ -17,7 +17,7 @@ import {
   Picker,
   Button
 } from 'react-native';
-
+import styled from 'styled-components';
 import {
   Header,
   LearnMoreLinks,
@@ -30,13 +30,13 @@ class SettingsPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            temperature: 0,
-            amount: 0
+            temperature: 95,
+            amount: 8
         }
     }
   render() {
     const { navigation } = this.props;
-    const {navigate} = navigation; 
+    const {navigate} = navigation;
     return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -45,7 +45,7 @@ class SettingsPage extends React.Component {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <View style={styles.header} >
-            <Text style={styles.headerText}> BR3W </Text>
+            <Text style={styles.headerText}> B R 3 W </Text>
           </View>
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
@@ -54,13 +54,13 @@ class SettingsPage extends React.Component {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>settings page HOLY SH IT WORKS!!!</Text>
+              <Text style={styles.sectionTitle}>settings page HOLY SHIT WORKS!!!</Text>
             </View>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Temperature</Text>
               <Picker
                 selectedValue={this.state.temperature}
-                onValueChange={(itemValue) => 
+                onValueChange={(itemValue) =>
                     this.setState({temperature: itemValue})}>
                 <Picker.Item label="92 C" value="92" />
                 <Picker.Item label="93 C" value="93" />
@@ -73,7 +73,7 @@ class SettingsPage extends React.Component {
               <Text style={styles.sectionTitle}>Amount</Text>
               <Picker
                 selectedValue={this.state.amount}
-                onValueChange={(itemValue) => 
+                onValueChange={(itemValue) =>
                     this.setState({amount: itemValue})}>
                 <Picker.Item label="8 oz" value="8" />
                 <Picker.Item label="10 oz" value="10" />
@@ -91,16 +91,30 @@ class SettingsPage extends React.Component {
   )}
 };
 
+const DefaultText = styled(Text)`
+  color: #562f29;
+  font-size: 36;
+  font-family: BREVE2;
+  margin: 20px 0px;
+  align-self: center;
+  `
+
 const styles = StyleSheet.create({
   headerView: {
     backgroundColor: Colors.aliceblue,
 
   },
-  headerText:{
-    fontSize: 30,
-    fontWeight: '800',
+  headerText: {
+    color: "#bc846b",
+    fontSize: 96,
+    fontFamily: "BREVE2",
+    margin: 20, //0px,
+    alignSelf: 'center',
+    //fontSize: 30,
+    // fontWeight: '800',
     color: Colors.black,
     textAlign: 'center',
+    position: 'relative',
   },
   scrollView: {
     backgroundColor: Colors.lighter,
@@ -110,16 +124,24 @@ const styles = StyleSheet.create({
     right: 0,
   },
   body: {
-    backgroundColor: Colors.white,
+    backgroundColor: "#fffff4",
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  bodyText: {
+    display: "flex",
+    marginBottom: 20,
   },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
   },
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 36,
     fontWeight: '600',
-    color: Colors.black,
+    color: "#562f29",
+    fontFamily: "BREVE2",
   },
   sectionDescription: {
     marginTop: 8,
@@ -137,6 +159,11 @@ const styles = StyleSheet.create({
     padding: 4,
     paddingRight: 12,
     textAlign: 'right',
+  },
+  container: {
+    display: "flex",
+    flex: 1,
+    fontFamily: "breve2",
   },
 });
 

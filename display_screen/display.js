@@ -34,12 +34,15 @@ import {
 export default class Display extends React.Component {
     constructor(props) {
       super(props);
+      console.log(this.props.navigation.state.params);
       this.state = {
-        temp: 95,
+        temp: this.props.navigation.getParam("temperature", 95),
         is_celsius: true,
-        amount: 8,
+        amount: this.props.navigation.getParam("amount", 8),
         time_rem: 2
       }
+
+
     }
     render() {
       const { navigation } = this.props;
