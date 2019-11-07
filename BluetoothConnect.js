@@ -13,7 +13,7 @@ import {
 var _ = require('lodash');
 import BluetoothSerial from 'react-native-bluetooth-serial'
 
-export default class BluetoothConnect extends Component<{}> {
+export default class BluetoothConnect extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -24,129 +24,32 @@ export default class BluetoothConnect extends Component<{}> {
       connected: false,
     }
   }
-  componentWillMount(){
-
-    Promise.all([
-      BluetoothSerial.isEnabled(),
-      BluetoothSerial.list()
-    ])
-    .then((values) => {
-      const [ isEnabled, devices ] = values
-
-      this.setState({ isEnabled, devices })
-    })
-
-    BluetoothSerial.on('bluetoothEnabled', () => {
-
-      Promise.all([
-        BluetoothSerial.isEnabled(),
-        BluetoothSerial.list()
-      ])
-      .then((values) => {
-        const [ isEnabled, devices ] = values
-        this.setState({ isEnabled, devices })
-      })
-
-      BluetoothSerial.on('bluetoothDisabled', () => {
-
-         this.setState({ devices: [] })
-
-      })
-      BluetoothSerial.on('error', (err) => console.log(`Error: ${err.message}`))
-
-    })
-
+  componentDidMount(){
+    BluetoothSerial.enable()
+        .then((res) => this.setState({ isEnabled: true }))
+        .catch((err) => Toast.showShortBottom(err.message))
+    console.log("connecting...")
+    this.connect("98:D3:51:FD:D0:99")
   }
   connect (device) {
+    const { navigation } = this.props;
+    const {navigate} = navigation; 
     this.setState({ connecting: true })
-    BluetoothSerial.connect(device.id)
+    console.log(device);
+    BluetoothSerial.connect(device)
     .then((res) => {
-      console.log(`Connected to device ${device.name}`);
+      console.log(`Connected to device ${device}`);
       
-      ToastAndroid.show(`Connected to device ${device.name}`, ToastAndroid.SHORT);
+      ToastAndroid.show(`Connected to device`, ToastAndroid.SHORT);
+      navigate('Settings')
     })
     .catch((err) => console.log((err.message)))
   }
-  _renderItem(item){
 
-    return(<TouchableOpacity onPress={() => this.connect(item.item)}>
-            <View style={styles.deviceNameWrap}>
-              <Text style={styles.deviceName}>{ item.item.name ? item.item.name : item.item.id }</Text>
-            </View>
-          </TouchableOpacity>)
-  }
-  enable () {
-    BluetoothSerial.enable()
-    .then((res) => this.setState({ isEnabled: true }))
-    .catch((err) => Toast.showShortBottom(err.message))
-  }
-
-  disable () {
-    BluetoothSerial.disable()
-    .then((res) => this.setState({ isEnabled: false }))
-    .catch((err) => Toast.showShortBottom(err.message))
-  }
-
-  toggleBluetooth (value) {
-    if (value === true) {
-      this.enable()
-    } else {
-      this.disable()
-    }
-  }
-  discoverAvailableDevices () {
-    
-    if (this.state.discovering) {
-      return false
-    } else {
-      this.setState({ discovering: true })
-      BluetoothSerial.discoverUnpairedDevices()
-      .then((unpairedDevices) => {
-        const uniqueDevices = _.uniqBy(unpairedDevices, 'id');
-        console.log(uniqueDevices);
-        this.setState({ unpairedDevices: uniqueDevices, discovering: false })
-      })
-      .catch((err) => console.log(err.message))
-    }
-  }
-  toggleSwitch(){
-    BluetoothSerial.write("T")
-    .then((res) => {
-      console.log(res);
-      console.log('Successfuly wrote to device')
-      this.setState({ connected: true })
-    })
-    .catch((err) => console.log(err.message))
-  }
   render() {
-
     return (
       <View style={styles.container}>
-      <View style={styles.toolbar}>
-            <Text style={styles.toolbarTitle}>Bluetooth Device List</Text>
-            <View style={styles.toolbarButton}>
-              <Switch
-                value={this.state.isEnabled}
-                onValueChange={(val) => this.toggleBluetooth(val)}
-              />
-            </View>
-      </View>
-        <Button
-          onPress={this.discoverAvailableDevices.bind(this)}
-          title="Scan for Devices"
-          color="#841584"
-        />
-        <FlatList
-          style={{flex:1}}
-          data={this.state.devices}
-          keyExtractor={item => item.id}
-          renderItem={(item) => this._renderItem(item)}
-        />
-        <Button
-          onPress={this.toggleSwitch.bind(this)}
-          title="Switch(On/Off)"
-          color="#841584"
-        />
+        <Text>Connecting to your br3w...</Text>
       </View>
     );
   }
