@@ -6,7 +6,12 @@ import Display from './display_screen/display';
 const MainNavigator = createStackNavigator({
   Settings: {screen: SettingsPage},
   Display: {screen: Display},
-});
+},
+{
+  headerMode: 'none',
+}
+
+);
 
 const App = createAppContainer(MainNavigator);
 
