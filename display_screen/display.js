@@ -23,8 +23,6 @@ import {
     return (
         <TouchableOpacity
         onPress={onPress}
-        // onPress={() => {onPress}} //{temperature: this.state.temperature, amount: this.state.amount})}> SettingsPage
-
         style={[styles.button, style]}>
           <SettingsImage source={require('../assets/images/settings.png')} />
         </TouchableOpacity>
@@ -34,9 +32,8 @@ import {
 export default class Display extends React.Component {
     constructor(props) {
       super(props);
-      console.log(this.props.navigation.state.params);
       this.state = {
-        temp: this.props.navigation.getParam("temperature", 95),
+        temp: this.props.navigation.getParam("temperature", 92),
         is_celsius: true,
         amount: this.props.navigation.getParam("amount", 8),
         time_rem: 2
@@ -62,9 +59,6 @@ export default class Display extends React.Component {
               {/* Create a SettingsButton */}
               <SettingsButton
                 title=""
-                // onPress={() =>{console.log("Hello")}} //navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}}
-                // onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}
-                // onPress={() => {this.props.navigation.navigate('SettingsPage')}}
                 onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}
                 >
                 </SettingsButton>
@@ -78,7 +72,6 @@ export default class Display extends React.Component {
                 </View>
                 <Button
                 title="start"
-                // onPress={() => this.setState(previousState => ({temp: previousState.temp+1}))}
                 onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}
                 >
                 </Button>
