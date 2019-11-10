@@ -1,14 +1,19 @@
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import SettingsPage from './settingsPage';
-import Display from './display';
-import BluetoothConnect from './BluetoothConnect';
+import Display from './display_screen/display';
+import Loading from './loadingScreen'
 
 const MainNavigator = createStackNavigator({
-  Loading: {screen: BluetoothConnect},
+  Loading: {screen: Loading},
+  Settings: {screen: SettingsPage},
   Display: {screen: Display},
-  Settings: {screen: SettingsPage}
-});
+},
+{
+  headerMode: 'none',
+}
+
+);
 
 const App = createAppContainer(MainNavigator);
 
