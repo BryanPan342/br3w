@@ -18,9 +18,6 @@ export default class BluetoothConnect extends Component {
     super(props)
     this.state = {
       isEnabled: false,
-      discovering: false,
-      devices: [],
-      unpairedDevices: [],
       connected: false,
     }
   }
