@@ -70,11 +70,11 @@ export default class Display extends React.Component {
                   <DefaultText>Amount of Coffee: {this.state.amount} oz</DefaultText>
                   <DefaultText>Time Remaining: {this.state.time_rem}</DefaultText>
                 </View>
-                <Button
+                {/*<Button
                 title="start"
                 onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}
                 >
-                </Button>
+                </Button>*/}
               </View>
           </SafeAreaView>
         </>

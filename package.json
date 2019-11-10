@@ -14,8 +14,10 @@
     "react-native": "0.61.2",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-image-button-text": "^1.0.7",
+    "react-native-splash-screen": "^3.2.0",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^1.10.2",
+    "react-timer-mixin": "^0.13.4",
     "styled-components": "^4.4.0"
   },
   "devDependencies": {

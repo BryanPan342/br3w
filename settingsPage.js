@@ -18,6 +18,7 @@ import {
   Button,
   Image,
   TouchableOpacity,
+  AsynStorage,
 } from 'react-native';
 import styled from 'styled-components';
 import {
@@ -44,8 +45,8 @@ class SettingsPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            temperature: 92, //this.props.navigation.getParam("temperature", 92), //changed this from just 95. Might cause some problems
-            amount: 8, //this.props.navigation.getParam("amount", 8),  //same as above, changed from simply 8
+            temperature: 92,
+            amount: 8,
         }
     }
   render() {
@@ -54,6 +55,10 @@ class SettingsPage extends React.Component {
     return (
     <>
       <StatusBar barStyle="dark-content" />
+        {/*<BackView
+          style={style.loadingScreen}>
+
+        </BackView>*/}
         <BackView
           style={styles.container}>
           <View style={styles.header} >
@@ -139,6 +144,11 @@ const styles = StyleSheet.create({
   engine: {
     position: 'absolute',
     right: 0,
+  },
+
+  loadingScreen: {
+    flex: 1,
+    backgroundColor: "#fffff4",
   },
 
   header: {
