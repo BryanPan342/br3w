@@ -15,7 +15,7 @@ void loop() {
     char data = Serial.read();
     //Serial.println(data);
     if(data == 'T'){
-      if(flag == 0){
+      if(flag == 0){  
         digitalWrite(LED_BUILTIN,HIGH);
         flag = 1;
       }else{
