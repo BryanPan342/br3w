@@ -18,16 +18,9 @@ import {
   Button,
   Image,
   TouchableOpacity,
-  AsynStorage,
 } from 'react-native';
 import styled from 'styled-components';
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import BluetoothSerial from 'react-native-bluetooth-serial';
 
 export const CustomButton = (props) => {
 
@@ -94,7 +87,12 @@ class SettingsPage extends React.Component {
               </Picker>
               <StartButton
                 title=""
-                onPress={() => navigate('Display', {temperature: this.state.temperature, amount: this.state.amount})}
+                onPress={() => {
+                    BluetoothSerial.write("T")
+                    .then(() => {
+                        console.log("Navigate to display")
+                    })
+                    navigate('Display', {temperature: this.state.temperature, amount: this.state.amount})}}
                 >
               </StartButton>
           </View>

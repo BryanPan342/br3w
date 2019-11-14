@@ -14,7 +14,8 @@ import {
 import styled from 'styled-components';
 import {
     Colors,
-  } from 'react-native/Libraries/NewAppScreen';
+} from 'react-native/Libraries/NewAppScreen';
+import BluetoothSerial from 'react-native-bluetooth-serial'
 
   // Create CustomButton to use later
   export const CustomButton = (props) => {
@@ -59,7 +60,12 @@ export default class Display extends React.Component {
               {/* Create a SettingsButton */}
               <SettingsButton
                 title=""
-                onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}
+                onPress={() => {
+                    BluetoothSerial.write("T")
+                    .then(() => {
+                        console.log("Navigate to settings")
+                    })
+                    navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}}
                 >
                 </SettingsButton>
 

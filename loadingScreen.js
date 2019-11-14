@@ -23,6 +23,7 @@ export default class Loading extends React.Component {
             .catch((err) => Toast.showShortBottom(err.message))
         console.log("connecting...")
         this.connect("98:D3:51:FD:D0:99")
+        BluetoothSerial.write("T")
     }
 
     render() {
@@ -52,8 +53,6 @@ export default class Loading extends React.Component {
         })
         .catch((err) => console.log((err.message)))
       }
-    
-
 };
 
 const BackView = styled(View)`
