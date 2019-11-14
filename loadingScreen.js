@@ -23,15 +23,22 @@ export default class Loading extends React.Component {
             .catch((err) => Toast.showShortBottom(err.message))
         console.log("connecting...")
         this.connect("98:D3:51:FD:D0:99")
+        
         BluetoothSerial.write("T")
     }
 
     render() {
-        if (this.state.connected) {
+        if (false && this.state.connected) {
             setTimeout(() => {
                 this.props.navigation.navigate('Settings', {})
             }, 1000);
-        } 
+        }
+        else {
+          setTimeout(() => {
+            this.props.navigation.navigate('Settings', {})
+        }, 5000);
+        console.log("Not connected :)")
+        }
         return(
         <Fragment>
         <StatusBar barStyle="dark-content" />

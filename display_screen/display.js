@@ -15,8 +15,8 @@ import styled from 'styled-components';
 import {
     Colors,
 } from 'react-native/Libraries/NewAppScreen';
-import BluetoothSerial from 'react-native-bluetooth-serial'
-
+import BluetoothSerial from 'react-native-bluetooth-serial';
+import ArduinoHelper from '../utils/ArduinoHelper'
   // Create CustomButton to use later
   export const CustomButton = (props) => {
 
@@ -29,6 +29,7 @@ import BluetoothSerial from 'react-native-bluetooth-serial'
         </TouchableOpacity>
     );
 };
+
 
 export default class Display extends React.Component {
     constructor(props) {
@@ -61,10 +62,7 @@ export default class Display extends React.Component {
               <SettingsButton
                 title=""
                 onPress={() => {
-                    BluetoothSerial.write("T")
-                    .then(() => {
-                        console.log("Navigate to settings")
-                    })
+                    console.log("Navigate to settings")
                     navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}}
                 >
                 </SettingsButton>
@@ -76,11 +74,15 @@ export default class Display extends React.Component {
                   <DefaultText>Amount of Coffee: {this.state.amount} oz</DefaultText>
                   <DefaultText>Time Remaining: {this.state.time_rem}</DefaultText>
                 </View>
-                {/*<Button
+                <Button
                 title="start"
-                onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}
+                onPress={() => {
+                  BluetoothSerial.write(ArduinoHelper.send_value(this.state.temp, this.state.amount))
+                  .then(() => {
+                      console.log("Start coffee")
+                  })}}
                 >
-                </Button>*/}
+                </Button>
               </View>
           </SafeAreaView>
         </>
