@@ -36,6 +36,7 @@ export default class Display extends React.Component {
         temp: this.props.navigation.getParam("temperature", 92),
         is_celsius: true,
         amount: this.props.navigation.getParam("amount", 8),
+        roast: this.props.navigation.getParam("roast", true),
         time_rem: 2
       }
 
@@ -59,7 +60,7 @@ export default class Display extends React.Component {
               {/* Create a SettingsButton */}
               <SettingsButton
                 title=""
-                onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}
+                onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast})}
                 >
                 </SettingsButton>
 
@@ -69,6 +70,7 @@ export default class Display extends React.Component {
                   <DefaultText>Temperature: {this.state.temp}</DefaultText>
                   <DefaultText>Amount of Coffee: {this.state.amount} oz</DefaultText>
                   <DefaultText>Time Remaining: {this.state.time_rem}</DefaultText>
+                  <DefaultText>Roast: {this.state.roast == true ? "Light" : "Dark"} Roast</DefaultText>
                 </View>
                 {/*<Button
                 title="start"

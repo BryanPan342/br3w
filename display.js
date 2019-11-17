@@ -31,7 +31,8 @@ class SettingsPage extends React.Component {
         super(props);
         this.state = {
             temperature: 0,
-            amount: 0
+            amount: 0,
+            roast: "light"
         }
     }
   render() {
