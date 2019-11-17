@@ -22,13 +22,13 @@ const getIcon = (type, active) => {
     switch (type) {
     case 'Light':
         icn = active
-            ? <Text style={styles.ActiveText}> Light </Text> //require('./assets/slider/active/complete.png')
-            : <Text style={styles.InactiveText}> Light </Text> //require('./assets/slider/inactive/complete.png');
+            ? <Text style={styles.InactiveText}> Light </Text> //require('./assets/slider/active/complete.png')
+            : <Text style={styles.ActiveText}> Light </Text> //require('./assets/slider/inactive/complete.png');
         break;
     case 'Dark':
         icn = active
-            ? <Text style={styles.ActiveText}> Dark </Text>//require('./assets/slider/active/light.jpg')
-            : <Text style={styles.InactiveText}> Dark </Text>;//require('./assets/slider/inactive/dark.jpg');
+            ? <Text style={styles.InactiveText}> Dark </Text>//require('./assets/slider/active/light.jpg')
+            : <Text style={styles.ActiveText}> Dark </Text>//require('./assets/slider/inactive/dark.jpg');
         break;
     }
     return icn;
@@ -42,7 +42,7 @@ const Button = props => {
                 style={styles.buttonStyle}
             >
                {/* <Image source={getIcon(props.type, props.active)} /> */}
-               <Text source={getIcon(props.type, props.active)}/>
+               <Text>{getIcon(props.type, props.active)}</Text>
             </TouchableOpacity>
         </View>
     );
@@ -136,7 +136,7 @@ class MultiSwitch extends Component {
         posValue: Platform.OS === "ios" ? -2 : 0,
         selectedPosition: 0
       });
-    }, 100);
+    }, 10);
     this.props.onStatusChanged("Light");
   };
 
@@ -150,7 +150,7 @@ class MultiSwitch extends Component {
         posValue: this.state.mainWidth - this.state.switcherWidth - 2,
         selectedPosition: 1
       });
-    }, 100);
+    }, 10);
     this.props.onStatusChanged("Dark");
   };
 
@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: Colors.mBorderColor,
         borderRadius: 27.5,
-        marginVertical: 20,
+        marginVertical: 25,
     },
     
     switcher: {
@@ -257,13 +257,17 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     ActiveText: {
-      fontSize: 10,
-      color: 'grey'
+      fontSize: 18,
+      color: 'grey',
+      fontWeight: 'bold',
+      fontFamily: 'Futura',
     },
 
     InactiveText: {
-      fontSize: 10,
-      color: 'black'
+      fontSize: 18,
+      color: 'black',
+      fontWeight: 'bold',
+      fontFamily: 'Futura',
     }
 });
 

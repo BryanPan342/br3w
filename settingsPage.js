@@ -64,7 +64,7 @@ class SettingsPage extends React.Component {
         <BackView
           style={styles.container}>
           <View style={styles.header} >
-            <HeaderText> B R 3 W </HeaderText>
+            <HeaderText> BR3W </HeaderText>
           </View>
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
@@ -130,7 +130,7 @@ const BackView = styled(View)`
 const DefaultText = styled(Text)`
   color: #562f29;
   font-size: 36;
-  font-family: BREVE2;
+  font-family: Futura;
   margin: 20px 0px;
   align-self: center;
 `
@@ -189,8 +189,10 @@ const styles = StyleSheet.create({
   },
 
   sectionTitle: {
-    fontFamily: "BREVE2",
-    fontSize: 36,
+    //fontFamily: "BREVE2",
+    fontFamily: 'Futura',
+    //fontSize: 36,
+    fontSize: 24,
   }
 });
 
