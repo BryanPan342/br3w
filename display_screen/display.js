@@ -38,7 +38,8 @@ export default class Display extends React.Component {
         temp: this.props.navigation.getParam("temperature", 92),
         is_celsius: true,
         amount: this.props.navigation.getParam("amount", 8),
-        time_rem: 2
+        time_rem: 2,
+        isLight: true,
       }
 
 
@@ -46,6 +47,11 @@ export default class Display extends React.Component {
     render() {
       const { navigation } = this.props;
       const {navigate} = navigation;
+      BluetoothSerial.readFromDevice()
+        .then((res) => {
+          console.log(res);
+          console.log("hello");
+        })
       return (
         <>
           <StatusBar barStyle="dark-content" />
@@ -77,9 +83,10 @@ export default class Display extends React.Component {
                 <Button
                 title="start"
                 onPress={() => {
-                  BluetoothSerial.write(ArduinoHelper.send_value(this.state.temp, this.state.amount))
+                  BluetoothSerial.write(ArduinoHelper.send_value(this.state.temp, this.state.amount, this.state.isLight))
                   .then(() => {
-                      console.log("Start coffee")
+                      console.log("Start coffee, sent ", ArduinoHelper.send_value(this.state.temp, this.state.amount, this.state.isLight))
+                      //console.log("isLight: ", this.state.isLight)
                   })}}
                 >
                 </Button>

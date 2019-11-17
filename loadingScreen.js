@@ -28,7 +28,7 @@ export default class Loading extends React.Component {
     }
 
     render() {
-        if (false && this.state.connected) {
+        if (this.state.connected) {
             setTimeout(() => {
                 this.props.navigation.navigate('Settings', {})
             }, 1000);
@@ -52,6 +52,7 @@ export default class Loading extends React.Component {
         console.log(device);
         BluetoothSerial.connect(device)
         .then((res) => {
+          console.log(res)
           console.log(`Connected to device ${device}`);
           
           ToastAndroid.show(`Connected to device`, ToastAndroid.SHORT);

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 
 export default class ArduinoHelper {
-    static send_value(temp, amount)
+    static send_value(temp, amount, isLight)
     {
+        console.log("isLight", isLight)
         var result="z"
         if (temp == 92)
         {
@@ -64,7 +65,7 @@ export default class ArduinoHelper {
                 result='l'
             }
         }
-        else if (temp == 98)
+        else if (temp == 96)
         {
             if (amount == 8)
             {
@@ -76,8 +77,12 @@ export default class ArduinoHelper {
             }
             else if (amount == 12)
             {
-                result='o'
+                result="o"
             }
+        }
+        if (!isLight)
+        {
+            result=result.toUpperCase();
         }
         return result
     }
