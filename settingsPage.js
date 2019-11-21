@@ -19,8 +19,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import styled from 'styled-components';
-import ToggleSwitch from 'toggle-switch-react-native';
-// import MultiSwitch from 'rn-slider-switch';
 import MultiSwitch from './MultiSwitch';
 import {
   Header,
@@ -112,7 +110,7 @@ class SettingsPage extends React.Component {
               />
               <StartButton
                 title=""
-                onPress={() => navigate('Display', {temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast})}
+                onPress={() => navigate('progressBar', {temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast})}
                 >
               </StartButton>
           </View>
