@@ -16,7 +16,8 @@ export default class Loading extends React.Component {
           isEnabled: false,
           connected: false,
           temperature: 92,
-          amount: 8
+          amount: 8,
+          roast: true
         }
     }
       // function to retrieve data from AsyncStorage
@@ -37,6 +38,14 @@ export default class Loading extends React.Component {
       } catch (error) {
         console.error("Failed to Retrieve Amount")
       }
+      try {
+        const p_roast = await AsyncStorage.getItem('roast');
+          if (p_roast !== null) {
+            this.setState({roast: p_roast})
+          }
+      } catch (error) {
+        console.error("Failed to Retrieve Amount")
+      }
     };  
     componentDidMount(){
       this._retrieveData();
@@ -53,12 +62,12 @@ export default class Loading extends React.Component {
     render() {
         if (this.state.connected) {
             setTimeout(() => {
-                this.props.navigation.navigate('Display', {temperature: this.state.temperature, amount: this.state.amount})
+                this.props.navigation.navigate('Display', {temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast})
             }, 1000);
         }
         else {
           setTimeout(() => {
-            this.props.navigation.navigate('Display', {temperature: this.state.temperature, amount: this.state.amount})
+            this.props.navigation.navigate('Display', {temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast})
         }, 5000);
         console.log("Not connected :)")
         }

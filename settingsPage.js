@@ -21,6 +21,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import styled from 'styled-components';
+import MultiSwitch from './MultiSwitch';
+import {
+  Header,
+  LearnMoreLinks,
+  Colors,
+  DebugInstructions,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
 import BluetoothSerial from 'react-native-bluetooth-serial';
 
 export const CustomButton = (props) => {
@@ -41,6 +49,7 @@ class SettingsPage extends React.Component {
       this.state = {
           temperature: this.props.navigation.getParam("temperature", 92),
           amount: this.props.navigation.getParam("amount", 8),
+          roast: this.props.navigation.getParam("roast", true)
       }
   }
   _storeData = async () => {
@@ -55,6 +64,12 @@ class SettingsPage extends React.Component {
     } catch (error) {
       console.log(error);
       console.error("Failed to persist amount");
+    }
+    try {
+      await AsyncStorage.setItem('roast', this.state.roast);
+    } catch (error) {
+      console.log(error);
+      console.error("Failed to persist strength");
     }
   }
   render() {
@@ -100,6 +115,22 @@ class SettingsPage extends React.Component {
                 <Picker.Item label="10 oz" value="10" />
                 <Picker.Item label="12 oz" value="12" />
               </Picker>
+
+              <MultiSwitch
+                currentStatus={'Open'}
+                disableScroll={value => {
+                    console.log('scrollEnabled', value);
+                    // this.scrollView.setNativeProps({
+                    //     scrollEnabled: value
+                    // });
+                }}
+                isParentScrollEnabled={true}
+                onStatusChanged={text => {
+                    text == "Light" ? this.state.roast = true : this.state.roast = false;
+                    // this.state.roast = text;
+                    //console.log('Change Status ', text);
+                }}
+              />
               <StartButton
                 title=""
                 onPress={() => {
@@ -108,7 +139,7 @@ class SettingsPage extends React.Component {
                         this._storeData();
                         console.log("Navigate to display");
                     })
-                    navigate('Display', {temperature: this.state.temperature, amount: this.state.amount})}}
+                    navigate('progressBar', {temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast})}}
                 >
               </StartButton>
           </View>
@@ -126,7 +157,7 @@ const BackView = styled(View)`
 const DefaultText = styled(Text)`
   color: #562f29;
   font-size: 36;
-  font-family: BREVE2;
+  font-family: Futura;
   margin: 20px 0px;
   align-self: center;
 `
@@ -185,8 +216,10 @@ const styles = StyleSheet.create({
   },
 
   sectionTitle: {
-    fontFamily: "BREVE2",
-    fontSize: 36,
+    //fontFamily: "BREVE2",
+    fontFamily: 'Futura',
+    //fontSize: 36,
+    fontSize: 24,
   }
 });
 

@@ -34,26 +34,18 @@ import ArduinoHelper from '../utils/ArduinoHelper'
 export default class Display extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {
-        // temperature: this.props.navigation.getParam("temperature", 92),
-        is_celsius: true,
-        // amount: this.props.navigation.getParam("amount", 8),
-        time_rem: 2,
-        isLight: true,
-      }
     }
     render() {
       const { navigation } = this.props;
       const {navigate} = navigation;
-    //   this.setState({temperature: navigation.getParam('temperature'), amount: navigation.getParam('amount')})
+      //move this to progress page
       BluetoothSerial.readFromDevice()
         .then((res) => {
           console.log("read from arduino" + res);
         })
-    //   console.log(this.state.temperature);
-    //   console.log(this.state.amount);
         m_temperature = navigation.getParam('temperature', 92)
         m_amount = navigation.getParam('amount', 8)
+        m_isLight = navigation.getParam('roast', true)
         return (
         <>
           <StatusBar barStyle="dark-content" />
@@ -71,7 +63,7 @@ export default class Display extends React.Component {
                 title=""
                 onPress={() => {
                     console.log("Navigate to settings")
-                    navigate('Settings', {temperature: m_temperature, amount: m_amount})}}
+                    navigate('Settings', {temperature: m_temperature, amount: m_amount, roast: m_isLight})}}
                 >
                 </SettingsButton>
 
@@ -80,15 +72,14 @@ export default class Display extends React.Component {
                 <View style={styles.bodyText}>
                   <DefaultText>Temperature: {m_temperature}</DefaultText>
                   <DefaultText>Amount of Coffee: {m_amount} oz</DefaultText>
-                  <DefaultText>Time Remaining: {this.state.time_rem}</DefaultText>
+                  <DefaultText>Roast: {m_isLight == true ? "Light" : "Dark"} Roast</DefaultText>
                 </View>
                 <Button
                 title="start"
                 onPress={() => {
-                  BluetoothSerial.write(ArduinoHelper.send_value(m_temperature, m_amount, this.state.isLight))
+                  BluetoothSerial.write(ArduinoHelper.send_value(m_temperature, m_amount, m_isLight))
                   .then(() => {
-                      console.log("Start coffee, sent ", ArduinoHelper.send_value(m_temperature, m_amount, this.state.isLight))
-                      //console.log("isLight: ", this.state.isLight)
+                      console.log("Start coffee, sent ", ArduinoHelper.send_value(m_temperature, m_amount, m_isLight))
                   })}}
                 >
                 </Button>
@@ -105,14 +96,14 @@ export default class Display extends React.Component {
   //     CustomButton > SettingsButton
   const DefaultText = styled(Text)`
     color: #562f29;
-    font-size: 36;
-    font-family: BREVE2;
+    font-size: 24;
+    font-family: Futura;
     margin: 20px 0px;
     align-self: center;
     `
   const TitleText = styled(DefaultText)`
     color: #bc846b;
-    font-size: 96;
+    font-size: 80;
     position: relative;
   `
   const SettingsImage = styled(Image)`
