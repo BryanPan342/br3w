@@ -6,15 +6,19 @@ int servo_turns = -1; //number of turns for servo
 int time_sol = -1; //how long the solenoid valve should be open for water
 
 //constants
+//flow rate data for time_sol calculation
+const int SEC_OZ = 5.533; //number of seconds it takes for 1 ounce of water to flow
+
 //amount of time to open solenoid valve
-const int TIME_8 = 1;
-const int TIME_10 = 2;
-const int TIME_12 = 3;
+const int TIME_8 = 8*SEC_OZ; 
+const int TIME_10 = 10*SEC_OZ;
+const int TIME_12 = 12*SEC_OZ;
 
 //number of turns for servo
 const int SERVO_3 = 3;
 const int SERVO_4 = 4;
 const int SERVO_5 = 5;
+
 
 void setup() {
   // put your setup code here, to run once:
