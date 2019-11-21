@@ -73,12 +73,13 @@ export default class Display extends React.Component {
                 >
                 </SettingsButton>
 
-                <TitleText>B R 3 W</TitleText>
+                <TitleText>BR3W</TitleText>
 
                 <View style={styles.bodyText}>
                   <DefaultText>Temperature: {this.state.temp}</DefaultText>
                   <DefaultText>Amount of Coffee: {this.state.amount} oz</DefaultText>
                   <DefaultText>Time Remaining: {this.state.time_rem}</DefaultText>
+                  <DefaultText>Roast: {this.state.isLight == true ? "Light" : "Dark"} Roast</DefaultText>
                 </View>
                 <Button
                 title="start"
@@ -103,14 +104,14 @@ export default class Display extends React.Component {
   //     CustomButton > SettingsButton
   const DefaultText = styled(Text)`
     color: #562f29;
-    font-size: 36;
-    font-family: BREVE2;
+    font-size: 24;
+    font-family: Futura;
     margin: 20px 0px;
     align-self: center;
     `
   const TitleText = styled(DefaultText)`
     color: #bc846b;
-    font-size: 96;
+    font-size: 80;
     position: relative;
   `
   const SettingsImage = styled(Image)`
