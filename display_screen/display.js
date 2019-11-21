@@ -33,7 +33,6 @@ import ArduinoHelper from '../utils/ArduinoHelper'
 
 export default class Display extends React.Component {
     constructor(props) {
-      console.log("1")
       super(props);
       this.state = {
         // temperature: this.props.navigation.getParam("temperature", 92),
@@ -42,9 +41,6 @@ export default class Display extends React.Component {
         time_rem: 2,
         isLight: true,
       }
-    }
-    componentDidMount(){
-        console.log("2")
     }
     render() {
       const { navigation } = this.props;

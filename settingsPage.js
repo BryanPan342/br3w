@@ -37,7 +37,6 @@ export const CustomButton = (props) => {
 
 class SettingsPage extends React.Component {
   constructor(props) {
-      console.log(3)
       super(props);
       this.state = {
           temperature: this.props.navigation.getParam("temperature", 92),
@@ -189,79 +188,6 @@ const styles = StyleSheet.create({
     fontFamily: "BREVE2",
     fontSize: 36,
   }
-
-  // header: {
-  //   backgroundColor: Colors.aliceblue,
-  //
-  // },
-  // headerText: {
-  //   // color: "#bc846b",
-  //   fontSize: 96,
-  //   fontFamily: "BREVE2",
-  //   margin: 20, //0px,
-  //   alignSelf: 'center',
-  //   //fontSize: 30,
-  //   // fontWeight: '800',
-  //   // color: Colors.black,
-  //   color: "#bc846b",
-  //   textAlign: 'center',
-  //   position: 'relative',
-  // },
-  // scrollView: {
-  //   // backgroundColor: "#fffff4",//Colors.lighter,
-  //   // height: "100%",
-  //   flex: 1,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  // },
-
-  // body: {
-  //   // backgroundColor: "#fffff4",
-  //   flex: 1,
-  //   flexDirection: "column",
-  //   alignItems: "center",
-  //   marginTop: 102,
-  //   paddingHorizontal: 24,
-  //   color: Colors.red,
-  // },
-  // bodyText: {
-  //   display: "flex",
-  //   marginBottom: 20,
-  // },
-  // // sectionContainer: {
-  // //   marginTop: 102,
-  // //   paddingHorizontal: 24,
-  // //   color: Colors.red,
-  // //   // alignItems: "center",
-  // // },
-  // sectionTitle: {
-  //   fontSize: 36,
-  //   fontWeight: '600',
-  //   color: "#562f29",
-  //   fontFamily: "BREVE2",
-  // },
-  // sectionDescription: {
-  //   marginTop: 8,
-  //   fontSize: 18,
-  //   fontWeight: '400',
-  //   color: Colors.dark,
-  // },
-  // highlight: {
-  //   fontWeight: '700',
-  // },
-  // footer: {
-  //   color: Colors.dark,
-  //   fontSize: 12,
-  //   fontWeight: '600',
-  //   padding: 4,
-  //   paddingRight: 12,
-  //   textAlign: 'right',
-  // },
-  // container: {
-  //   display: "flex",
-  //   flex: 1,
-  //   fontFamily: "breve2",
-  // },
 });
 
 export default SettingsPage;
