@@ -14,8 +14,9 @@ import {
 import styled from 'styled-components';
 import {
     Colors,
-  } from 'react-native/Libraries/NewAppScreen';
-
+} from 'react-native/Libraries/NewAppScreen';
+import BluetoothSerial from 'react-native-bluetooth-serial';
+import ArduinoHelper from '../utils/ArduinoHelper'
   // Create CustomButton to use later
   export const CustomButton = (props) => {
 
@@ -29,6 +30,7 @@ import {
     );
 };
 
+
 export default class Display extends React.Component {
     constructor(props) {
       super(props);
@@ -36,8 +38,8 @@ export default class Display extends React.Component {
         temp: this.props.navigation.getParam("temperature", 92),
         is_celsius: true,
         amount: this.props.navigation.getParam("amount", 8),
-        roast: this.props.navigation.getParam("roast", true),
-        time_rem: 2
+        time_rem: 2,
+        isLight: true,
       }
 
 
@@ -45,6 +47,11 @@ export default class Display extends React.Component {
     render() {
       const { navigation } = this.props;
       const {navigate} = navigation;
+      BluetoothSerial.readFromDevice()
+        .then((res) => {
+          console.log(res);
+          console.log("hello");
+        })
       return (
         <>
           <StatusBar barStyle="dark-content" />
@@ -60,7 +67,9 @@ export default class Display extends React.Component {
               {/* Create a SettingsButton */}
               <SettingsButton
                 title=""
-                onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast})}
+                onPress={() => {
+                    console.log("Navigate to settings")
+                    navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}}
                 >
                 </SettingsButton>
 
@@ -70,13 +79,18 @@ export default class Display extends React.Component {
                   <DefaultText>Temperature: {this.state.temp}</DefaultText>
                   <DefaultText>Amount of Coffee: {this.state.amount} oz</DefaultText>
                   <DefaultText>Time Remaining: {this.state.time_rem}</DefaultText>
-                  <DefaultText>Roast: {this.state.roast == true ? "Light" : "Dark"} Roast</DefaultText>
+                  <DefaultText>Roast: {this.state.isLight == true ? "Light" : "Dark"} Roast</DefaultText>
                 </View>
-                {/*<Button
+                <Button
                 title="start"
-                onPress={() => navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}
+                onPress={() => {
+                  BluetoothSerial.write(ArduinoHelper.send_value(this.state.temp, this.state.amount, this.state.isLight))
+                  .then(() => {
+                      console.log("Start coffee, sent ", ArduinoHelper.send_value(this.state.temp, this.state.amount, this.state.isLight))
+                      //console.log("isLight: ", this.state.isLight)
+                  })}}
                 >
-                </Button>*/}
+                </Button>
               </View>
           </SafeAreaView>
         </>

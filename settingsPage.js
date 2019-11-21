@@ -27,6 +27,7 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import BluetoothSerial from 'react-native-bluetooth-serial';
 
 export const CustomButton = (props) => {
 
@@ -110,7 +111,12 @@ class SettingsPage extends React.Component {
               />
               <StartButton
                 title=""
-                onPress={() => navigate('progressBar', {temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast})}
+                onPress={() => {
+                    BluetoothSerial.write("T")
+                    .then(() => {
+                        console.log("Navigate to display")
+                    })
+                    navigate('progressBar', {temperature: this.state.temperature, amount: this.state.amount})}}
                 >
               </StartButton>
           </View>

@@ -1,66 +1,66 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import {
-  Component,
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
   View,
   Text,
   StatusBar,
-  Picker,
-  Button,
-  Image,
-  TouchableOpacity,
-  TimerMixin,
+  ToastAndroid
 } from 'react-native';
+import BluetoothSerial from 'react-native-bluetooth-serial'
 import styled from 'styled-components';
-import SplashScreen from 'react-native-splash-screen';
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 
 export default class Loading extends React.Component {
-  constructor(props) {
-      super(props);
-  }
+    constructor (props) {
+        super(props)
+        this.state = {
+          isEnabled: false,
+          connected: false,
+        }
+      }
 
-  /*useEffect(() => {
-    SplashScreen.hide();
-  });*/
-
-  render() {
-    const { navigation } = this.props;
-    const {navigate} = navigation;
-    return(
-      <Fragment>
-      <StatusBar barStyle="dark-content" />
-      {/*<SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView} >
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footes}> Engine: Hermes </Text>
-            </View>
-          )}*/}
-          <BackView>
-            <LoadText> B R 3 W </LoadText>
-          </BackView>
-        {/*</ScrollView>
-      </SafeAreaView>*/}
-      </Fragment>
-    )}
     componentDidMount(){
-      setTimeout(() => {
-        this.props.navigation.navigate('Settings', {})
-      }, 1500);
+        BluetoothSerial.enable()
+            .then((res) => this.setState({ isEnabled: true }))
+            .catch((err) => Toast.showShortBottom(err.message))
+        console.log("connecting...")
+        this.connect("98:D3:51:FD:D0:99")
+        
+        BluetoothSerial.write("T")
     }
 
+    render() {
+        if (this.state.connected) {
+            setTimeout(() => {
+                this.props.navigation.navigate('Settings', {})
+            }, 1000);
+        }
+        else {
+          setTimeout(() => {
+            this.props.navigation.navigate('Settings', {})
+        }, 5000);
+        console.log("Not connected :)")
+        }
+        return(
+        <Fragment>
+        <StatusBar barStyle="dark-content" />
+            <BackView>
+                <LoadText> B R 3 W </LoadText>
+            </BackView>
+        </Fragment>
+    )}
+
+    connect = device => {
+        console.log(device);
+        BluetoothSerial.connect(device)
+        .then((res) => {
+          console.log(res)
+          console.log(`Connected to device ${device}`);
+          
+          ToastAndroid.show(`Connected to device`, ToastAndroid.SHORT);
+
+          this.setState({connected: true})
+        })
+        .catch((err) => console.log((err.message)))
+      }
 };
 
 const BackView = styled(View)`
@@ -75,11 +75,5 @@ const LoadText = styled(Text)`
   font-family: BREVE2;
   align-items: center;
 
-`
+// `
 
-const styles = StyleSheet.create({
-  defaultText:{
-    backgroundColor: Colors.black,
-    fontSize: 96,
-  }
-});
