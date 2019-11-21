@@ -8,6 +8,7 @@
 
 import React from 'react';
 import {
+  AsyncStorage,
   SafeAreaView,
   StyleSheet,
   ScrollView,
@@ -35,13 +36,21 @@ export const CustomButton = (props) => {
 };
 
 class SettingsPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            temperature: 92,
-            amount: 8,
-        }
+  constructor(props) {
+      super(props);
+      this.state = {
+          temperature: this.props.navigation.getParam("temperature", 92),
+          amount: this.props.navigation.getParam("amount", 8),
+      }
+  }
+  _storeData = async () => {
+    try {
+      await AsyncStorage.setItem('temperature', this.state.temperature);
+      await AsyncStorage.setItem('amount', this.state.amount);
+    } catch (error) {
+      console.error("Failed to persist data");
     }
+  }
   render() {
     const { navigation } = this.props;
     const {navigate} = navigation;
@@ -90,7 +99,8 @@ class SettingsPage extends React.Component {
                 onPress={() => {
                     BluetoothSerial.write("T")
                     .then(() => {
-                        console.log("Navigate to display")
+                        this._storeData();
+                        console.log("Navigate to display");
                     })
                     navigate('Display', {temperature: this.state.temperature, amount: this.state.amount})}}
                 >

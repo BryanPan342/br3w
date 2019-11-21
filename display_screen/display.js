@@ -41,8 +41,6 @@ export default class Display extends React.Component {
         time_rem: 2,
         isLight: true,
       }
-
-
     }
     render() {
       const { navigation } = this.props;

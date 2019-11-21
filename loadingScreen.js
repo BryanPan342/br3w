@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import {
+  AsyncStorage,
   View,
   Text,
   StatusBar,
@@ -14,28 +15,50 @@ export default class Loading extends React.Component {
         this.state = {
           isEnabled: false,
           connected: false,
+          temperature: 92,
+          amount: 8
         }
+    }
+      // function to retrieve data from AsyncStorage
+    _retrieveData = async () => {
+      try {
+        const p_temperature = await AsyncStorage.getItem('temperature');
+          if (p_temperature !== null) {
+            this.setState({temperature: p_temperature})
+          }
+      } catch (error) {
+        console.error("Failed to Retrieve Temperature")
+      }      
+      try {
+        const p_amount = await AsyncStorage.getItem('amount');
+          if (p_amount !== null) {
+            this.setState({amount: p_amount})
+          }
+      } catch (error) {
+        console.error("Failed to Retrieve Amount")
       }
-
+    };  
     componentDidMount(){
-        BluetoothSerial.enable()
-            .then((res) => this.setState({ isEnabled: true }))
-            .catch((err) => Toast.showShortBottom(err.message))
-        console.log("connecting...")
-        this.connect("98:D3:51:FD:D0:99")
-        
-        BluetoothSerial.write("T")
+      this._retrieveData();
+
+      BluetoothSerial.enable()
+          .then((res) => this.setState({ isEnabled: true }))
+          .catch((err) => Toast.showShortBottom(err.message))
+      console.log("connecting...")
+      this.connect("98:D3:51:FD:D0:99")
+      
+      BluetoothSerial.write("T")
     }
 
     render() {
         if (this.state.connected) {
             setTimeout(() => {
-                this.props.navigation.navigate('Settings', {})
+                this.props.navigation.navigate('Display', {temperature: this.state.temperature, amount: this.state.amount})
             }, 1000);
         }
         else {
           setTimeout(() => {
-            this.props.navigation.navigate('Settings', {})
+            this.props.navigation.navigate('Display', {temperature: this.state.temperature, amount: this.state.amount})
         }, 5000);
         console.log("Not connected :)")
         }

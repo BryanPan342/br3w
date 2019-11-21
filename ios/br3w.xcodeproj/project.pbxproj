@@ -5,8 +5,10 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* br3wTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* br3wTests.m */; };
+		04C5B8FEF486A6150430556F /* libPods-br3w.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CDDF48B0ED703B701C16EAD /* libPods-br3w.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -17,8 +19,8 @@
 		2DCD954D1E0B4F2C00145EB5 /* br3wTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* br3wTests.m */; };
 		2E9C07415E43F879F59DD500 /* libPods-br3w-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07798BA8ABDD6CCE6ADA6179 /* libPods-br3w-tvOS.a */; };
 		7B54AD4C4DE9082BDBDD972D /* libPods-br3wTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7795437EDCC54D4B5AFDAA63 /* libPods-br3wTests.a */; };
-		F53A48F5D5DC481B8CBACCAD /* libPods-br3w-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E581104309D79E44F4AF4EB /* libPods-br3w-tvOSTests.a */; };
 		BA28B2206661463EAC6B6E56 /* BREVE2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8FCABA52571425ABE6624AF /* BREVE2.ttf */; };
+		F53A48F5D5DC481B8CBACCAD /* libPods-br3w-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E581104309D79E44F4AF4EB /* libPods-br3w-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,10 +65,10 @@
 		826BEB1F11E9756ABDFFD061 /* Pods-br3w-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-br3w-tvOS.release.xcconfig"; path = "Target Support Files/Pods-br3w-tvOS/Pods-br3w-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		960556E179F0C23554D69E3D /* Pods-br3w.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-br3w.release.xcconfig"; path = "Target Support Files/Pods-br3w/Pods-br3w.release.xcconfig"; sourceTree = "<group>"; };
 		9A5927587C6131B8C102A300 /* Pods-br3w.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-br3w.debug.xcconfig"; path = "Target Support Files/Pods-br3w/Pods-br3w.debug.xcconfig"; sourceTree = "<group>"; };
+		B8FCABA52571425ABE6624AF /* BREVE2.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = BREVE2.ttf; path = ../assets/fonts/BREVE2.ttf; sourceTree = "<group>"; };
 		C9E3A9970F88021DB3A4D780 /* Pods-br3w-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-br3w-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-br3w-tvOS/Pods-br3w-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		B8FCABA52571425ABE6624AF /* BREVE2.ttf */ = {isa = PBXFileReference; name = "BREVE2.ttf"; path = "../assets/fonts/BREVE2.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C5B8FEF486A6150430556F /* libPods-br3w.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +136,15 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = br3w;
+			sourceTree = "<group>";
+		};
+		209AA091CA3F446495C0499A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B8FCABA52571425ABE6624AF /* BREVE2.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -196,15 +208,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		209AA091CA3F446495C0499A /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				B8FCABA52571425ABE6624AF /* BREVE2.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
