@@ -46,9 +46,13 @@ class SettingsPage extends React.Component {
   _storeData = async () => {
     try {
       await AsyncStorage.setItem('temperature', this.state.temperature);
+    } catch (error) {
+      console.error("Failed to persist temperature");
+    }
+    try {
       await AsyncStorage.setItem('amount', this.state.amount);
     } catch (error) {
-      console.error("Failed to persist data");
+      console.error("Failed to persist amount");
     }
   }
   render() {
