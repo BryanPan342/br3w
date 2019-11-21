@@ -37,6 +37,7 @@ export const CustomButton = (props) => {
 
 class SettingsPage extends React.Component {
   constructor(props) {
+      console.log(3)
       super(props);
       this.state = {
           temperature: this.props.navigation.getParam("temperature", 92),
@@ -47,11 +48,13 @@ class SettingsPage extends React.Component {
     try {
       await AsyncStorage.setItem('temperature', this.state.temperature);
     } catch (error) {
+      console.log(error);
       console.error("Failed to persist temperature");
     }
     try {
       await AsyncStorage.setItem('amount', this.state.amount);
     } catch (error) {
+      console.log(error);
       console.error("Failed to persist amount");
     }
   }

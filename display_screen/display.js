@@ -33,24 +33,32 @@ import ArduinoHelper from '../utils/ArduinoHelper'
 
 export default class Display extends React.Component {
     constructor(props) {
+      console.log("1")
       super(props);
       this.state = {
-        temp: this.props.navigation.getParam("temperature", 92),
+        // temperature: this.props.navigation.getParam("temperature", 92),
         is_celsius: true,
-        amount: this.props.navigation.getParam("amount", 8),
+        // amount: this.props.navigation.getParam("amount", 8),
         time_rem: 2,
         isLight: true,
       }
     }
+    componentDidMount(){
+        console.log("2")
+    }
     render() {
       const { navigation } = this.props;
       const {navigate} = navigation;
+    //   this.setState({temperature: navigation.getParam('temperature'), amount: navigation.getParam('amount')})
       BluetoothSerial.readFromDevice()
         .then((res) => {
-          console.log(res);
-          console.log("hello");
+          console.log("read from arduino" + res);
         })
-      return (
+    //   console.log(this.state.temperature);
+    //   console.log(this.state.amount);
+        m_temperature = navigation.getParam('temperature', 92)
+        m_amount = navigation.getParam('amount', 8)
+        return (
         <>
           <StatusBar barStyle="dark-content" />
           <SafeAreaView style={styles.container}>
@@ -67,23 +75,23 @@ export default class Display extends React.Component {
                 title=""
                 onPress={() => {
                     console.log("Navigate to settings")
-                    navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}}
+                    navigate('Settings', {temperature: m_temperature, amount: m_amount})}}
                 >
                 </SettingsButton>
 
                 <TitleText>B R 3 W</TitleText>
 
                 <View style={styles.bodyText}>
-                  <DefaultText>Temperature: {this.state.temp}</DefaultText>
-                  <DefaultText>Amount of Coffee: {this.state.amount} oz</DefaultText>
+                  <DefaultText>Temperature: {m_temperature}</DefaultText>
+                  <DefaultText>Amount of Coffee: {m_amount} oz</DefaultText>
                   <DefaultText>Time Remaining: {this.state.time_rem}</DefaultText>
                 </View>
                 <Button
                 title="start"
                 onPress={() => {
-                  BluetoothSerial.write(ArduinoHelper.send_value(this.state.temp, this.state.amount, this.state.isLight))
+                  BluetoothSerial.write(ArduinoHelper.send_value(m_temperature, m_amount, this.state.isLight))
                   .then(() => {
-                      console.log("Start coffee, sent ", ArduinoHelper.send_value(this.state.temp, this.state.amount, this.state.isLight))
+                      console.log("Start coffee, sent ", ArduinoHelper.send_value(m_temperature, m_amount, this.state.isLight))
                       //console.log("isLight: ", this.state.isLight)
                   })}}
                 >
