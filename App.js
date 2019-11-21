@@ -2,12 +2,14 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import SettingsPage from './settingsPage';
 import Display from './display_screen/display';
-import Loading from './loadingScreen'
+import Loading from './loadingScreen';
+import Thermometer from './thermometer';
 
 const MainNavigator = createStackNavigator({
   Loading: {screen: Loading},
   Settings: {screen: SettingsPage},
   Display: {screen: Display},
+  Thermometer: {screen: Thermometer}
 },
 {
   headerMode: 'none',

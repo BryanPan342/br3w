@@ -8,6 +8,8 @@
 
 import React from 'react';
 import {
+  Animated, 
+  Easing,
   SafeAreaView,
   StyleSheet,
   ScrollView,
@@ -28,7 +30,7 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
+  
 export const CustomButton = (props) => {
 
   const { style = {}, onPress } = props;
@@ -49,6 +51,7 @@ class SettingsPage extends React.Component {
             amount: 8,
         }
     }
+    
   render() {
     const { navigation } = this.props;
     const {navigate} = navigation;
@@ -82,7 +85,6 @@ class SettingsPage extends React.Component {
                 <Picker.Item label="95 C" value="95" />
                 <Picker.Item label="96 C" value="96" />
               </Picker>
-
               <Text style={styles.sectionTitle}>Set Amount</Text>
               <Picker
                 selectedValue={this.state.amount}
@@ -93,10 +95,16 @@ class SettingsPage extends React.Component {
                 <Picker.Item label="12 oz" value="12" />
               </Picker>
               <StartButton
-                title=""
+                title="Display"
                 onPress={() => navigate('Display', {temperature: this.state.temperature, amount: this.state.amount})}
                 >
               </StartButton>
+              <StartButton
+                title="Thermometer"
+                onPress={() => navigate('Thermometer', {temperature: this.state.temperature, amount: this.state.amount})}
+                >
+              </StartButton>
+              
           </View>
         </BackView>
     </>
