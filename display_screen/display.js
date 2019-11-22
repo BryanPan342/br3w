@@ -16,6 +16,7 @@ import {
     Colors,
 } from 'react-native/Libraries/NewAppScreen';
 import BluetoothSerial from 'react-native-bluetooth-serial';
+import MultiSwitch from '../MultiSwitch';
 import ArduinoHelper from '../utils/ArduinoHelper'
   // Create CustomButton to use later
   export const CustomButton = (props) => {
@@ -76,21 +77,51 @@ export default class Display extends React.Component {
                 <TitleText>BR3W</TitleText>
 
                 <View style={styles.bodyText}>
-                  <DefaultText>Temperature: {this.state.temp}</DefaultText>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigate('temperatureScreen', {temperature: this.state.temperature})
+                    }}
+                    >
+                  <DefaultText>Temperature: {this.state.temp + " \u00B0C" } </DefaultText>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigate('temperatureScreen', {temperature: this.state.temperature})
+                    }}
+                    >
                   <DefaultText>Amount of Coffee: {this.state.amount} oz</DefaultText>
+                  </TouchableOpacity>
+
                   <DefaultText>Time Remaining: {this.state.time_rem}</DefaultText>
-                  <DefaultText>Roast: {this.state.isLight == true ? "Light" : "Dark"} Roast</DefaultText>
+                  {/* <DefaultText>Roast: {this.state.isLight == true ? "Light" : "Dark"} Roast</DefaultText> */}
+                  <MultiSwitch
+                    currentStatus={'Open'}
+                    disableScroll={value => {
+                      console.log('scrollEnabled', value);
+                      this.scrollView.setNativeProps({
+                          scrollEnabled: value
+                      });
+                   }}
+                    isParentScrollEnabled={true}
+                    onStatusChanged={text => {
+                      text == "Light" ? this.state.roast = true : this.state.roast = false;
+                    }}
+                  />
                 </View>
-                <Button
+                <TouchableOpacity
                 title="start"
                 onPress={() => {
                   BluetoothSerial.write(ArduinoHelper.send_value(this.state.temp, this.state.amount, this.state.isLight))
                   .then(() => {
                       console.log("Start coffee, sent ", ArduinoHelper.send_value(this.state.temp, this.state.amount, this.state.isLight))
                       //console.log("isLight: ", this.state.isLight)
-                  })}}
+                      navigate('progressBar', {temperature: this.state.temperature, amount: this.state.amount, time_rem: this.state.time_rem})
+                  })
+                }}
                 >
-                </Button>
+                  <StartImage source={require('../../br3w/assets/images/coffeeArt.png')} />
+                </TouchableOpacity>
               </View>
           </SafeAreaView>
         </>
@@ -129,6 +160,11 @@ export default class Display extends React.Component {
       margin-right: 15px;
       opacity: 1;
   `
+  const StartImage = styled(Image)`
+   width: 75px;
+   height: 75px;
+   align-self: center;
+  `
 
   const styles = StyleSheet.create({
     engine: {
@@ -156,6 +192,15 @@ export default class Display extends React.Component {
       justifyContent: 'center',
       alignItems: 'center',
       opacity: 0,
+    },
+
+    textButton: {
+      display: 'flex',
+      height: 50,
+      width: 50,
+      borderRadius: 25,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
 
     text: {

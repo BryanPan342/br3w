@@ -9,6 +9,7 @@
 import React from 'react';
 import {
   StyleSheet,
+  ScrollView,
   View,
   Text,
   StatusBar,
@@ -18,7 +19,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import styled from 'styled-components';
-import * as Progress from 'react-native-progress';
+import MultiSwitch from './MultiSwitch';
 import {
   Header,
   LearnMoreLinks,
@@ -26,37 +27,56 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import BluetoothSerial from 'react-native-bluetooth-serial';
+import temperatureScreen from './temperatureScreen';
 
-class progressBar extends React.Component {
+export const CustomButton = (props) => {
+
+  const { style = {}, onPress } = props;
+  return (
+      <TouchableOpacity
+      onPress={onPress}
+      style={[styles.button, style]}>
+        {/* <StartImage source={require('../br3w/assets/images/coffeeArt.png')} /> */}
+      </TouchableOpacity>
+  );
+};
+
+class amountScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            temp: this.props.navigation.getParam("temperature", 92),
-            is_celsius: true,
-            amount: this.props.navigation.getParam("amount", 8),
-            roast: this.props.navigation.getParam("roast", true),
-            arduinoTemp: 32,
-            ratio: 32 / this.props.navigation.getParam("temperature", 92),
+            temperature: 92,
+            amount: 8,
+            roast: true,
         }
     }
-    
   render() {
     const { navigation } = this.props;
     const {navigate} = navigation;
     return (
     <>
       <StatusBar barStyle="dark-content" />
+        {/*<BackView
+          style={style.loadingScreen}>
+
+        </BackView>*/}
         <BackView
-          style={styles.container}> 
-            <View style={styles.bar}>
-                {/* {this.state.ratio = this.state.arduinoTemp / this.state.temp}; */}
-                <Progress.Bar progress={this.state.ratio} width={300} height={10} borderWidth={2}/>
+          style={styles.container}>
+          <View style={styles.header} >
+            <HeaderText> BR3W </HeaderText>
+          </View>
+          {global.HermesInternal == null ? null : (
+            <View style={styles.engine}>
+              <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
-            <Button
-              title="Back to Display"
-              onPress={() => {
+          )}
+          <CustomButton
+            title="Done"
+            onPress={() => {
                 navigate('Display', {temperature: this.state.temperature, amount: this.state.amount})}}
-            ></Button>
+            >
+          </CustomButton>
         </BackView>
     </>
   )}
@@ -74,6 +94,21 @@ const DefaultText = styled(Text)`
   font-family: Futura;
   margin: 20px 0px;
   align-self: center;
+`
+const StartImage = styled(Image)`
+   width: 75px;
+   height: 75px;
+   align-self: center;
+`
+const StartButton = styled(CustomButton)`
+    display: flex;
+    height: 75px;
+    width: 75px;
+    border-radius: 25px;
+    margin-top: 15px;
+    align-self: center;
+    margin-right: 15px;
+    opacity: 1;
 `
 
 const HeaderText = styled(DefaultText)`
@@ -104,10 +139,14 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
 
-  bar: {
-    flex: 1,
-    alignItems: 'center',
+  button: {
+    display: 'flex',
+    height: 50,
+    width: 50,
+    borderRadius: 25,
     justifyContent: 'center',
+    alignItems: 'center',
+    opacity: 0,
   },
 
   sectionTitle: {
@@ -118,4 +157,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default progressBar;
+export default amountScreen;

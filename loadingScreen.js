@@ -30,12 +30,12 @@ export default class Loading extends React.Component {
     render() {
         if (this.state.connected) {
             setTimeout(() => {
-                this.props.navigation.navigate('Settings', {})
+                this.props.navigation.navigate('Display', {})
             }, 1000);
         }
         else {
           setTimeout(() => {
-            this.props.navigation.navigate('Settings', {})
+            this.props.navigation.navigate('Display', {})
         }, 5000);
         console.log("Not connected :)")
         }
