@@ -8,6 +8,7 @@
 
 import React from 'react';
 import {
+  AsyncStorage,
   SafeAreaView,
   StyleSheet,
   ScrollView,
@@ -20,6 +21,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import styled from 'styled-components';
+import MultiSwitch from './MultiSwitch';
+import {
+  Header,
+  LearnMoreLinks,
+  Colors,
+  DebugInstructions,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
 import BluetoothSerial from 'react-native-bluetooth-serial';
 
 export const CustomButton = (props) => {
@@ -35,13 +44,34 @@ export const CustomButton = (props) => {
 };
 
 class SettingsPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            temperature: 92,
-            amount: 8,
-        }
+  constructor(props) {
+      super(props);
+      this.state = {
+          temperature: this.props.navigation.getParam("temperature", 92),
+          amount: this.props.navigation.getParam("amount", 8),
+          roast: this.props.navigation.getParam("roast", true)
+      }
+  }
+  _storeData = async () => {
+    try {
+      await AsyncStorage.setItem('temperature', this.state.temperature);
+    } catch (error) {
+      console.log(error);
+      console.error("Failed to persist temperature");
     }
+    try {
+      await AsyncStorage.setItem('amount', this.state.amount);
+    } catch (error) {
+      console.log(error);
+      console.error("Failed to persist amount");
+    }
+    try {
+      await AsyncStorage.setItem('roast', this.state.roast);
+    } catch (error) {
+      console.log(error);
+      console.error("Failed to persist strength");
+    }
+  }
   render() {
     const { navigation } = this.props;
     const {navigate} = navigation;
@@ -85,14 +115,31 @@ class SettingsPage extends React.Component {
                 <Picker.Item label="10 oz" value="10" />
                 <Picker.Item label="12 oz" value="12" />
               </Picker>
+
+              <MultiSwitch
+                currentStatus={'Open'}
+                disableScroll={value => {
+                    console.log('scrollEnabled', value);
+                    // this.scrollView.setNativeProps({
+                    //     scrollEnabled: value
+                    // });
+                }}
+                isParentScrollEnabled={true}
+                onStatusChanged={text => {
+                    text == "Light" ? this.state.roast = true : this.state.roast = false;
+                    // this.state.roast = text;
+                    //console.log('Change Status ', text);
+                }}
+              />
               <StartButton
                 title=""
                 onPress={() => {
                     BluetoothSerial.write("T")
                     .then(() => {
-                        console.log("Navigate to display")
+                        this._storeData();
+                        console.log("Navigate to display");
                     })
-                    navigate('Display', {temperature: this.state.temperature, amount: this.state.amount})}}
+                    navigate('progressBar', {temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast})}}
                 >
               </StartButton>
           </View>
@@ -110,7 +157,7 @@ const BackView = styled(View)`
 const DefaultText = styled(Text)`
   color: #562f29;
   font-size: 36;
-  font-family: BREVE2;
+  font-family: Futura;
   margin: 20px 0px;
   align-self: center;
 `
@@ -169,82 +216,11 @@ const styles = StyleSheet.create({
   },
 
   sectionTitle: {
-    fontFamily: "BREVE2",
-    fontSize: 36,
+    //fontFamily: "BREVE2",
+    fontFamily: 'Futura',
+    //fontSize: 36,
+    fontSize: 24,
   }
-
-  // header: {
-  //   backgroundColor: Colors.aliceblue,
-  //
-  // },
-  // headerText: {
-  //   // color: "#bc846b",
-  //   fontSize: 96,
-  //   fontFamily: "BREVE2",
-  //   margin: 20, //0px,
-  //   alignSelf: 'center',
-  //   //fontSize: 30,
-  //   // fontWeight: '800',
-  //   // color: Colors.black,
-  //   color: "#bc846b",
-  //   textAlign: 'center',
-  //   position: 'relative',
-  // },
-  // scrollView: {
-  //   // backgroundColor: "#fffff4",//Colors.lighter,
-  //   // height: "100%",
-  //   flex: 1,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  // },
-
-  // body: {
-  //   // backgroundColor: "#fffff4",
-  //   flex: 1,
-  //   flexDirection: "column",
-  //   alignItems: "center",
-  //   marginTop: 102,
-  //   paddingHorizontal: 24,
-  //   color: Colors.red,
-  // },
-  // bodyText: {
-  //   display: "flex",
-  //   marginBottom: 20,
-  // },
-  // // sectionContainer: {
-  // //   marginTop: 102,
-  // //   paddingHorizontal: 24,
-  // //   color: Colors.red,
-  // //   // alignItems: "center",
-  // // },
-  // sectionTitle: {
-  //   fontSize: 36,
-  //   fontWeight: '600',
-  //   color: "#562f29",
-  //   fontFamily: "BREVE2",
-  // },
-  // sectionDescription: {
-  //   marginTop: 8,
-  //   fontSize: 18,
-  //   fontWeight: '400',
-  //   color: Colors.dark,
-  // },
-  // highlight: {
-  //   fontWeight: '700',
-  // },
-  // footer: {
-  //   color: Colors.dark,
-  //   fontSize: 12,
-  //   fontWeight: '600',
-  //   padding: 4,
-  //   paddingRight: 12,
-  //   textAlign: 'right',
-  // },
-  // container: {
-  //   display: "flex",
-  //   flex: 1,
-  //   fontFamily: "breve2",
-  // },
 });
 
 export default SettingsPage;
