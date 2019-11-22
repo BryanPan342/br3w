@@ -31,6 +31,7 @@ import ArduinoHelper from '../utils/ArduinoHelper'
 };
 
 
+
 export default class Display extends React.Component {
     constructor(props) {
       super(props);
