@@ -67,7 +67,7 @@ class amountScreen extends React.Component {
               step={2}
               onValueChange={value => this.onValueChange(value)}
               minimumValue={8}
-              value={this.state.amount}
+              value={parseFloat(this.state.amount)}
               maximumValue={12}
               minimumTrackTintColor="#000000"
               maximumTrackTintColor="#000000"/>

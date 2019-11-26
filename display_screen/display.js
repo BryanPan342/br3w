@@ -1,6 +1,7 @@
 
 import React from 'react';
 import {
+  AsyncStorage,
   SafeAreaView,
   StyleSheet,
   ScrollView,
@@ -37,21 +38,22 @@ export default class Display extends React.Component {
       super(props);
     }
 
-    _storeData = async () => {
+    _storeData = async (t, a, r) => {
+
       try {
-        await AsyncStorage.setItem('temperature', this.state.temperature);
+        await AsyncStorage.setItem('temperature', t);
       } catch (error) {
         console.log(error);
         console.error("Failed to persist temperature");
       }
       try {
-        await AsyncStorage.setItem('amount', this.state.amount);
+        await AsyncStorage.setItem('amount', a);
       } catch (error) {
         console.log(error);
         console.error("Failed to persist amount");
       }
       try {
-        await AsyncStorage.setItem('roast', JSON.stringify(this.state.roast));
+        await AsyncStorage.setItem('roast', JSON.stringify(r));
       } catch (error) {
         console.log(error);
         console.error("Failed to persist strength");
@@ -128,7 +130,7 @@ export default class Display extends React.Component {
                 <TouchableOpacity
                 title="start"
                 onPress={() => {
-                  this._storeData();
+                  this._storeData(m_temperature, m_amount, m_isLight);
                   BluetoothSerial.write(ArduinoHelper.send_value(m_temperature, m_amount, m_isLight))
                   .then(() => {
                       console.log("Start coffee, sent ", ArduinoHelper.send_value(m_temperature, m_amount, m_isLight))
