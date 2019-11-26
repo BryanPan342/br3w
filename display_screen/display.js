@@ -16,6 +16,7 @@ import {
     Colors,
 } from 'react-native/Libraries/NewAppScreen';
 import BluetoothSerial from 'react-native-bluetooth-serial';
+import MultiSwitch from '../MultiSwitch';
 import ArduinoHelper from '../utils/ArduinoHelper'
   // Create CustomButton to use later
   export const CustomButton = (props) => {
@@ -35,17 +36,41 @@ export default class Display extends React.Component {
     constructor(props) {
       super(props);
     }
+
+    _storeData = async () => {
+      try {
+        await AsyncStorage.setItem('temperature', this.state.temperature);
+      } catch (error) {
+        console.log(error);
+        console.error("Failed to persist temperature");
+      }
+      try {
+        await AsyncStorage.setItem('amount', this.state.amount);
+      } catch (error) {
+        console.log(error);
+        console.error("Failed to persist amount");
+      }
+      try {
+        await AsyncStorage.setItem('roast', JSON.stringify(this.state.roast));
+      } catch (error) {
+        console.log(error);
+        console.error("Failed to persist strength");
+      }
+    }
+
     render() {
       const { navigation } = this.props;
       const {navigate} = navigation;
       //move this to progress page
+      m_temperature = navigation.getParam('temperature', 92)
+      m_amount = navigation.getParam('amount', 8)
+      m_isLight = navigation.getParam('roast', true)
+      
       BluetoothSerial.readFromDevice()
         .then((res) => {
           console.log("read from arduino" + res);
         })
-        m_temperature = navigation.getParam('temperature', 92)
-        m_amount = navigation.getParam('amount', 8)
-        m_isLight = navigation.getParam('roast', true)
+        
         return (
         <>
           <StatusBar barStyle="dark-content" />
@@ -59,30 +84,62 @@ export default class Display extends React.Component {
 
               <View style={styles.body}>
               {/* Create a SettingsButton */}
-              <SettingsButton
+              {/* <SettingsButton
                 title=""
                 onPress={() => {
                     console.log("Navigate to settings")
                     navigate('Settings', {temperature: m_temperature, amount: m_amount, roast: m_isLight})}}
                 >
-                </SettingsButton>
+                </SettingsButton> */}
 
-                <TitleText>B R 3 W</TitleText>
+                <TitleText>BR3W</TitleText>
 
                 <View style={styles.bodyText}>
-                  <DefaultText>Temperature: {m_temperature}</DefaultText>
-                  <DefaultText>Amount of Coffee: {m_amount} oz</DefaultText>
-                  <DefaultText>Roast: {m_isLight == true ? "Light" : "Dark"} Roast</DefaultText>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigate('temperatureScreen', {temperature: m_temperature, roast: m_isLight, amount: m_amount})
+                    }}
+                    >
+                    <DefaultText>Temperature: {m_temperature + " \u00B0C" } </DefaultText>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigate('amountScreen', {temperature: m_temperature, amount: m_amount, roast: m_isLight})
+                    }}
+                    >
+                    <DefaultText>Amount of Coffee: {m_amount} oz</DefaultText>
+                  </TouchableOpacity>
+
+                  <MultiSwitch
+                    currentStatus={'Open'}
+                    disableScroll={value => {
+                      console.log('scrollEnabled', value);
+                      this.scrollView.setNativeProps({
+                          scrollEnabled: value
+                      });
+                   }}
+                    isParentScrollEnabled={true}
+                    onStatusChanged={text => {
+                      text == "Light" ? m_islight = true : m_isLight = false;
+                    }}
+                  />
                 </View>
-                <Button
+                <TouchableOpacity
                 title="start"
                 onPress={() => {
+                  this._storeData();
                   BluetoothSerial.write(ArduinoHelper.send_value(m_temperature, m_amount, m_isLight))
                   .then(() => {
                       console.log("Start coffee, sent ", ArduinoHelper.send_value(m_temperature, m_amount, m_isLight))
-                  })}}
+                  {/*console.log("isLight: ", this.state.isLight) */}
+                  {/* navigate('progressBar', {temperature: this.state.temperature, amount: this.state.amount, time_rem: this.state.time_rem})*/}
+                      navigate('progressBar', {temperature: m_temperature, amount: m_amount, roast: m_isLight})
+                  })
+                }}
                 >
-                </Button>
+                  <StartImage source={require('../../br3w/assets/images/coffeeArt.png')} />
+                </TouchableOpacity>
               </View>
           </SafeAreaView>
         </>
@@ -121,6 +178,11 @@ export default class Display extends React.Component {
       margin-right: 15px;
       opacity: 1;
   `
+  const StartImage = styled(Image)`
+   width: 75px;
+   height: 75px;
+   align-self: center;
+  `
 
   const styles = StyleSheet.create({
     engine: {
@@ -148,6 +210,15 @@ export default class Display extends React.Component {
       justifyContent: 'center',
       alignItems: 'center',
       opacity: 0,
+    },
+
+    textButton: {
+      display: 'flex',
+      height: 50,
+      width: 50,
+      borderRadius: 25,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
 
     text: {

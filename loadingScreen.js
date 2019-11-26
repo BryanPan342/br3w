@@ -42,9 +42,9 @@ export default class Loading extends React.Component {
         const p_roast = await AsyncStorage.getItem('roast');
           if (p_roast !== null) {
             if(p_roast == 'true')
-                this.setState({roast: true})
+              this.setState({roast: true})
             else
-                this.setState({roast: false})
+              this.setState({roast: false})
           }
       } catch (error) {
         console.error("Failed to Retrieve Amount")

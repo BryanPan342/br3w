@@ -31,7 +31,7 @@ class progressBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            temp: this.props.navigation.getParam("temperature", 92),
+            temperature: this.props.navigation.getParam("temperature", 92),
             is_celsius: true,
             amount: this.props.navigation.getParam("amount", 8),
             roast: this.props.navigation.getParam("roast", true),
@@ -52,6 +52,11 @@ class progressBar extends React.Component {
                 {/* {this.state.ratio = this.state.arduinoTemp / this.state.temp}; */}
                 <Progress.Bar progress={this.state.ratio} width={300} height={10} borderWidth={2}/>
             </View>
+            <Button
+              title="Back to Display"
+              onPress={() => {
+                navigate('Display', {temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast})}}
+            ></Button>
         </BackView>
     </>
   )}
