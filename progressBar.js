@@ -34,7 +34,6 @@ class progressBar extends React.Component {
             temp: this.props.navigation.getParam("temperature", 92),
             is_celsius: true,
             amount: this.props.navigation.getParam("amount", 8),
-            roast: this.props.navigation.getParam("roast", true),
             arduinoTemp: 32,
             ratio: 32 / this.props.navigation.getParam("temperature", 92),
         }

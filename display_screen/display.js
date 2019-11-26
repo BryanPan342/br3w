@@ -115,8 +115,9 @@ export default class Display extends React.Component {
                   BluetoothSerial.write(ArduinoHelper.send_value(this.state.temp, this.state.amount, this.state.isLight))
                   .then(() => {
                       console.log("Start coffee, sent ", ArduinoHelper.send_value(this.state.temp, this.state.amount, this.state.isLight))
-                      //console.log("isLight: ", this.state.isLight)
-                      navigate('progressBar', {temperature: this.state.temperature, amount: this.state.amount, time_rem: this.state.time_rem})
+                  {/*console.log("isLight: ", this.state.isLight) */}
+                  {/* navigate('progressBar', {temperature: this.state.temperature, amount: this.state.amount, time_rem: this.state.time_rem})*/}
+                      navigate('progressBar', {temperature: this.state.temp, amount: this.state.amount})
                   })
                 }}
                 >
