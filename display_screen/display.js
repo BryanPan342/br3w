@@ -1,6 +1,7 @@
 
 import React from 'react';
 import {
+  AsyncStorage,
   SafeAreaView,
   StyleSheet,
   ScrollView,
@@ -37,21 +38,21 @@ export default class Display extends React.Component {
       super(props);
     }
 
-    _storeData = async () => {
+    _storeData = async (t,a,r) => {
       try {
-        await AsyncStorage.setItem('temperature', this.state.temperature);
+        await AsyncStorage.setItem('temperature', JSON.stringify(t));
       } catch (error) {
         console.log(error);
         console.error("Failed to persist temperature");
       }
       try {
-        await AsyncStorage.setItem('amount', this.state.amount);
+        await AsyncStorage.setItem('amount', JSON.stringify(a));
       } catch (error) {
         console.log(error);
         console.error("Failed to persist amount");
       }
       try {
-        await AsyncStorage.setItem('roast', JSON.stringify(this.state.roast));
+        await AsyncStorage.setItem('roast', JSON.stringify(r));
       } catch (error) {
         console.log(error);
         console.error("Failed to persist strength");
@@ -96,6 +97,12 @@ export default class Display extends React.Component {
 
                 <View style={styles.bodyText}>
                   <TouchableOpacity
+                    style={{
+                      marginVertical: 20,
+                      borderColor: "#000000",
+                      borderWidth: 1,
+                      borderRadius: 20,
+                    }}
                     onPress={() => {
                       navigate('temperatureScreen', {temperature: m_temperature, roast: m_isLight, amount: m_amount})
                     }}
@@ -104,6 +111,13 @@ export default class Display extends React.Component {
                   </TouchableOpacity>
                   
                   <TouchableOpacity
+                    style={{
+                      marginVertical: 20,
+                      borderColor: "#000000",
+                      borderWidth: 1,
+                      borderRadius: 20,
+                      width: 310,
+                    }}
                     onPress={() => {
                       navigate('amountScreen', {temperature: m_temperature, amount: m_amount, roast: m_isLight})
                     }}
@@ -112,6 +126,11 @@ export default class Display extends React.Component {
                   </TouchableOpacity>
 
                   <MultiSwitch
+                    style={{
+                      marginVertical: 20,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
                     currentStatus={'Open'}
                     disableScroll={value => {
                       console.log('scrollEnabled', value);
@@ -121,14 +140,14 @@ export default class Display extends React.Component {
                    }}
                     isParentScrollEnabled={true}
                     onStatusChanged={text => {
-                      text == "Light" ? m_islight = true : m_isLight = false;
+                      text == "Light" ? m_isLight = true : m_isLight = false;
                     }}
                   />
                 </View>
                 <TouchableOpacity
                 title="start"
                 onPress={() => {
-                  this._storeData();
+                  this._storeData(m_temperature, m_amount, m_isLight);
                   BluetoothSerial.write(ArduinoHelper.send_value(m_temperature, m_amount, m_isLight))
                   .then(() => {
                       console.log("Start coffee, sent ", ArduinoHelper.send_value(m_temperature, m_amount, m_isLight))
@@ -152,6 +171,7 @@ export default class Display extends React.Component {
   //     Text > DefaultText > TitleText
   //     CustomButton > SettingsButton
   const DefaultText = styled(Text)`
+    margin-top: 80;
     color: #562f29;
     font-size: 24;
     font-family: Futura;
@@ -159,6 +179,7 @@ export default class Display extends React.Component {
     align-self: center;
     `
   const TitleText = styled(DefaultText)`
+    margin-top: 80;
     color: #bc846b;
     font-size: 80;
     position: relative;

@@ -67,7 +67,7 @@ class amountScreen extends React.Component {
               step={2}
               onValueChange={value => this.onValueChange(value)}
               minimumValue={8}
-              value={this.state.amount}
+              value={parseFloat(this.state.amount)}
               maximumValue={12}
               minimumTrackTintColor="#000000"
               maximumTrackTintColor="#000000"/>
@@ -123,11 +123,10 @@ const DefaultText = styled(Text)`
 `
 
 const HeaderText = styled(DefaultText)`
-  backgroundColor: #fffff4;
-  font-size: 96;
-  color: #bc846b;
-  position: relative;
-  margin-top: 95px;
+color: #bc846b;
+font-size: 80;
+font-family: Futura;
+align-items: center;
 `
 
 const styles = StyleSheet.create({

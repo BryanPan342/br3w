@@ -25,7 +25,7 @@ export default class Loading extends React.Component {
       try {
         const p_temperature = await AsyncStorage.getItem('temperature');
           if (p_temperature !== null) {
-            this.setState({temperature: p_temperature})
+            this.setState({temperature: parseFloat(p_temperature)})
           }
       } catch (error) {
         console.error("Failed to Retrieve Temperature")
@@ -33,7 +33,7 @@ export default class Loading extends React.Component {
       try {
         const p_amount = await AsyncStorage.getItem('amount');
           if (p_amount !== null) {
-            this.setState({amount: p_amount})
+            this.setState({amount: parseFloat(p_amount)})
           }
       } catch (error) {
         console.error("Failed to Retrieve Amount")
