@@ -8,6 +8,8 @@
 
 import React from 'react';
 import {
+  AsyncStorage,
+  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
@@ -42,14 +44,34 @@ export const CustomButton = (props) => {
 };
 
 class SettingsPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            temperature: 92,
-            amount: 8,
-            roast: true,
-        }
+  constructor(props) {
+      super(props);
+      this.state = {
+          temperature: this.props.navigation.getParam("temperature", 92),
+          amount: this.props.navigation.getParam("amount", 8),
+          roast: this.props.navigation.getParam("roast", true)
+      }
+  }
+  _storeData = async () => {
+    try {
+      await AsyncStorage.setItem('temperature', this.state.temperature);
+    } catch (error) {
+      console.log(error);
+      console.error("Failed to persist temperature");
     }
+    try {
+      await AsyncStorage.setItem('amount', this.state.amount);
+    } catch (error) {
+      console.log(error);
+      console.error("Failed to persist amount");
+    }
+    try {
+      await AsyncStorage.setItem('roast', JSON.stringify(this.state.roast));
+    } catch (error) {
+      console.log(error);
+      console.error("Failed to persist strength");
+    }
+  }
   render() {
     const { navigation } = this.props;
     const {navigate} = navigation;
@@ -114,9 +136,10 @@ class SettingsPage extends React.Component {
                 onPress={() => {
                     BluetoothSerial.write("T")
                     .then(() => {
-                        console.log("Navigate to display")
+                        this._storeData();
+                        console.log("Navigate to display");
                     })
-                    navigate('progressBar', {temperature: this.state.temperature, amount: this.state.amount})}}
+                    navigate('progressBar', {temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast})}}
                 >
               </StartButton>
           </View>

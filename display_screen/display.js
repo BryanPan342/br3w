@@ -35,25 +35,43 @@ import ArduinoHelper from '../utils/ArduinoHelper'
 export default class Display extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {
-        temp: this.props.navigation.getParam("temperature", 92),
-        is_celsius: true,
-        amount: this.props.navigation.getParam("amount", 8),
-        time_rem: 2,
-        isLight: true,
-      }
-
-
     }
+
+    _storeData = async () => {
+      try {
+        await AsyncStorage.setItem('temperature', this.state.temperature);
+      } catch (error) {
+        console.log(error);
+        console.error("Failed to persist temperature");
+      }
+      try {
+        await AsyncStorage.setItem('amount', this.state.amount);
+      } catch (error) {
+        console.log(error);
+        console.error("Failed to persist amount");
+      }
+      try {
+        await AsyncStorage.setItem('roast', JSON.stringify(this.state.roast));
+      } catch (error) {
+        console.log(error);
+        console.error("Failed to persist strength");
+      }
+    }
+
     render() {
       const { navigation } = this.props;
       const {navigate} = navigation;
+      //move this to progress page
+      m_temperature = navigation.getParam('temperature', 92)
+      m_amount = navigation.getParam('amount', 8)
+      m_isLight = navigation.getParam('roast', true)
+      
       BluetoothSerial.readFromDevice()
         .then((res) => {
-          console.log(res);
-          console.log("hello");
+          console.log("read from arduino" + res);
         })
-      return (
+        
+        return (
         <>
           <StatusBar barStyle="dark-content" />
           <SafeAreaView style={styles.container}>
@@ -66,35 +84,33 @@ export default class Display extends React.Component {
 
               <View style={styles.body}>
               {/* Create a SettingsButton */}
-              <SettingsButton
+              {/* <SettingsButton
                 title=""
                 onPress={() => {
                     console.log("Navigate to settings")
-                    navigate('Settings', {temperature: this.state.temperature, amount: this.state.amount})}}
+                    navigate('Settings', {temperature: m_temperature, amount: m_amount, roast: m_isLight})}}
                 >
-                </SettingsButton>
+                </SettingsButton> */}
 
                 <TitleText>BR3W</TitleText>
 
                 <View style={styles.bodyText}>
                   <TouchableOpacity
                     onPress={() => {
-                      navigate('temperatureScreen', {temperature: this.state.temperature})
+                      navigate('temperatureScreen', {temperature: m_temperature, roast: m_isLight, amount: m_amount})
                     }}
                     >
-                  <DefaultText>Temperature: {this.state.temp + " \u00B0C" } </DefaultText>
+                    <DefaultText>Temperature: {m_temperature + " \u00B0C" } </DefaultText>
                   </TouchableOpacity>
                   
                   <TouchableOpacity
                     onPress={() => {
-                      navigate('amountScreen', {temperature: this.state.temperature})
+                      navigate('amountScreen', {temperature: m_temperature, amount: m_amount, roast: m_isLight})
                     }}
                     >
-                  <DefaultText>Amount of Coffee: {this.state.amount} oz</DefaultText>
+                    <DefaultText>Amount of Coffee: {m_amount} oz</DefaultText>
                   </TouchableOpacity>
 
-                  <DefaultText>Time Remaining: {this.state.time_rem}</DefaultText>
-                  {/* <DefaultText>Roast: {this.state.isLight == true ? "Light" : "Dark"} Roast</DefaultText> */}
                   <MultiSwitch
                     currentStatus={'Open'}
                     disableScroll={value => {
@@ -105,19 +121,19 @@ export default class Display extends React.Component {
                    }}
                     isParentScrollEnabled={true}
                     onStatusChanged={text => {
-                      text == "Light" ? this.state.roast = true : this.state.roast = false;
+                      text == "Light" ? m_islight = true : m_isLight = false;
                     }}
                   />
                 </View>
                 <TouchableOpacity
                 title="start"
                 onPress={() => {
-                  BluetoothSerial.write(ArduinoHelper.send_value(this.state.temp, this.state.amount, this.state.isLight))
+                  BluetoothSerial.write(ArduinoHelper.send_value(m_temperature, m_amount, m_isLight))
                   .then(() => {
-                      console.log("Start coffee, sent ", ArduinoHelper.send_value(this.state.temp, this.state.amount, this.state.isLight))
+                      console.log("Start coffee, sent ", ArduinoHelper.send_value(m_temperature, m_amount, m_isLight))
                   {/*console.log("isLight: ", this.state.isLight) */}
                   {/* navigate('progressBar', {temperature: this.state.temperature, amount: this.state.amount, time_rem: this.state.time_rem})*/}
-                      navigate('progressBar', {temperature: this.state.temp, amount: this.state.amount})
+                      navigate('progressBar', {temperature: m_temperature, amount: m_amount, roast: m_isLight})
                   })
                 }}
                 >

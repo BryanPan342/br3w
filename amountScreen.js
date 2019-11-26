@@ -36,11 +36,14 @@ class amountScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            temperature: 92,
-            amount: 8,
-            roast: true,
-            image: require('./assets/small.jpg')
+          temperature: this.props.navigation.getParam("temperature", 92),
+          amount: this.props.navigation.getParam("amount", 8),
+          roast: this.props.navigation.getParam("roast", true),
+          image: require('./assets/small.jpg')
         }
+    }
+    componentDidMount(){
+      this.onValueChange(this.state.amount);
     }
   render() {
     const { navigation } = this.props;
@@ -64,8 +67,9 @@ class amountScreen extends React.Component {
               step={2}
               onValueChange={value => this.onValueChange(value)}
               minimumValue={8}
+              value={this.state.amount}
               maximumValue={12}
-              minimumTrackTintColor="#FFFFFF"
+              minimumTrackTintColor="#000000"
               maximumTrackTintColor="#000000"/>
             <Image style={styles.image} source={this.state.image}/>
           </View>
@@ -73,7 +77,7 @@ class amountScreen extends React.Component {
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
-                navigate('Display', {temperature: this.state.temperature})
+                navigate('Display', {temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast})
               }}
               >
               <DefaultText>Done</DefaultText>

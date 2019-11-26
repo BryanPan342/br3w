@@ -34,9 +34,9 @@ class temperatureScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            temperature: 92,
-            amount: 8,
-            roast: true,
+            temperature: this.props.navigation.getParam("temperature", 92),
+            amount: this.props.navigation.getParam("amount", 8),
+            roast: this.props.navigation.getParam("roast", true),
         }
     }
   render() {
@@ -68,7 +68,7 @@ class temperatureScreen extends React.Component {
             </CustomButton> */}
            <TouchableOpacity
               onPress={() => {
-                navigate('Display', {temperature: this.state.temperature})
+                navigate('Display', {temperature: this.state.temperature, roast: this.state.roast, amount: this.state.amount})
               }}
               >
               <DefaultText>Done</DefaultText>
