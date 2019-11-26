@@ -40,7 +40,7 @@ export default class Display extends React.Component {
 
     _storeData = async (t,a,r) => {
       try {
-        await AsyncStorage.setItem('temperature', t);
+        await AsyncStorage.setItem('temperature', JSON.stringify(t));
       } catch (error) {
         console.log(error);
         console.error("Failed to persist temperature");
@@ -140,7 +140,7 @@ export default class Display extends React.Component {
                    }}
                     isParentScrollEnabled={true}
                     onStatusChanged={text => {
-                      text == "Light" ? m_islight = true : m_isLight = false;
+                      text == "Light" ? m_isLight = true : m_isLight = false;
                     }}
                   />
                 </View>
