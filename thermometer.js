@@ -11,7 +11,9 @@ import {
     Picker,
     Button,
     Image,
+    ImageBackground,
     TouchableOpacity, 
+    
  } from 'react-native';
  import styled from 'styled-components';
  export const CustomButton = (props) => {
@@ -31,19 +33,33 @@ const backgroundImage = require('./img/redBar.png');
 class Thermometer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            temperature: 92,
+        this.state = { 
+            temperature: 92, 
         }
-        this.animatedValue = new Animated.Value(0);
+        this.animatedValue = new Animated.Value(this.state.temperature - 92); //sets initial height
     }
 
-    handleAnimation = () => {
-        Animated.timing(this.animatedValue, {
-            toValue: 1,
-            duration: 1000,
+    handleAnimation1 = () => { //smoothly increases height of thermometer
+  
+        Animated.timing(this.animatedValue, { 
+            toValue: this.state.temperature - 91,
+            duration: 750,
             easing: Easing.ease
         }).start()
+      
+        
     }
+
+    handleAnimation2 = () => { //smoothly decreases height of thermometer
+  
+      Animated.timing(this.animatedValue, {
+          toValue: this.state.temperature - 93,
+          duration: 750,
+          easing: Easing.ease
+      }).start()
+    }
+    
+    
     
     render() {
         const { navigation } = this.props;
@@ -70,50 +86,48 @@ class Thermometer extends React.Component {
                   <Text style={styles.sectionTitle}>Set Temperature</Text>
                   <View style={{ flex: 1 }}>
                   <Text style={styles.setTemp}>{this.state.temperature}{' C'}{'\n'} </Text>
-                <TouchableOpacity onPress={() => this.state.temperature > 92 ? 
-                  this.setState({temperature: this.state.temperature - 1}) : this.setState({temperature: this.state.temperature}), this.handleAnimation() }>
-                    <Text >-</Text>
+                <TouchableOpacity onPress={() => this.state.temperature < 96 ? //increase temp only if less than 96 and calls animation
+                  this.setState({temperature: this.state.temperature + 1}) + this.handleAnimation1() : this.setState({temperature: this.state.temperature}) }>
+                    <Text style={styles.tempControl} >+</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.state.temperature < 96 ? 
-                  this.setState({temperature: this.state.temperature + 1}) : this.setState({temperature: this.state.temperature})}>
-                    <Text >+</Text>
+                <TouchableOpacity onPress={() => this.state.temperature > 92 ? //decrease temp only if greater than 92 and calls animation 
+                  this.setState({temperature: this.state.temperature - 1}) + this.handleAnimation2() : this.setState({temperature: this.state.temperature}) }>
+                    <Text style={styles.tempControl}>-</Text>
                 </TouchableOpacity>
                 <Animated.Image
                     source={backgroundImage}
                     resizeMode='cover'
                     style={{
-                        borderRadius: 8,
+                        borderRadius: 5,
                         left: 65,
-                        height: 40,
+                        height: 60, //height at 92
                         width: 40,
                         transform: [
 
                             {
-                                translateY: this.animatedValue.interpolate({
-                                    inputRange: [0, 1],
-                                    outputRange: [0, -40]
-                                })
+                              translateY: this.animatedValue.interpolate({ //shifts thermometer in proportion with scaling
+                                inputRange: [0, 1],
+                                outputRange: [1, -15]
+                            })
+                                
                             },
 
                             {
-                                scaleY: this.animatedValue.interpolate({
-                                    inputRange: [0, 1],
-                                    outputRange: [0, 2]
-                                })
+                              scaleY: this.animatedValue.interpolate({ //scales thermometer 1.5 times the initial height
+                                inputRange: [0, 1],
+                                outputRange: [1, 1.5]
+                            })
                             }
                         ]
                     }} 
                 />
-                
-                <StartButton
-                    title="Display"
-                    onPress={() => navigate('Display', {temperature: this.state.temperature, amount: this.state.amount})}
-                    >
-                </StartButton>
+            <Image style={styles.circle} source = {require('./img/redCircle.png')} /> 
             </View>
-                  
+            
               </View>
             </BackView>
+            
+            
         </>
       )}
     };
@@ -183,8 +197,17 @@ const styles = StyleSheet.create({
     color: "#bc846b",
     position: 'relative',
     textAlign: 'center',
-    marginTop: 20
+    marginTop: 20,
+    marginBottom: -10
   },
+
+  tempControl: {
+    backgroundColor: "#fffff4",
+    fontSize: 100,
+    fontFamily: "BREVE2",
+    color: "#bc846b",
+    marginTop: -35
+  }, 
 
   controlButton: {
     display: 'flex',
@@ -195,6 +218,17 @@ const styles = StyleSheet.create({
     color: "#bc846b",
     position: 'absolute',
 
+  },
+
+  circle: {
+    display: 'flex',
+    width: 80,
+    height: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: -20,
+    left: 44
+    
   },
 
   button: {
@@ -210,5 +244,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontFamily: "BREVE2",
     fontSize: 36,
-  }
+  },
+
+
 })
