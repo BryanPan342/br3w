@@ -128,6 +128,7 @@ export default class Display extends React.Component {
                 <TouchableOpacity
                 title="start"
                 onPress={() => {
+                  this._storeData();
                   BluetoothSerial.write(ArduinoHelper.send_value(m_temperature, m_amount, m_isLight))
                   .then(() => {
                       console.log("Start coffee, sent ", ArduinoHelper.send_value(m_temperature, m_amount, m_isLight))
