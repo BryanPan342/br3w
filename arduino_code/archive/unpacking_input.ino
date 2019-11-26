@@ -1,10 +1,19 @@
 #include <SoftwareSerial.h>
 #include <ctype.h>
+#include <Servo.h>
 //#include "temp_code.cpp"
 
 int temperature = -1; //desired temperature for coffee
 int servo_turns = -1; //number of turns for servo
 int time_sol = -1; //how long the solenoid valve should be open for water
+
+/* Variables for Servo */
+Servo myservo;  // create servo object to control a servo
+// twelve servo objects can be created on most boards
+
+int pos = 0;    // variable to store the servo position
+int start = 160;
+int turn = 500;
 
 //constants
 //flow rate data for time_sol calculation
@@ -105,7 +114,8 @@ void set_parameters(char data)
 }
 void setup() {
   // put your setup code here, to run once:
-
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  myservo.write(start);
 }
 
 void loop() {

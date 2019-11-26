@@ -1,5 +1,6 @@
 #include <SoftwareSerial.h>
 #include <OneWire.h>
+#include <Servo.h>
 #include <ctype.h>
 //#include "temp_code.cpp"
 
@@ -30,10 +31,23 @@ OneWire ds(DS18S20_Pin);
 SoftwareSerial display(3, 2);
 int heaterPin = 5;
 
+/* Coffee dispenser variables */
+Servo myservo;  // create servo object to control a servo
+// twelve servo objects can be created on most boards
+
+int pos = 0;    // variable to store the servo position
+int start = 160;
+int turn = 500;
+
 void setup() {
-  // put your setup code here, to run once:
+  // heater setup
   pinMode(heaterPin, OUTPUT);
   Serial.begin(9600);
+
+  //coffee dispenser setup
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  myservo.write(start);
+  
 }
 
 void loop() {
