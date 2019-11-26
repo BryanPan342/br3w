@@ -66,7 +66,7 @@ class SettingsPage extends React.Component {
       console.error("Failed to persist amount");
     }
     try {
-      await AsyncStorage.setItem('roast', this.state.roast);
+      await AsyncStorage.setItem('roast', JSON.stringify(this.state.roast));
     } catch (error) {
       console.log(error);
       console.error("Failed to persist strength");
@@ -85,7 +85,7 @@ class SettingsPage extends React.Component {
         <BackView
           style={styles.container}>
           <View style={styles.header} >
-            <HeaderText> B R 3 W </HeaderText>
+            <HeaderText> BR3W </HeaderText>
           </View>
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
