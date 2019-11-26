@@ -13,22 +13,12 @@ import {
   View,
   Text,
   StatusBar,
-  Picker,
+  Slider,
   Button,
   Image,
   TouchableOpacity,
 } from 'react-native';
 import styled from 'styled-components';
-import MultiSwitch from './MultiSwitch';
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import BluetoothSerial from 'react-native-bluetooth-serial';
-import temperatureScreen from './temperatureScreen';
 
 export const CustomButton = (props) => {
 
@@ -49,6 +39,7 @@ class amountScreen extends React.Component {
             temperature: 92,
             amount: 8,
             roast: true,
+            image: require('./assets/small.jpg')
         }
     }
   render() {
@@ -57,12 +48,7 @@ class amountScreen extends React.Component {
     return (
     <>
       <StatusBar barStyle="dark-content" />
-        {/*<BackView
-          style={style.loadingScreen}>
-
-        </BackView>*/}
-        <BackView
-          style={styles.container}>
+        <BackView>
           <View style={styles.header} >
             <HeaderText> BR3W </HeaderText>
           </View>
@@ -71,15 +57,51 @@ class amountScreen extends React.Component {
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
           )}
-          <CustomButton
-            title="Done"
-            onPress={() => {
-                navigate('Display', {temperature: this.state.temperature, amount: this.state.amount})}}
-            >
-          </CustomButton>
+          
+          <View style={styles.container}>
+            <Slider
+              style={{width: 250, height: 70}}
+              step={2}
+              onValueChange={value => this.onValueChange(value)}
+              minimumValue={8}
+              maximumValue={12}
+              minimumTrackTintColor="#FFFFFF"
+              maximumTrackTintColor="#000000"/>
+            <Image style={styles.image} source={this.state.image}/>
+          </View>
+
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                navigate('Display', {temperature: this.state.temperature})
+              }}
+              >
+              <DefaultText>Done</DefaultText>
+           </TouchableOpacity>
         </BackView>
     </>
-  )}
+  );}
+
+  getImage(amount){
+    console.log(amount)
+    
+  }
+  
+  onValueChange(value) {
+    this.setState({ amount: value });
+    switch(value){
+      case 8:
+        this.setState({image:require('./assets/small.jpg')})
+        break
+      case 10:
+        this.setState({image: require('./assets/medium.jpg')})
+        break
+      case 12:
+        this.setState({image: require('./assets/large.jpg')})
+        break;
+    }
+    console.log("Updated value")
+  }
 };
 
 const BackView = styled(View)`
@@ -95,39 +117,19 @@ const DefaultText = styled(Text)`
   margin: 20px 0px;
   align-self: center;
 `
-const StartImage = styled(Image)`
-   width: 75px;
-   height: 75px;
-   align-self: center;
-`
-const StartButton = styled(CustomButton)`
-    display: flex;
-    height: 75px;
-    width: 75px;
-    border-radius: 25px;
-    margin-top: 15px;
-    align-self: center;
-    margin-right: 15px;
-    opacity: 1;
-`
 
 const HeaderText = styled(DefaultText)`
-    backgroundColor: #fffff4;
-    font-size: 96;
-    color: #bc846b;
-    position: relative;
-    margin-top: 95px;
+  backgroundColor: #fffff4;
+  font-size: 96;
+  color: #bc846b;
+  position: relative;
+  margin-top: 95px;
 `
 
 const styles = StyleSheet.create({
   engine: {
     position: 'absolute',
     right: 0,
-  },
-
-  loadingScreen: {
-    flex: 1,
-    backgroundColor: "#fffff4",
   },
 
   header: {
@@ -140,13 +142,10 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    display: 'flex',
-    height: 50,
-    width: 50,
+    marginTop: 55,
+    height: 100,
+    width: 100,
     borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-    opacity: 0,
   },
 
   sectionTitle: {
@@ -154,7 +153,19 @@ const styles = StyleSheet.create({
     fontFamily: 'Futura',
     //fontSize: 36,
     fontSize: 24,
-  }
+  },
+
+  container: {
+    height: 300,
+    backgroundColor: '#fffff4',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  image:{
+    width: 150,
+    height: 150,
+  },
 });
 
 export default amountScreen;

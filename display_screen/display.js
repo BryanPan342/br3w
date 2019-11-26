@@ -87,7 +87,7 @@ export default class Display extends React.Component {
                   
                   <TouchableOpacity
                     onPress={() => {
-                      navigate('temperatureScreen', {temperature: this.state.temperature})
+                      navigate('amountScreen', {temperature: this.state.temperature})
                     }}
                     >
                   <DefaultText>Amount of Coffee: {this.state.amount} oz</DefaultText>
