@@ -21,36 +21,35 @@ import {
 import styled from 'styled-components';
 
 export const CustomButton = (props) => {
-
   const { style = {}, onPress } = props;
   return (
-      <TouchableOpacity
+    <TouchableOpacity
       onPress={onPress}
       style={[styles.button, style]}>
-        {/* <StartImage source={require('../br3w/assets/images/coffeeArt.png')} /> */}
-      </TouchableOpacity>
+      {/* <StartImage source={require('../br3w/assets/images/coffeeArt.png')} /> */}
+    </TouchableOpacity>
   );
 };
 
 class amountScreen extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          temperature: this.props.navigation.getParam("temperature", 92),
-          amount: this.props.navigation.getParam("amount", 8),
-          roast: this.props.navigation.getParam("roast", true),
-          image: require('./assets/small.jpg')
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      temperature: this.props.navigation.getParam("temperature", 92),
+      amount: this.props.navigation.getParam("amount", 8),
+      roast: this.props.navigation.getParam("roast", true),
+      image: require('./assets/small.jpg')
     }
-    componentDidMount(){
-      this.onValueChange(this.state.amount);
-    }
+  }
+  componentDidMount() {
+    this.onValueChange(this.state.amount);
+  }
   render() {
     const { navigation } = this.props;
-    const {navigate} = navigation;
+    const { navigate } = navigation;
     return (
-    <>
-      <StatusBar barStyle="dark-content" />
+      <>
+        <StatusBar barStyle="dark-content" />
         <BackView>
           <View style={styles.header} >
             <HeaderText> BR3W </HeaderText>
@@ -60,48 +59,48 @@ class amountScreen extends React.Component {
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
           )}
-          
+
           <View style={styles.container}>
             <Slider
-              style={{width: 250, height: 70}}
+              style={{ width: 250, height: 70 }}
               step={2}
               onValueChange={value => this.onValueChange(value)}
               minimumValue={8}
               value={parseFloat(this.state.amount)}
               maximumValue={12}
               minimumTrackTintColor="#000000"
-              maximumTrackTintColor="#000000"/>
-            <Image style={styles.image} source={this.state.image}/>
+              maximumTrackTintColor="#000000" />
+            <Image style={styles.image} source={this.state.image} />
           </View>
 
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                navigate('Display', {temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast})
-              }}
-              >
-              <DefaultText>Done</DefaultText>
-           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              navigate('Display', { temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast })
+            }}
+          >
+            <DefaultText>Done</DefaultText>
+          </TouchableOpacity>
         </BackView>
-    </>
-  );}
-
-  getImage(amount){
-    console.log(amount)
-    
+      </>
+    );
   }
-  
+
+  getImage(amount) {
+    console.log(amount)
+  }
+
   onValueChange(value) {
     this.setState({ amount: value });
-    switch(value){
+    switch (value) {
       case 8:
-        this.setState({image:require('./assets/small.jpg')})
+        this.setState({ image: require('./assets/small.jpg') })
         break
       case 10:
-        this.setState({image: require('./assets/medium.jpg')})
+        this.setState({ image: require('./assets/medium.jpg') })
         break
       case 12:
-        this.setState({image: require('./assets/large.jpg')})
+        this.setState({ image: require('./assets/large.jpg') })
         break;
     }
     console.log("Updated value")
@@ -165,7 +164,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  image:{
+  image: {
     width: 150,
     height: 150,
   },

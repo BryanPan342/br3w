@@ -7,8 +7,8 @@ import {
   PanResponder,
   View,
   Platform,
-  Image, 
-  TouchableOpacity, 
+  Image,
+  TouchableOpacity,
   StyleSheet,
   Text
 } from 'react-native';
@@ -18,44 +18,44 @@ import PropTypes from "prop-types";
 //// Button /////
 
 const getIcon = (type, active) => {
-    let icn;
-    switch (type) {
+  let icn;
+  switch (type) {
     case 'Light':
-        icn = active
-            ? <Text style={styles.InactiveText}> Light </Text> //require('./assets/slider/active/complete.png')
-            : <Text style={styles.ActiveText}> Light </Text> //require('./assets/slider/inactive/complete.png');
-        break;
+      icn = active
+        ? <Text style={styles.InactiveText}> Light </Text> //require('./assets/slider/active/complete.png')
+        : <Text style={styles.ActiveText}> Light </Text> //require('./assets/slider/inactive/complete.png');
+      break;
     case 'Dark':
-        icn = active
-            ? <Text style={styles.InactiveText}> Dark </Text>//require('./assets/slider/active/light.jpg')
-            : <Text style={styles.ActiveText}> Dark </Text>//require('./assets/slider/inactive/dark.jpg');
-        break;
-    }
-    return icn;
+      icn = active
+        ? <Text style={styles.InactiveText}> Dark </Text>//require('./assets/slider/active/light.jpg')
+        : <Text style={styles.ActiveText}> Dark </Text>//require('./assets/slider/inactive/dark.jpg');
+      break;
+  }
+  return icn;
 };
 
 const Button = props => {
-    return (
-        <View>
-            <TouchableOpacity
-                onPress={props.onPress}
-                style={styles.buttonStyle}
-            >
-               {/* <Image source={getIcon(props.type, props.active)} /> */}
-               <Text>{getIcon(props.type, props.active)}</Text>
-            </TouchableOpacity>
-        </View>
-    );
+  return (
+    <View>
+      <TouchableOpacity
+        onPress={props.onPress}
+        style={styles.buttonStyle}
+      >
+        {/* <Image source={getIcon(props.type, props.active)} /> */}
+        <Text>{getIcon(props.type, props.active)}</Text>
+      </TouchableOpacity>
+    </View>
+  );
 };
 
 Button.propTypes = {
-    type: PropTypes.string,
-    active: PropTypes.bool,
-    onPress: PropTypes.func
+  type: PropTypes.string,
+  active: PropTypes.bool,
+  onPress: PropTypes.func
 };
 
 Button.defaultProps = {
-    active: false
+  active: false
 };
 
 ///////// Multi Switch ////////////
@@ -103,9 +103,9 @@ class MultiSwitch extends Component {
             if (finalValue >= 0 && finalValue <= 30) {
               this.notStartedSelected();
             } else {
-                this.inProgressSelected();
-              }
+              this.inProgressSelected();
             }
+          }
           else {
             if (finalValue >= 78 && finalValue <= 175) {
               this.inProgressSelected();
@@ -116,7 +116,7 @@ class MultiSwitch extends Component {
         }
       },
 
-      onPanResponderTerminate: () => {},
+      onPanResponderTerminate: () => { },
       onShouldBlockNativeResponder: () => {
         // Returns whether this component should block native components from becoming the JS
         // responder. Returns true by default. Is currently only supported on android.
@@ -207,68 +207,68 @@ MultiSwitch.defaultProps = {
 /////////// Styles //////////
 
 const Colors = {
-    mBackColor: '#efefef',
-    mBorderColor: '#efefef',
-    white: '#FFFFFF',
-    shadowColor: '#A69E9E'
+  mBackColor: '#efefef',
+  mBorderColor: '#efefef',
+  white: '#FFFFFF',
+  shadowColor: '#A69E9E'
 };
 
 const Metrics = {
-    containerWidth: width - 150,
-    switchWidth: width / 3
+  containerWidth: width - 150,
+  switchWidth: width / 3
 };
 
 const styles = StyleSheet.create({
 
-    container: {
-        width: Metrics.containerWidth,
-        height: 46,
-        flexDirection: 'row',
-        backgroundColor: Colors.mBackColor,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 1,
-        borderColor: Colors.mBorderColor,
-        borderRadius: 27.5,
-        marginVertical: 25,
-    },
-    
-    switcher: {
-        flexDirection: 'row',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        backgroundColor: Colors.white,
-        borderRadius: 28,
-        height: 45,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: Metrics.switchWidth,
-        elevation: 4,
-        shadowOpacity: 0.31,
-        shadowRadius: 10,
-        shadowColor: Colors.shadowColor
-    },
-    buttonStyle: {
-        flex: 1,
-        width: Metrics.containerWidth / 2.7,
-        height: 46,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    ActiveText: {
-      fontSize: 18,
-      color: 'grey',
-      fontWeight: 'bold',
-      fontFamily: 'Futura',
-    },
+  container: {
+    width: Metrics.containerWidth,
+    height: 46,
+    flexDirection: 'row',
+    backgroundColor: Colors.mBackColor,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: Colors.mBorderColor,
+    borderRadius: 27.5,
+    marginVertical: 25,
+  },
 
-    InactiveText: {
-      fontSize: 18,
-      color: 'black',
-      fontWeight: 'bold',
-      fontFamily: 'Futura',
-    }
+  switcher: {
+    flexDirection: 'row',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    backgroundColor: Colors.white,
+    borderRadius: 28,
+    height: 45,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: Metrics.switchWidth,
+    elevation: 4,
+    shadowOpacity: 0.31,
+    shadowRadius: 10,
+    shadowColor: Colors.shadowColor
+  },
+  buttonStyle: {
+    flex: 1,
+    width: Metrics.containerWidth / 2.7,
+    height: 46,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  ActiveText: {
+    fontSize: 18,
+    color: 'grey',
+    fontWeight: 'bold',
+    fontFamily: 'Futura',
+  },
+
+  InactiveText: {
+    fontSize: 18,
+    color: 'black',
+    fontWeight: 'bold',
+    fontFamily: 'Futura',
+  }
 });
 
 export default MultiSwitch;
