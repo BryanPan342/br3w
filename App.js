@@ -1,6 +1,5 @@
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import SettingsPage from './settingsPage';
 import Display from './display_screen/display';
 import Loading from './loadingScreen';
 import progressBar from './progressBar';
@@ -10,7 +9,6 @@ import amountScreen from './amountScreen';
 const MainNavigator = createStackNavigator({
   Loading: {screen: Loading},
   Display: {screen: Display},
-  Settings: {screen: SettingsPage},
   progressBar: {screen: progressBar},
   temperatureScreen: {screen: temperatureScreen},
   amountScreen: {screen: amountScreen},
