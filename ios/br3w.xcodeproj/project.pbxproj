@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* br3wTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* br3wTests.m */; };
 		04C5B8FEF486A6150430556F /* libPods-br3w.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CDDF48B0ED703B701C16EAD /* libPods-br3w.a */; };
