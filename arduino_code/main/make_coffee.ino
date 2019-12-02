@@ -9,7 +9,6 @@ void make_coffee()
   /* 1. Pour coffee grounds by turning servo */
   dispense_coffee(grams_grounds);
   
-
   /* 2. Heat up water */
   heat_water();
 
