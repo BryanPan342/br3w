@@ -44,7 +44,7 @@ class progressBar extends React.Component {
       <>
         <StatusBar barStyle="dark-content" />
         <View>
-          <Image source={require('./assets/coffee.gif')} />
+          <ImageView source={require('./assets/coffee.gif')} />
         </View>
         <BackView style={styles.container}>
           <View style={styles.bar}>
@@ -76,6 +76,11 @@ const BackView = styled(View)`
   flex: 1;
   align-items: center;
 `;
+
+const ImageView = styled(Image)`
+  backgroundColor: #fffff4;
+  align-items: center;
+`
 
 const DefaultText = styled(Text)`
   color: #562f29;
