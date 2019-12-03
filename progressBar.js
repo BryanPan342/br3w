@@ -31,91 +31,104 @@ class progressBar extends React.Component {
       roast: this.props.navigation.getParam("roast", true),
       arduinoTemp: 32,
       water_temp_ratio: (32 / this.props.navigation.getParam("temperature", 92)),
-      status: "heat", // heat, dispense water, dispense coffee
-      progress: (32 / this.props.navigation.getParam("temperature", 92)) * 0.5
+      status: "dispense coffee", // heat, dispense water, dispense coffee
+      progress: 0
     }
   }
 
   componentDidMount() {
-    //   // needs finetuning, but should be similar to below - combine with handleChange?
-    //   // if - reading numbers, change progress/water_temp_ratio
-    //   // if - receive the letter for dispensing water, change state variable status
-    //   // if - don't see anything, but current state = dispense water and not 75 yet, progress++
-    //   // if - receive letter for dispense coffee, change state variable status
-    //   // if - don't see anything, but current state = dispense coffee and not 100 yet, progress++
-    //   // if - receive letter for done - change state variable
-    //   // if done - wait for 1 second so "done" message shows
-    // setInterval(() => {
-    //     BluetoothSerial.readFromDevice()
-    //         .then((res) => {
-    //             if (this.state.status == "heat") {
-    //                 // if reading numbers?
-    //                 this.setState({
-    //                     // not sure about this math
-    //                     water_temp_ratio: res / this.state.temperature
-    //                 })
-    //             } else if (res == dispense water) {
-    //                 // send a single letter that represents dispensing water
-    //                 // change state variable status
-    //                 this.setState({
-    //                     progress: progress + 1
-    //                 })
-    //             } else if (res == dispense coffee) {
-    //                 // send a single letter that represents dispensing coffee
-    //                 // change state variable status
-    //                 this.setState({
-    //                     progress: progress + 1
-    //                 })
-    //             }
-    //     })
-    // }, 1000);
-    setInterval(() => {
-        if (this.state.status == "heat") {
-            console.log("fyre");
-            this.setState({
-                progress: this.state.progress + .1
+      // needs finetuning, but should be similar to below - combine with handleChange?
+      // if - read w for dispensing coffee, change state variable status
+      // if - reading numbers, change progress/water_temp_ratio
+      // if - receive letter for dispense coffee, change state variable status
+      // if - don't see anything, but current state = dispense coffee and not 100 yet, progress++
+      // if - receive letter for done - change state variable
+      // if done - wait for 1 second so "done" message shows
+    if (this.state) {
+        setInterval(() => {
+        BluetoothSerial.readFromDevice()
+            .then((res) => {
+                if (!isNaN(parseFloat(res)) && this.state.status == "heat water") {
+                    // reading numbers
+                    this.setState({
+                        progress: (parseFloat(res) / this.state.temperature) * 0.5 + .33
+                    })
+                }
+                else if (res[0] == 'c') {
+                    // read letter to dispense coffee
+                    this.setState({
+                        status: "dispense coffee"
+                    })
+                } else if (res[0] == 'w') {
+                    // read letter to dispense water
+                    this.setState({
+                        status: "dispense water"
+                    })
+                } else if (res[0] == 'h') {
+                    // read letter to heat water
+                    this.setState({
+                        status: "heat water"
+                    })
+                } 
+                else if (res[0] == 'd') {
+                    // done - change state, then navigate away
+                    this.setState({
+                        status: "done"
+                    });
+                    setTimeout(() => {
+                        this.props.navigation.navigate('Display', { temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast })
+                    }, 1000);
+                } else if (this.state.status == "dispense coffee") {
+                    // don't see anything, but current state = dispense coffee and progress is not 1/4 yet
+                    // probably change .01 depending on how long the whole process takes / 1000 ms
+                    this.setState({
+                        progress: this.state.progress + .02
+                    })
+                } else if (this.state.status == "dispense water") {
+                    // don't see anything, but current state = dispense water and progress is not 100 yet
+                    // probably change .01 depending on how long the whole process takes / 1000 ms
+                    this.setState({
+                        progress: this.state.progress + .01
+                    })
+                } 
             })
-        } else {
-            console.log("dispensing");
-            this.setState({
-                // adjust the 1 based on how long it takes to dispense
-                progress: this.state.progress + .1
-            })
-        }
-    }, 1000);
+        }, 1000);
+    }
   }
 
-  handleChange = () => {
-    console.log("handleChange")
-    const { status, progress } = this.state;
-    console.log(progress);
-    if (status == "heat" && progress >= .5) {
-        console.log("changing to dispense water");
-        this.setState({
-            status: "dispense water"
-        })
-    }
-    else if (status == "dispense water" && progress >= .75) {
-        console.log("changing to dispense coffee");
-        this.setState({
-            status: "dispense coffee"
-        })
-    } else if (status == "dispense coffee" && progress >= 1) {
-        console.log("done!");
-        this.props.navigation.navigate('Display', { temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast })
-    } 
-  }
+//   handleChange = () => {
+//     console.log("handleChange")
+//     const { status, progress } = this.state;
+//     console.log(progress);
+//     if (status == "heat" && progress >= .5) {
+//         console.log("changing to dispense water");
+//         this.setState({
+//             status: "dispense water"
+//         })
+//     }
+//     else if (status == "dispense water" && progress >= .75) {
+//         console.log("changing to dispense coffee");
+//         this.setState({
+//             status: "dispense coffee"
+//         })
+//     } else if (status == "dispense coffee" && progress >= 1) {
+//         console.log("done!");
+//         this.props.navigation.navigate('Display', { temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast })
+//     } 
+//   }
 
   render() {
     const { navigation } = this.props;
     const { navigate } = navigation;
-    const { progress } = this.state;
-    let progressText = "Heating Water";
-    if (progress >= .5 && progress < .75) {
-        progressText = "Dispensing Water";
-    } else if (progress >= .75 && progress < 1) {
+    const { progress, status } = this.state;
+    let progressText = "Dispensing Coffee";
+    if (status == "dispense coffee") {
         progressText = "Dispensing Coffee";
-    } else if (progress >= 1) {
+    } else if (status == "dispense water") {
+        progressText = "Dispensing Water";
+    } else if (status == "heat water") {
+        progressText = "Heating Water";
+    } else if (status == "done") {
         progressText = "Done!"
     }
     return (
@@ -127,7 +140,7 @@ class progressBar extends React.Component {
             {/* {this.state.water_temp_ratio = this.state.arduinoTemp / this.state.temp}; */}
             <Progress.Bar 
                 progress={progress} 
-                onChange={this.handleChange()} 
+                //onChange={this.handleChange()} 
                 width={300} 
                 height={10} 
                 borderWidth={2} 
