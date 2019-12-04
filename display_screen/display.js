@@ -90,7 +90,7 @@ export default class Display extends React.Component {
               <TouchableOpacity
                 style={{
                   marginVertical: 20,
-                  borderColor: "#000000",
+                  borderColor: "#906F63",
                   borderWidth: 1,
                   borderRadius: 20,
                 }}
@@ -104,7 +104,7 @@ export default class Display extends React.Component {
               <TouchableOpacity
                 style={{
                   marginVertical: 20,
-                  borderColor: "#000000",
+                  borderColor: "#906F63",
                   borderWidth: 1,
                   borderRadius: 20,
                   width: 310,
@@ -118,6 +118,7 @@ export default class Display extends React.Component {
               <MultiSwitch
                 style={{
                   marginVertical: 20,
+		  backgroundColor: "#906F63",
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
@@ -211,11 +212,11 @@ const styles = StyleSheet.create({
     display: "flex",
     marginBottom: 20,
   },
-
   button: {
     display: 'flex',
     height: 50,
     width: 50,
+    backgroundColor: "#906F63",
     borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
