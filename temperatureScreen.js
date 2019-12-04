@@ -115,7 +115,7 @@ class Thermometer extends React.Component {
               console.log(this.state.temperature);
               navigate('Display', { temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast })
             }}>
-            <DefaultText>Done</DefaultText>
+            <DefaultText>DONE</DefaultText>
           </TouchableOpacity>
         </BackView>
       </>
@@ -131,8 +131,9 @@ const BackView = styled(View)`
 `
 const DefaultText = styled(Text)`
   color: #562f29;
-  font-size: 36;
-  font-family: BREVE2;
+  opacity: 1;
+  font-size: 24;
+  font-family: Futura;
   margin: 10px 0px;
   align-self: center;
 `
@@ -211,9 +212,11 @@ const styles = StyleSheet.create({
 
   button: {
     marginTop: 55,
-    height: 100,
-    width: 100,
+    height: 50,
+    width: 222,
     borderRadius: 25,
+    backgroundColor: "#f6e8e3",
+    position: 'relative',
   },
 
   sectionTitle: {
