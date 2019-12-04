@@ -10,6 +10,7 @@ import {
   StatusBar,
   Button,
   Image,
+  ImageBackground,
   TouchableOpacity,
 } from 'react-native';
 import styled from 'styled-components';
@@ -83,8 +84,7 @@ export default class Display extends React.Component {
             </View>
           )}
 
-          <View style={styles.body}>
-            <TitleText>BR3W</TitleText>
+          <ImageBackground source = {require('../../br3w/assets/br3w.png')} style={styles.body}>
 
             <View style={styles.bodyText}>
               <TouchableOpacity
@@ -145,9 +145,8 @@ export default class Display extends React.Component {
                   })
               }}
             >
-              <StartImage source={require('../../br3w/assets/images/coffeeArt.png')} />
             </TouchableOpacity>
-          </View>
+          </ImageBackground>
         </SafeAreaView>
       </>
     );
@@ -202,8 +201,10 @@ const styles = StyleSheet.create({
   body: {
     backgroundColor: "#fffff4",
     flex: 1,
+    resizeMode: 'cover',
     flexDirection: "column",
     alignItems: "center",
+    justifyContent: "center"
   },
 
   bodyText: {
