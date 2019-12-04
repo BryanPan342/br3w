@@ -25,10 +25,10 @@ class progressBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      temperature: this.props.navigation.getParam("temperature", 92),
+      temperature: this.props.navigation.getParam('temperature', 92),
       is_celsius: true,
-      amount: this.props.navigation.getParam("amount", 8),
-      roast: this.props.navigation.getParam("roast", true),
+      amount: this.props.navigation.getParam('amount', 8),
+      roast: this.props.navigation.getParam('roast', true),
       arduinoTemp: 32,
       water_temp_ratio: (32 / this.props.navigation.getParam("temperature", 92)),
       status: "dispense coffee", // heat, dispense water, dispense coffee
@@ -134,8 +134,10 @@ class progressBar extends React.Component {
     return (
       <>
         <StatusBar barStyle="dark-content" />
-        <BackView
-          style={styles.container}>
+        <View>
+          <Image source={require('./assets/coffee.gif')} />
+        </View>
+        <BackView style={styles.container}>
           <View style={styles.bar}>
             {/* {this.state.water_temp_ratio = this.state.arduinoTemp / this.state.temp}; */}
             <Progress.Bar 
@@ -150,20 +152,23 @@ class progressBar extends React.Component {
           <Button
             title="Back to Display"
             onPress={() => {
-              navigate('Display', { temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast })
-            }}
-          ></Button>
+              navigate('Display', {
+                temperature: this.state.temperature,
+                amount: this.state.amount,
+                roast: this.state.roast,
+              });
+            }}></Button>
         </BackView>
       </>
-    )
+    );
   }
-};
+}
 
 const BackView = styled(View)`
   backgroundColor: #fffff4;
   flex: 1;
   align-items: center;
-`
+`;
 
 const DefaultText = styled(Text)`
   color: #562f29;
@@ -171,15 +176,15 @@ const DefaultText = styled(Text)`
   font-family: Futura;
   margin: 20px 0px;
   align-self: center;
-`
+`;
 
 const HeaderText = styled(DefaultText)`
-    backgroundColor: #fffff4;
-    font-size: 96;
-    color: #bc846b;
-    position: relative;
-    margin-top: 95px;
-`
+  backgroundColor: #fffff4;
+  font-size: 96;
+  color: #bc846b;
+  position: relative;
+  margin-top: 95px;
+`;
 
 const styles = StyleSheet.create({
   engine: {
@@ -189,15 +194,15 @@ const styles = StyleSheet.create({
 
   loadingScreen: {
     flex: 1,
-    backgroundColor: "#fffff4",
+    backgroundColor: '#fffff4',
   },
 
   header: {
-    backgroundColor: "#fffff4",
+    backgroundColor: '#fffff4',
     fontSize: 96,
-    fontFamily: "BREVE2",
+    fontFamily: 'BREVE2',
     margin: 20,
-    color: "#bc846b",
+    color: '#bc846b',
     position: 'relative',
   },
 
@@ -212,7 +217,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Futura',
     //fontSize: 36,
     fontSize: 24,
-  }
+  },
 });
 
 export default progressBar;
