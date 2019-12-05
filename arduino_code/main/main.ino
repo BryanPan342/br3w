@@ -21,30 +21,30 @@ const int GRAMS_8 = 8;
 const int GRAMS_12 = 12;
 const int GRAMS_16 = 16;
 //constants for servo position
-const int SERVO_START = 160;
-const int SERVO_TURN = 500;
+const int SERVO_START = 340;
+const int SERVO_TURN = -340;
 // Heating water constants
 const int TEMP_BUFFER = -1; //actually heat until temperature is desired_temp + buffer
 
 /* PORTS */
 /* Temp sensor and heater ports */
 // DS18S20 Signal pin on digital 2
-int DS18S20_Pin = 3;
+int DS18S20_Pin = 12;
 char tmpstring[10];
 // Temperature chip i/o
 OneWire ds(DS18S20_Pin);
 // on digital pin 2
 SoftwareSerial display(3, 2);
-int heaterPin = 4;
+int heaterPin = 13;
 
 /* Coffee dispenser/servo ports */
 Servo myservo;  // create servo object to control a servo
 // twelve servo objects can be created on most boards
 //int pos = 0;    // variable to store the servo position
-int servoPin = 9;
+int servoPin = 8;
 
 /*Solenoid valve ports */
-int solenoidPin = 7;
+int solenoidPin = 10;
 
 
 
