@@ -1,6 +1,7 @@
 #include <SoftwareSerial.h>
 #include <OneWire.h>
 #include <Servo.h>
+#include <Wire.h>
 #include <ctype.h>
 //#include "temp_code.cpp"
 
@@ -52,7 +53,8 @@ void setup() {
   // heater setup
   pinMode(heaterPin, OUTPUT);
   Serial.begin(9600);
-
+  Wire.begin(4);
+  Wire.onReceive(receiveEvent);
   //coffee dispenser setup
   myservo.attach(servoPin);  // attaches the servo on pin 9 to the servo object
   myservo.write(SERVO_START);
@@ -60,9 +62,20 @@ void setup() {
 }
 
 void loop() {
-  if(Serial.available() > 0){
+  if(Serial.available() > 0 || Wire.available()){
+    char data;
+    if(Serial.available() > 0){
+      data = Serial.read();
+    }else{
+      while(1 < Wire.available()) // loop through all but the last
+      {
+        char c = Wire.read(); // receive byte as a character
+        Serial.print(c);         // print the character
+      }
+      data = Wire.read();    // receive byte as an integer
+    }
     //set desired parameters for temp, time for solenoid valve, and # turns for coffee grounds
-    char data = Serial.read();
+    
     //char data = 'a';
     set_parameters(data);
     //dispense_water();
@@ -73,4 +86,6 @@ void loop() {
 
    }
 }
-  
+
+void receiveEvent(int howMany){
+}
