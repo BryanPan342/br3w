@@ -37,13 +37,6 @@ class progressBar extends React.Component {
   }
 
   componentDidMount() {
-      // needs finetuning, but should be similar to below - combine with handleChange?
-      // if - read w for dispensing coffee, change state variable status
-      // if - reading numbers, change progress/water_temp_ratio
-      // if - receive letter for dispense coffee, change state variable status
-      // if - don't see anything, but current state = dispense coffee and not 100 yet, progress++
-      // if - receive letter for done - change state variable
-      // if done - wait for 1 second so "done" message shows
     if (this.state) {
         setInterval(() => {
         BluetoothSerial.readFromDevice()
@@ -96,27 +89,6 @@ class progressBar extends React.Component {
     }
   }
 
-//   handleChange = () => {
-//     console.log("handleChange")
-//     const { status, progress } = this.state;
-//     console.log(progress);
-//     if (status == "heat" && progress >= .5) {
-//         console.log("changing to dispense water");
-//         this.setState({
-//             status: "dispense water"
-//         })
-//     }
-//     else if (status == "dispense water" && progress >= .75) {
-//         console.log("changing to dispense coffee");
-//         this.setState({
-//             status: "dispense coffee"
-//         })
-//     } else if (status == "dispense coffee" && progress >= 1) {
-//         console.log("done!");
-//         this.props.navigation.navigate('Display', { temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast })
-//     } 
-//   }
-
   render() {
     const { navigation } = this.props;
     const { navigate } = navigation;
@@ -139,25 +111,26 @@ class progressBar extends React.Component {
         </View>
         <BackView style={styles.container}>
           <View style={styles.bar}>
-            {/* {this.state.water_temp_ratio = this.state.arduinoTemp / this.state.temp}; */}
             <Progress.Bar 
                 progress={progress} 
-                //onChange={this.handleChange()} 
                 width={300} 
                 height={10} 
                 borderWidth={2} 
             />
             <Text>{progressText}</Text>
           </View>
-          <Button
+          <TouchableOpacity
             title="Back to Display"
+            style={styles.button}
             onPress={() => {
-              navigate('Display', {
-                temperature: this.state.temperature,
-                amount: this.state.amount,
-                roast: this.state.roast,
-              });
-            }}></Button>
+                navigate('Display', {
+                  temperature: this.state.temperature,
+                  amount: this.state.amount,
+                  roast: this.state.roast,
+                });
+            }}
+          >
+              <Text style={styles.buttonText}>Back to Display</Text></TouchableOpacity>
         </BackView>
       </>
     );
@@ -192,6 +165,24 @@ const styles = StyleSheet.create({
     right: 0,
   },
 
+  button: {
+    marginTop: 140,
+    height: 50,
+    width: 222,
+    borderRadius: 25,
+    backgroundColor: "#f6e8e3",
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  buttonText: {
+    fontSize: 18,
+    fontFamily: "futuraMdB",
+    color: "#906F63"
+  },
+
   loadingScreen: {
     flex: 1,
     backgroundColor: '#fffff4',
@@ -212,12 +203,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  sectionTitle: {
-    //fontFamily: "BREVE2",
-    fontFamily: 'Futura',
-    //fontSize: 36,
-    fontSize: 24,
-  },
 });
 
 export default progressBar;
