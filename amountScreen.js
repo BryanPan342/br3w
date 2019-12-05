@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
   },
-  
+
   bottom: {
     flex: 1,
     justifyContent: 'flex-end',
