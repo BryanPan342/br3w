@@ -143,7 +143,7 @@ class progressBar extends React.Component {
 }
 
 const BackView = styled(View)`
-  backgroundColor: #D9D3BF;
+  backgroundColor: #D8D1BE;
   flex: 1;
   align-items: center;
 `;
@@ -158,7 +158,7 @@ const DefaultText = styled(Text)`
 
 const HeaderText = styled(DefaultText)`
   backgroundColor: #D9D3BF;
-  font-size: 108;
+  font-size: 96;
   color: #906F63;
   paddingTop: 30;
 `;
