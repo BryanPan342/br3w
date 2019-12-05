@@ -105,38 +105,37 @@ class progressBar extends React.Component {
     }
     return (
       <>
-        <StatusBar barStyle="dark-content" />
-        {/* <View style={styles.header} >
-            <HeaderText> BR3W </HeaderText>
-          </View> */}
+        {/* <StatusBar barStyle="dark-content" /> */}
+       
 
-        <View>
-          <Image source={require('./assets/br3w.jpg')} />
-          <Image style={styles.gif} source={require('./assets/coffee.gif')} />
-        </View>
         <BackView style={styles.container}>
-          <View style={styles.bar}>
-            <Progress.Bar 
-                progress={progress} 
-                width={300} 
-                height={10} 
-                borderWidth={2} 
-                color="#6d544a"
-            />
-            <DefaultText>{progressText}</DefaultText>
-          </View>
-          <TouchableOpacity
-            title="Back to Display"
-            style={styles.button}
-            onPress={() => {
-                navigate('Display', {
-                  temperature: this.state.temperature,
-                  amount: this.state.amount,
-                  roast: this.state.roast,
-                });
-            }}
-          >
-              <Text style={styles.buttonText}>Back to Display</Text></TouchableOpacity>
+            <View style={styles.container}> 
+                <HeaderText> BR3W </HeaderText>
+                {/* <Image source={require('./assets/br3w.jpg')} /> */}
+                <Image source={require('./assets/coffee_2.gif')} />
+            </View>
+            <View style={styles.bar}>
+                <Progress.Bar 
+                    progress={progress} 
+                    width={300} 
+                    height={10} 
+                    borderWidth={2} 
+                    color="#6d544a"
+                />
+                <DefaultText>{progressText}</DefaultText>
+            </View>
+            <TouchableOpacity
+                title="Back to Display"
+                style={styles.button}
+                onPress={() => {
+                    navigate('Display', {
+                    temperature: this.state.temperature,
+                    amount: this.state.amount,
+                    roast: this.state.roast,
+                    });
+                }}
+            >
+            <Text style={styles.buttonText}>Back to Display</Text></TouchableOpacity>
         </BackView>
       </>
     );
@@ -144,7 +143,7 @@ class progressBar extends React.Component {
 }
 
 const BackView = styled(View)`
-  backgroundColor: #fffff4;
+  backgroundColor: #D9D3BF;
   flex: 1;
   align-items: center;
 `;
@@ -157,13 +156,12 @@ const DefaultText = styled(Text)`
   align-self: center;
 `;
 
-// const HeaderText = styled(DefaultText)`
-//   backgroundColor: #fffff4;
-//   font-size: 96;
-//   color: #bc846b;
-//   position: relative;
-//   margin-top: 95px;
-// `;
+const HeaderText = styled(DefaultText)`
+  backgroundColor: #D9D3BF;
+  font-size: 108;
+  color: #906F63;
+  paddingTop: 30;
+`;
 
 const styles = StyleSheet.create({
   engine: {
@@ -178,20 +176,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  gif: {
-      marginTop: -200,
-      marginLeft: 46,
-      width: 267,
-      height: 175
-  },
-
   button: {
-    marginTop: 120,
+    marginTop: 80,
     marginBottom: 40,
     height: 50,
     width: 222,
     borderRadius: 25,
-    backgroundColor: "#f6e8e3",
+    backgroundColor: "#906F63",
     position: 'relative',
     display: 'flex',
     justifyContent: 'center',
@@ -201,14 +192,14 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontFamily: "futuraMdB",
-    color: "#906F63"
+    color: "#F5F0DF"
   },
 
   bar: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 60
+    marginTop: 10,
   },
 
 });
