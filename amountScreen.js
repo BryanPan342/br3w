@@ -72,15 +72,16 @@ class amountScreen extends React.Component {
               maximumTrackTintColor="#000000" />
             <Image style={styles.image} source={this.state.image} />
           </View>
-
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              navigate('Display', { temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast })
-            }}
-          >
-            <DefaultText>DONE</DefaultText>
-          </TouchableOpacity>
+          <View style={styles.bottom}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                navigate('Display', { temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast })
+              }}
+            >
+              <DefaultText>DONE</DefaultText>
+            </TouchableOpacity>
+          </View>
         </BackView>
       </>
     );
@@ -171,6 +172,12 @@ const styles = StyleSheet.create({
   image: {
     width: 150,
     height: 150,
+  },
+  
+  bottom: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 20,
   },
 });
 
