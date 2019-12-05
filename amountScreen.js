@@ -116,7 +116,6 @@ const BackView = styled(View)`
 
 const DefaultText = styled(Text)`
   color: #562f29;
-  opacity: 1;
   font-size: 24;
   font-family: Futura;
   margin: 10px 0px;
@@ -146,7 +145,7 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    marginTop: 140,
+    //marginTop: 140,
     height: 50,
     width: 222,
     borderRadius: 25,

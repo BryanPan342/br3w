@@ -140,7 +140,7 @@ export default class Display extends React.Component {
                   })
               }}
             >
-              <StartImage source={require('../../br3w/assets/images/coffeeArt.png')} />
+              <StartImage source={require('../../br3w/assets/images/fancy_cup_only.png')} />
             </TouchableOpacity>
           </View>
         </SafeAreaView>
@@ -183,7 +183,7 @@ const SettingsButton = styled(CustomButton)`
       opacity: 1;
   `
 const StartImage = styled(Image)`
-   width: 75px;
+   width: 100px;
    height: 75px;
    align-self: center;
   `

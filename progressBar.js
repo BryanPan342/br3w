@@ -56,15 +56,20 @@ class progressBar extends React.Component {
               borderWidth={2}
             />
           </View>
-          <Button
-            title="Back to Display"
-            onPress={() => {
-              navigate('Display', {
-                temperature: this.state.temperature,
-                amount: this.state.amount,
-                roast: this.state.roast,
-              });
-            }}></Button>
+          <View style={styles.bottom}>
+            <TouchableOpacity
+              title="Back to Display"
+              style={styles.button}
+              onPress={() => {
+                navigate('Display', {
+                  temperature: this.state.temperature,
+                  amount: this.state.amount,
+                  roast: this.state.roast,
+                });
+              }}>
+                <DefaultText>Back to Display</DefaultText>
+              </TouchableOpacity>
+            </View>
         </BackView>
       </>
     );
@@ -79,9 +84,9 @@ const BackView = styled(View)`
 
 const DefaultText = styled(Text)`
   color: #562f29;
-  font-size: 36;
+  font-size: 24;
   font-family: Futura;
-  margin: 20px 0px;
+  margin: 10px 0px;
   align-self: center;
 `;
 
@@ -124,6 +129,19 @@ const styles = StyleSheet.create({
     fontFamily: 'Futura',
     //fontSize: 36,
     fontSize: 24,
+  },
+  button: {
+    //marginTop: 140,
+    height: 50,
+    width: 222,
+    borderRadius: 25,
+    backgroundColor: "#f6e8e3",
+    position: 'relative',
+  },
+  bottom: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 20,
   },
 });
 
