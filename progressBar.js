@@ -121,8 +121,9 @@ class progressBar extends React.Component {
                 width={300} 
                 height={10} 
                 borderWidth={2} 
+                color="#6d544a"
             />
-            <Text>{progressText}</Text>
+            <DefaultText>{progressText}</DefaultText>
           </View>
           <TouchableOpacity
             title="Back to Display"
@@ -149,20 +150,20 @@ const BackView = styled(View)`
 `;
 
 const DefaultText = styled(Text)`
-  color: #562f29;
-  font-size: 36;
-  font-family: Futura;
-  margin: 20px 0px;
+  color: #6d544a;
+  font-size: 18;
+  font-family: futuraMdB;
+  marginTop:  15;
   align-self: center;
 `;
 
-const HeaderText = styled(DefaultText)`
-  backgroundColor: #fffff4;
-  font-size: 96;
-  color: #bc846b;
-  position: relative;
-  margin-top: 95px;
-`;
+// const HeaderText = styled(DefaultText)`
+//   backgroundColor: #fffff4;
+//   font-size: 96;
+//   color: #bc846b;
+//   position: relative;
+//   margin-top: 95px;
+// `;
 
 const styles = StyleSheet.create({
   engine: {
@@ -174,7 +175,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   gif: {
@@ -185,8 +186,8 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    marginTop: 140,
-    marginBottom: 50,
+    marginTop: 120,
+    marginBottom: 40,
     height: 50,
     width: 222,
     borderRadius: 25,
@@ -207,7 +208,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    color: "#f6e8e3"
+    marginTop: 60
   },
 
 });
