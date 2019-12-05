@@ -106,8 +106,13 @@ class progressBar extends React.Component {
     return (
       <>
         <StatusBar barStyle="dark-content" />
+        {/* <View style={styles.header} >
+            <HeaderText> BR3W </HeaderText>
+          </View> */}
+
         <View>
-          <Image source={require('./assets/coffee.gif')} />
+          <Image source={require('./assets/br3w.jpg')} />
+          <Image style={styles.gif} source={require('./assets/coffee.gif')} />
         </View>
         <BackView style={styles.container}>
           <View style={styles.bar}>
@@ -165,8 +170,23 @@ const styles = StyleSheet.create({
     right: 0,
   },
 
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  },
+
+  gif: {
+      marginTop: -200,
+      marginLeft: 46,
+      width: 267,
+      height: 175
+  },
+
   button: {
     marginTop: 140,
+    marginBottom: 50,
     height: 50,
     width: 222,
     borderRadius: 25,
@@ -183,24 +203,11 @@ const styles = StyleSheet.create({
     color: "#906F63"
   },
 
-  loadingScreen: {
-    flex: 1,
-    backgroundColor: '#fffff4',
-  },
-
-  header: {
-    backgroundColor: '#fffff4',
-    fontSize: 96,
-    fontFamily: 'BREVE2',
-    margin: 20,
-    color: '#bc846b',
-    position: 'relative',
-  },
-
   bar: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    color: "#f6e8e3"
   },
 
 });
