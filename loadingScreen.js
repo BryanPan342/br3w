@@ -28,7 +28,7 @@ export default class Loading extends React.Component {
         this.setState({ temperature: parseFloat(p_temperature) })
       }
       else{
-        this.setState({temperature: 92)
+        this.setState({temperature: 92})
     }
     } catch (error) {
       console.error("Failed to Retrieve Temperature")
