@@ -66,9 +66,9 @@ class MultiSwitch extends Component {
     this.state = {
       currentStatus: props.currentStatus,
       isComponentReady: false,
-      position: new Animated.Value(0),
+      position:  new Animated.Value(0),
       posValue: 0,
-      selectedPosition: 0,
+      selectedPosition: 0, //this.props.roast== true ? 0 : 1,
       duration: 100,
       mainWidth: width - 100,
       switcherWidth: width / 3,
@@ -197,7 +197,7 @@ class MultiSwitch extends Component {
 
 MultiSwitch.propTypes = {
   disableScroll: PropTypes.func,
-  onStatusChanged: PropTypes.func
+  onStatusChanged: PropTypes.func,
 };
 
 MultiSwitch.defaultProps = {
