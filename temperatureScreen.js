@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#D9D3BF",
     fontSize: 100,
     fontFamily: "BREVE2",
-    color: "#bc846b",
+    color: "#6D544A",
     marginTop: -35,
     paddingTop: 20,
     width: 50,
