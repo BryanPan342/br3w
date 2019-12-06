@@ -222,9 +222,9 @@ const styles = StyleSheet.create({
 
   container: {
     width: Metrics.containerWidth,
-    height: 46,
+    height: 37,
     flexDirection: 'row',
-    backgroundColor: Colors.mBackColor,
+    backgroundColor: '#906F63',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
@@ -238,9 +238,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
-    backgroundColor: Colors.white,
+    backgroundColor: '#6D544A',
     borderRadius: 28,
-    height: 45,
+    height: 37,
     alignItems: 'center',
     justifyContent: 'center',
     width: Metrics.switchWidth,
@@ -258,14 +258,14 @@ const styles = StyleSheet.create({
   },
   ActiveText: {
     fontSize: 18,
-    color: 'grey',
+    color: '#F5F0DF',
     fontWeight: 'bold',
     fontFamily: 'Futura',
   },
 
   InactiveText: {
     fontSize: 18,
-    color: 'black',
+    color: '#F5F0DF',
     fontWeight: 'bold',
     fontFamily: 'Futura',
   }

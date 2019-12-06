@@ -113,6 +113,8 @@ export default class Display extends React.Component {
               </TouchableOpacity>
               <MultiSwitch
                 style={{
+                  height: 70,
+                  width: 300,
                   marginVertical: 35,
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -142,7 +144,6 @@ export default class Display extends React.Component {
                   })
               }}
             >
-              <StartImage source={require('../../br3w/assets/images/fancy_cup_only.png')} />
             </TouchableOpacity>
           </View>
         </SafeAreaView>
@@ -156,16 +157,15 @@ export default class Display extends React.Component {
 //     Text > DefaultText > TitleText
 //     CustomButton > SettingsButton
 const DefaultText = styled(Text)`
-    margin-top: 80;
-    color: #562f29;
-    font-size: 24;
+    color: #F5F0F5;
+    font-size: 18;
     font-family: Futura;
-    margin: 20px 0px;
+    margin: 5px 0px;
     align-self: center;
     `
 const TitleText = styled(DefaultText)`
-    margin-top: 80;
-    color: #bc846b;
+    margin-top: 86;
+    color: #906F63;
     font-size: 80;
     position: relative;
   `
@@ -174,26 +174,14 @@ const SettingsImage = styled(Image)`
      height: 75px;
      align-self: center;
   `
-const SettingsButton = styled(CustomButton)`
-      display: flex;
-      height: 75px;
-      width: 75px;
-      border-radius: 25px;
-      margin-top: 15px;
-      align-self: flex-end;
-      margin-right: 15px;
-      opacity: 1;
-  `
-const StartImage = styled(Image)`
-   width: 100px;
-   height: 75px;
-   align-self: center;
-  `
 
 const styles = StyleSheet.create({
   engine: {
     position: 'absolute',
     right: 0,
+  },
+  container: {
+    backgroundColor: "#E5E5E5"
   },
 
   body: {
@@ -265,10 +253,10 @@ const styles = StyleSheet.create({
 
   temp_amt_button: {
     marginVertical: 25,
-    height: 70,
-    width: 300,
+    height: 37,
+    width: 222,
     borderRadius: 35,
-    backgroundColor: "#f6e8e3",
+    backgroundColor: "#906F63",
     position: 'relative',
     alignSelf: 'center',
   },

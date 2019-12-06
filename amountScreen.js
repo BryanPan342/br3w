@@ -38,7 +38,7 @@ class amountScreen extends React.Component {
       temperature: this.props.navigation.getParam("temperature", 92),
       amount: this.props.navigation.getParam("amount", 8),
       roast: this.props.navigation.getParam("roast", true),
-      image: require('./assets/small.jpg')
+      image: require('./assets/coffee_amount.png')
     }
   }
   componentDidMount() {
@@ -61,6 +61,8 @@ class amountScreen extends React.Component {
           )}
 
           <View style={styles.container}>
+            <Text style={styles.selectText}> Select Amount </Text>
+            <Image resizeMode={"contain"} style={styles.image} source={this.state.image} />
             <Slider
               style={{ width: 250, height: 70 }}
               step={2}
@@ -70,7 +72,6 @@ class amountScreen extends React.Component {
               maximumValue={12}
               minimumTrackTintColor="#000000"
               maximumTrackTintColor="#000000" />
-            <Image style={styles.image} source={this.state.image} />
           </View>
           <View style={styles.bottom}>
             <TouchableOpacity
@@ -95,7 +96,7 @@ class amountScreen extends React.Component {
     this.setState({ amount: value });
     switch (value) {
       case 8:
-        this.setState({ image: require('./assets/small.jpg') })
+        this.setState({ image: require('./assets/coffee_amount.png') })
         break
       case 10:
         this.setState({ image: require('./assets/medium.jpg') })
@@ -115,7 +116,7 @@ const BackView = styled(View)`
 `
 
 const DefaultText = styled(Text)`
-  color: #562f29;
+  color: #F5F0DF;
   font-size: 24;
   font-family: Futura;
   margin: 10px 0px;
@@ -123,8 +124,8 @@ const DefaultText = styled(Text)`
 `
 
 const HeaderText = styled(DefaultText)`
-color: #bc846b;
-font-size: 80;
+color: #906F63;
+font-size: 86;
 font-family: Futura;
 align-items: center;
 `
@@ -140,16 +141,19 @@ const styles = StyleSheet.create({
     fontSize: 96,
     fontFamily: "BREVE2",
     margin: 20,
-    color: "#bc846b",
+    color: "#906F63",
     position: 'relative',
   },
-
+  selectText: {
+    color: "#6D544A",
+    fontSize: 28
+  },
   button: {
     //marginTop: 140,
     height: 50,
     width: 222,
     borderRadius: 25,
-    backgroundColor: "#f6e8e3",
+    backgroundColor: "#906F63",
     position: 'relative',
   },
 
@@ -161,16 +165,15 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    height: 300,
+    flex: 8,
     backgroundColor: '#fffff4',
     alignItems: 'center',
-    justifyContent: 'center',
-    
+    justifyContent: 'space-around', 
   },
 
   image: {
-    width: 150,
-    height: 150,
+    width: 100,
+    height: 100,
   },
 
   bottom: {
