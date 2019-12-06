@@ -129,16 +129,16 @@ class Thermometer extends React.Component {
 
 export default Thermometer;
 const BackView = styled(View)`
-  backgroundColor: #fffff4;
+  backgroundColor: #D9D3BF;
   flex: 1;
   align-items: center;
 `
 const DefaultText = styled(Text)`
-  color: #562f29;
+  color: #F5F0DF;
   opacity: 1;
-  font-size: 24;
-  font-family: Futura;
-  margin: 10px 0px;
+  font-size: 18;
+  font-family: futuraMdB;
+  margin: 12px 0px;
   align-self: center;
 `
 const StartImage = styled(Image)`
@@ -147,10 +147,10 @@ const StartImage = styled(Image)`
    align-self: center;
 `
 const HeaderText = styled(DefaultText)`
-  color: #bc846b;
-  font-size: 80;
-  font-family: Futura;
+  color: #906F63;
+  font-size: 96;
   align-items: center;
+  paddingTop: 30;
 `
 
 const styles = StyleSheet.create({
@@ -161,11 +161,11 @@ const styles = StyleSheet.create({
 
   loadingScreen: {
     flex: 1,
-    backgroundColor: "#fffff4",
+    backgroundColor: "#D9D3BF",
   },
 
   header: {
-    backgroundColor: "#fffff4",
+    backgroundColor: "#D9D3BF",
     fontSize: 96,
     fontFamily: "BREVE2",
     margin: 20,
@@ -174,10 +174,10 @@ const styles = StyleSheet.create({
   },
 
   setTemp: {
-    backgroundColor: "#fffff4",
+    backgroundColor: "#D9D3BF",
     fontSize: 24,
-    fontFamily: "Futura",
-    color: "#bc846b",
+    fontFamily: "futuraMdB",
+    color: '#6D544A',
     position: 'relative',
     textAlign: 'center',
     marginTop: 0,
@@ -185,17 +185,18 @@ const styles = StyleSheet.create({
   },
 
   tempControl: {
-    backgroundColor: "#fffff4",
+    backgroundColor: "#D9D3BF",
     fontSize: 100,
     fontFamily: "BREVE2",
     color: "#bc846b",
     marginTop: -35,
     paddingTop: 20,
+    width: 50,
   },
 
   controlButton: {
     display: 'flex',
-    backgroundColor: "#fffff4",
+    backgroundColor: "#D9D3BF",
     fontSize: 96,
     fontFamily: "BREVE2",
     margin: 20,
@@ -220,14 +221,16 @@ const styles = StyleSheet.create({
     height: 50,
     width: 222,
     borderRadius: 25,
-    backgroundColor: "#f6e8e3",
+    backgroundColor: "#906F63",
     position: 'relative',
   },
 
   sectionTitle: {
-    fontFamily: "Futura",
+    fontFamily: "futuraMdB",
     fontSize: 24,
-    margin: 5,
+    margin: 10,
+    marginBottom: 20,
+    color: '#6D544A',
   },
 
   bottom: {
