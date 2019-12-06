@@ -37,13 +37,6 @@ class progressBar extends React.Component {
   }
 
   componentDidMount() {
-      // needs finetuning, but should be similar to below - combine with handleChange?
-      // if - read w for dispensing coffee, change state variable status
-      // if - reading numbers, change progress/water_temp_ratio
-      // if - receive letter for dispense coffee, change state variable status
-      // if - don't see anything, but current state = dispense coffee and not 100 yet, progress++
-      // if - receive letter for done - change state variable
-      // if done - wait for 1 second so "done" message shows
     if (this.state) {
         setInterval(() => {
         BluetoothSerial.readFromDevice()
@@ -96,27 +89,6 @@ class progressBar extends React.Component {
     }
   }
 
-//   handleChange = () => {
-//     console.log("handleChange")
-//     const { status, progress } = this.state;
-//     console.log(progress);
-//     if (status == "heat" && progress >= .5) {
-//         console.log("changing to dispense water");
-//         this.setState({
-//             status: "dispense water"
-//         })
-//     }
-//     else if (status == "dispense water" && progress >= .75) {
-//         console.log("changing to dispense coffee");
-//         this.setState({
-//             status: "dispense coffee"
-//         })
-//     } else if (status == "dispense coffee" && progress >= 1) {
-//         console.log("done!");
-//         this.props.navigation.navigate('Display', { temperature: this.state.temperature, amount: this.state.amount, roast: this.state.roast })
-//     } 
-//   }
-
   render() {
     const { navigation } = this.props;
     const { navigate } = navigation;
@@ -133,10 +105,9 @@ class progressBar extends React.Component {
     }
     return (
       <>
-        <StatusBar barStyle="dark-content" />
-        <View>
-          <Image source={require('./assets/coffee.gif')} />
-        </View>
+        {/* <StatusBar barStyle="dark-content" /> */}
+       
+
         <BackView style={styles.container}>
           <View style={styles.bar}>
             {/* {this.state.water_temp_ratio = this.state.arduinoTemp / this.state.temp}; */}
@@ -170,25 +141,24 @@ class progressBar extends React.Component {
 }
 
 const BackView = styled(View)`
-  backgroundColor: #fffff4;
+  backgroundColor: #D8D1BE;
   flex: 1;
   align-items: center;
 `;
 
 const DefaultText = styled(Text)`
-  color: #562f29;
-  font-size: 24;
-  font-family: Futura;
-  margin: 10px 0px;
+  color: #6d544a;
+  font-size: 18;
+  font-family: futuraMdB;
+  marginTop:  15;
   align-self: center;
 `;
 
 const HeaderText = styled(DefaultText)`
-  backgroundColor: #fffff4;
+  backgroundColor: #D9D3BF;
   font-size: 96;
-  color: #bc846b;
-  position: relative;
-  margin-top: 95px;
+  color: #906F63;
+  paddingTop: 30;
 `;
 
 const styles = StyleSheet.create({
@@ -197,26 +167,38 @@ const styles = StyleSheet.create({
     right: 0,
   },
 
-  loadingScreen: {
-    flex: 1,
-    backgroundColor: '#fffff4',
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
 
-  header: {
-    backgroundColor: '#fffff4',
-    fontSize: 96,
-    fontFamily: 'BREVE2',
-    margin: 20,
-    color: '#bc846b',
+  button: {
+    marginTop: 80,
+    marginBottom: 40,
+    height: 50,
+    width: 222,
+    borderRadius: 25,
+    backgroundColor: "#906F63",
     position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  buttonText: {
+    fontSize: 18,
+    fontFamily: "futuraMdB",
+    color: "#F5F0DF"
   },
 
   bar: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 10,
   },
-
   sectionTitle: {
     //fontFamily: "BREVE2",
     fontFamily: 'Futura',
