@@ -70,9 +70,9 @@ class MultiSwitch extends Component {
       posValue: 0,
       selectedPosition: 0, //this.props.roast== true ? 0 : 1,
       duration: 100,
-      mainWidth: width - 100,
+      mainWidth: width - 40,
       switcherWidth: width / 3,
-      thresholdDistance: width - 10 - width / 3
+      thresholdDistance: width - 20 - width / 3
     };
     this.isParentScrollDisabled = false;
   }
@@ -214,8 +214,8 @@ const Colors = {
 };
 
 const Metrics = {
-  containerWidth: width - 150,
-  switchWidth: width / 3
+  containerWidth: width - 60,
+  switchWidth: width / 3 + 30
 };
 
 const styles = StyleSheet.create({
@@ -231,6 +231,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.mBorderColor,
     borderRadius: 27.5,
     marginVertical: 25,
+    backgroundColor: "#906F63",
   },
 
   switcher: {
@@ -238,7 +239,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
-    backgroundColor: Colors.white,
+    backgroundColor: "#6d544a",
     borderRadius: 28,
     height: 45,
     alignItems: 'center',
@@ -258,16 +259,16 @@ const styles = StyleSheet.create({
   },
   ActiveText: {
     fontSize: 18,
-    color: 'grey',
+    color: "#ffffff",
     fontWeight: 'bold',
-    fontFamily: 'Futura',
+    fontFamily: 'futuraMdb',
   },
 
   InactiveText: {
     fontSize: 18,
-    color: 'black',
+    color: "#ffffff",
     fontWeight: 'bold',
-    fontFamily: 'Futura',
+    fontFamily: 'futuraMdb',
   }
 });
 

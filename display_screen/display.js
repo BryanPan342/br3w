@@ -116,6 +116,7 @@ export default class Display extends React.Component {
                   marginVertical: 35,
                   alignItems: 'center',
                   justifyContent: 'center',
+                  backgroundColor: "#906F63",
                 }}
                 currentStatus={m_isLight ? 'Light' : 'Dark'}
                 disableScroll={value => {
@@ -157,16 +158,18 @@ export default class Display extends React.Component {
 //     CustomButton > SettingsButton
 const DefaultText = styled(Text)`
     margin-top: 80;
-    color: #562f29;
-    font-size: 24;
-    font-family: Futura;
+    color: #ffffff;
+    font-size: 22;
+    font-family: futuraMdB;
     margin: 20px 0px;
     align-self: center;
     `
-const TitleText = styled(DefaultText)`
-    margin-top: 80;
-    color: #bc846b;
-    font-size: 80;
+const TitleText = styled(Text)`
+    margin-top: 43;
+    margin-bottom: 25;
+    color: #906F63;
+    font-family: futuraMdB;
+    font-size: 95;
     position: relative;
   `
 const SettingsImage = styled(Image)`
@@ -174,16 +177,7 @@ const SettingsImage = styled(Image)`
      height: 75px;
      align-self: center;
   `
-const SettingsButton = styled(CustomButton)`
-      display: flex;
-      height: 75px;
-      width: 75px;
-      border-radius: 25px;
-      margin-top: 15px;
-      align-self: flex-end;
-      margin-right: 15px;
-      opacity: 1;
-  `
+
 const StartImage = styled(Image)`
    width: 100px;
    height: 75px;
@@ -197,7 +191,8 @@ const styles = StyleSheet.create({
   },
 
   body: {
-    backgroundColor: "#fffff4",
+    //backgroundColor: "#fffff4",
+    backgroundColor: "#D8D1BE",
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
@@ -230,7 +225,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 24,
     fontWeight: "bold",
-    fontFamily: "Cochin",
+    fontFamily: "futuraMdB",
   },
 
   title: {
@@ -260,7 +255,7 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     flex: 1,
-    fontFamily: "breve2",
+    fontFamily: "futuraMdB",
   },
 
   temp_amt_button: {
@@ -268,7 +263,7 @@ const styles = StyleSheet.create({
     height: 70,
     width: 300,
     borderRadius: 35,
-    backgroundColor: "#f6e8e3",
+    backgroundColor: "#906F63",
     position: 'relative',
     alignSelf: 'center',
   },

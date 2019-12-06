@@ -42,7 +42,7 @@ class Thermometer extends React.Component {
   handleAnimation1 = () => { //smoothly increases height of thermometer
     Animated.timing(this.animatedValue, {
       toValue: this.state.temperature - 91,
-      duration: 750,
+      duration: 250,
       easing: Easing.ease
     }).start()
   }
@@ -50,7 +50,7 @@ class Thermometer extends React.Component {
   handleAnimation2 = () => { //smoothly decreases height of thermometer
     Animated.timing(this.animatedValue, {
       toValue: this.state.temperature - 93,
-      duration: 750,
+      duration: 250,
       easing: Easing.ease
     }).start()
   }
