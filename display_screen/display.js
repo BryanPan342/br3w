@@ -121,7 +121,7 @@ export default class Display extends React.Component {
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
-                currentStatus={'Open'}
+                currentStatus={m_isLight ? 'Light' : 'Dark'}
                 disableScroll={value => {
                   console.log('scrollEnabled', value);
                   this.scrollView.setNativeProps({
@@ -132,6 +132,7 @@ export default class Display extends React.Component {
                 onStatusChanged={text => {
                   text == "Light" ? m_isLight = true : m_isLight = false;
                 }}
+               roast = {m_isLight}
               />
             </View>
             <TouchableOpacity
