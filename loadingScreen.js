@@ -11,6 +11,7 @@ import styled from 'styled-components';
 
 export default class Loading extends React.Component {
   constructor(props) {
+    console.disableYellowBox = true;
     super(props)
     this.state = {
       isEnabled: false,
