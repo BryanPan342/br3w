@@ -109,31 +109,33 @@ class progressBar extends React.Component {
        
 
         <BackView style={styles.container}>
-          <View style={styles.bar}>
-            {/* {this.state.water_temp_ratio = this.state.arduinoTemp / this.state.temp}; */}
-            <Progress.Bar 
-                progress={progress} 
-                //onChange={this.handleChange()} 
-                width={300} 
-                height={10} 
-                borderWidth={2} 
-            />
-            <Text>{progressText}</Text>
-          </View>
-          <View style={styles.bottom}>
-            <TouchableOpacity
-              title="Back to Display"
-              style={styles.button}
-              onPress={() => {
-                navigate('Display', {
-                  temperature: this.state.temperature,
-                  amount: this.state.amount,
-                  roast: this.state.roast,
-                });
-              }}>
-                <DefaultText>Back to Display</DefaultText>
-              </TouchableOpacity>
+            <View style={styles.container}> 
+                <HeaderText> BR3W </HeaderText>
+                {/* <Image source={require('./assets/br3w.jpg')} /> */}
+                <Image source={require('./assets/coffee_2.gif')} />
             </View>
+            <View style={styles.bar}>
+                <Progress.Bar 
+                    progress={progress} 
+                    width={300} 
+                    height={10} 
+                    borderWidth={2} 
+                    color="#6d544a"
+                />
+                <DefaultText>{progressText}</DefaultText>
+            </View>
+            <TouchableOpacity
+                title="Back to Display"
+                style={styles.button}
+                onPress={() => {
+                    navigate('Display', {
+                    temperature: this.state.temperature,
+                    amount: this.state.amount,
+                    roast: this.state.roast,
+                    });
+                }}
+            >
+            <Text style={styles.buttonText}>Back to Display</Text></TouchableOpacity>
         </BackView>
       </>
     );
@@ -199,25 +201,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 10,
   },
-  sectionTitle: {
-    //fontFamily: "BREVE2",
-    fontFamily: 'Futura',
-    //fontSize: 36,
-    fontSize: 24,
-  },
-  button: {
-    //marginTop: 140,
-    height: 50,
-    width: 222,
-    borderRadius: 25,
-    backgroundColor: "#f6e8e3",
-    position: 'relative',
-  },
-  bottom: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    marginBottom: 20,
-  },
+
 });
 
 export default progressBar;
