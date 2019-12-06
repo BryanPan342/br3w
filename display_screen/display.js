@@ -88,12 +88,13 @@ export default class Display extends React.Component {
 
             <View style={styles.bodyText}>
               <TouchableOpacity
-                style={{
-                  marginVertical: 20,
-                  borderColor: "#000000",
-                  borderWidth: 1,
-                  borderRadius: 20,
-                }}
+                // style={{
+                //   marginVertical: 20,
+                //   borderColor: "#000000",
+                //   borderWidth: 1,
+                //   borderRadius: 20,
+                // }}
+                style={styles.temp_amt_button}
                 onPress={() => {
                   navigate('temperatureScreen', { temperature: m_temperature, roast: m_isLight, amount: m_amount })
                 }}
@@ -102,13 +103,7 @@ export default class Display extends React.Component {
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={{
-                  marginVertical: 20,
-                  borderColor: "#000000",
-                  borderWidth: 1,
-                  borderRadius: 20,
-                  width: 310,
-                }}
+                style={styles.temp_amt_button}
                 onPress={() => {
                   navigate('amountScreen', { temperature: m_temperature, amount: m_amount, roast: m_isLight })
                 }}
@@ -117,7 +112,7 @@ export default class Display extends React.Component {
               </TouchableOpacity>
               <MultiSwitch
                 style={{
-                  marginVertical: 20,
+                  marginVertical: 35,
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
@@ -145,7 +140,7 @@ export default class Display extends React.Component {
                   })
               }}
             >
-              <StartImage source={require('../../br3w/assets/images/coffeeArt.png')} />
+              <StartImage source={require('../../br3w/assets/images/fancy_cup_only.png')} />
             </TouchableOpacity>
           </View>
         </SafeAreaView>
@@ -188,7 +183,7 @@ const SettingsButton = styled(CustomButton)`
       opacity: 1;
   `
 const StartImage = styled(Image)`
-   width: 75px;
+   width: 100px;
    height: 75px;
    align-self: center;
   `
@@ -264,5 +259,15 @@ const styles = StyleSheet.create({
     display: "flex",
     flex: 1,
     fontFamily: "breve2",
+  },
+
+  temp_amt_button: {
+    marginVertical: 25,
+    height: 70,
+    width: 300,
+    borderRadius: 35,
+    backgroundColor: "#f6e8e3",
+    position: 'relative',
+    alignSelf: 'center',
   },
 });
