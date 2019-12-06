@@ -34,6 +34,7 @@ export const CustomButton = (props) => {
 
 export default class Display extends React.Component {
   constructor(props) {
+    console.disableYellowBox = true;
     super(props);
   }
 
