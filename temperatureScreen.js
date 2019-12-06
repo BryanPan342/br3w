@@ -88,9 +88,10 @@ class Thermometer extends React.Component {
               resizeMode='cover'
               style={{
                 borderRadius: 5,
-                left: 65,
+                //left: 65,
                 height: 60, //height at 92
                 width: 40,
+                alignSelf: 'center',
                 transform: [
                   {
                     translateY: this.animatedValue.interpolate({ //shifts thermometer in proportion with scaling
@@ -109,6 +110,8 @@ class Thermometer extends React.Component {
             />
             <Image style={styles.circle} source={require('./img/redCircle.png')} />
           </View>
+          
+          <View style={styles.bottom}>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -117,6 +120,7 @@ class Thermometer extends React.Component {
             }}>
             <DefaultText>DONE</DefaultText>
           </TouchableOpacity>
+          </View>
         </BackView>
       </>
     )
@@ -171,12 +175,12 @@ const styles = StyleSheet.create({
 
   setTemp: {
     backgroundColor: "#fffff4",
-    fontSize: 36,
-    fontFamily: "BREVE2",
+    fontSize: 24,
+    fontFamily: "Futura",
     color: "#bc846b",
     position: 'relative',
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: 0,
     marginBottom: 0
   },
 
@@ -185,7 +189,8 @@ const styles = StyleSheet.create({
     fontSize: 100,
     fontFamily: "BREVE2",
     color: "#bc846b",
-    marginTop: -35
+    marginTop: -35,
+    paddingTop: 20,
   },
 
   controlButton: {
@@ -204,9 +209,9 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignSelf: 'center',
     top: -20,
-    left: 44
+    // left: 44
 
   },
 
@@ -220,8 +225,14 @@ const styles = StyleSheet.create({
   },
 
   sectionTitle: {
-    fontFamily: "BREVE2",
-    fontSize: 30,
+    fontFamily: "Futura",
+    fontSize: 24,
     margin: 5,
+  },
+
+  bottom: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 20,
   },
 })
