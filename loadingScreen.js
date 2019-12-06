@@ -4,7 +4,9 @@ import {
   View,
   Text,
   StatusBar,
-  ToastAndroid
+  ToastAndroid,
+  Image,
+  StyleSheet
 } from 'react-native';
 import BluetoothSerial from 'react-native-bluetooth-serial'
 import styled from 'styled-components';
@@ -83,12 +85,9 @@ export default class Loading extends React.Component {
       console.log("Not connected :)")
     }
     return (
-      <Fragment>
-        <StatusBar barStyle="dark-content" />
         <BackView>
-          <LoadText> B R 3 W </LoadText>
+            <Image style={styles.logo} source={require('./assets/br3wLogo.png')} />
         </BackView>
-      </Fragment>
     )
   }
 
@@ -108,10 +107,8 @@ export default class Loading extends React.Component {
 };
 
 const BackView = styled(View)`
-  backgroundColor: #fffff4;
-  flex: 1;
+  backgroundColor: #D9D3BF;
   align-items: center;
-  justify-content: center;
 `
 const LoadText = styled(Text)`
   color: #bc846b;
@@ -119,4 +116,10 @@ const LoadText = styled(Text)`
   font-family: BREVE2;
   align-items: center;
 `
-
+const styles = StyleSheet.create({
+    logo: {
+        height: 675,
+        width: 400,
+        alignSelf: 'center'
+    }
+})
