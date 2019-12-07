@@ -61,8 +61,7 @@ class Thermometer extends React.Component {
     return (
       <>
         <StatusBar barStyle="dark-content" />
-        <BackView
-          style={styles.container}>
+        <BackView>
           <View style={styles.header} >
             <HeaderText> BR3W </HeaderText>
           </View>
@@ -149,7 +148,6 @@ const StartImage = styled(Image)`
 const HeaderText = styled(DefaultText)`
   color: #906F63;
   font-size: 96;
-  align-items: center;
   paddingTop: 30;
 `
 
@@ -168,9 +166,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#D9D3BF",
     fontSize: 96,
     fontFamily: "BREVE2",
-    margin: 20,
     color: "#bc846b",
-    position: 'relative',
+    // position: 'relative',
   },
 
   setTemp: {
