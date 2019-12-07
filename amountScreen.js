@@ -38,7 +38,7 @@ class amountScreen extends React.Component {
       temperature: this.props.navigation.getParam("temperature", 92),
       amount: this.props.navigation.getParam("amount", 8),
       roast: this.props.navigation.getParam("roast", true),
-      image: require('./assets/small.jpg')
+      image: require('./assets/coffee_amount.png')
     }
   }
   componentDidMount() {
@@ -154,10 +154,13 @@ const styles = StyleSheet.create({
     fontSize: 96,
     fontFamily: "BREVE2",
     margin: 20,
-    color: "#bc846b",
+    color: "#906F63",
     position: 'relative',
   },
-
+  selectText: {
+    color: "#6D544A",
+    fontSize: 28
+  },
   button: {
     //marginTop: 140,
     height: 50,
