@@ -12,7 +12,7 @@ int time_sol = -1; //how long the solenoid valve should be open for water
 
 /* Constants */
 //flow rate data for time_sol calculation
-const float SEC_OZ = 5.533; //number of seconds it takes for 1 ounce of water to flow
+const float SEC_OZ = 9; //number of seconds it takes for 1 ounce of water to flow
 //amount of time to open solenoid valve
 const float TIME_8 = 8*SEC_OZ; 
 const float TIME_10 = 10*SEC_OZ;
@@ -25,7 +25,7 @@ const int GRAMS_16 = 16;
 const int SERVO_START = 340;
 const int SERVO_TURN = -340;
 // Heating water constants
-const int TEMP_BUFFER = -1; //actually heat until temperature is desired_temp + buffer
+const int TEMP_BUFFER = 0; //actually heat until temperature is desired_temp + buffer
 
 /* PORTS */
 /* Temp sensor and heater ports */
@@ -76,16 +76,15 @@ void loop() {
     }
     //set desired parameters for temp, time for solenoid valve, and # turns for coffee grounds
     
-    //char data = 'a';
     set_parameters(data);
-    //dispense_water();
-    Serial.println("Making coffee");
     make_coffee();
-
+    delay(1000);
     Serial.println("d"); //for done
 
    }
 }
 
 void receiveEvent(int howMany){
+  Serial.println("Received");
 }
+  

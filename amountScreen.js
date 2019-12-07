@@ -52,7 +52,7 @@ class amountScreen extends React.Component {
         <StatusBar barStyle="dark-content" />
         <BackView>
           <View style={styles.header} >
-            <HeaderText> BR3W </HeaderText>
+            <HeaderText>BR3W</HeaderText>
           </View>
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
@@ -61,10 +61,9 @@ class amountScreen extends React.Component {
           )}
 
           <View style={styles.container}>
-            <Text style={styles.selectText}> Select Amount </Text>
-            <Image resizeMode={"contain"} style={styles.image} source={this.state.image} />
+            <Text style={styles.sectionTitle}>Set Amount</Text>
             <Slider
-              style={{ width: 250, height: 70 }}
+              style={{ width: 250, height: 50, }}
               step={2}
               onValueChange={value => this.onValueChange(value)}
               minimumValue={8}
@@ -72,6 +71,14 @@ class amountScreen extends React.Component {
               maximumValue={12}
               minimumTrackTintColor="#000000"
               maximumTrackTintColor="#000000" />
+            <View style={styles.slider_label}>
+              <SliderText>8 oz</SliderText>
+              <SliderText>10 oz</SliderText>
+              <SliderText>12 oz</SliderText>
+            </View>
+            <View style={styles.imageCont}>
+              <Image style={styles.image} source={this.state.image} />
+            </View>
           </View>
           <View style={styles.bottom}>
             <TouchableOpacity
@@ -96,13 +103,13 @@ class amountScreen extends React.Component {
     this.setState({ amount: value });
     switch (value) {
       case 8:
-        this.setState({ image: require('./assets/coffee_amount.png') })
+        this.setState({ image: require('./assets/images/coffeeArt_small.png') })
         break
       case 10:
-        this.setState({ image: require('./assets/medium.jpg') })
+        this.setState({ image: require('./assets/images/coffeeArt_med.png') })
         break
       case 12:
-        this.setState({ image: require('./assets/large.jpg') })
+        this.setState({ image: require('./assets/images/coffeeArt_large.png') })
         break;
     }
     console.log("Updated value")
@@ -110,24 +117,30 @@ class amountScreen extends React.Component {
 };
 
 const BackView = styled(View)`
-  backgroundColor: #fffff4;
+  backgroundColor: #D9D3BF;
   flex: 1;
   align-items: center;
 `
 
 const DefaultText = styled(Text)`
   color: #F5F0DF;
-  font-size: 24;
-  font-family: Futura;
-  margin: 10px 0px;
+  font-size: 18;
+  font-family: futuraMdB;
+  margin: 12px 0px;
   align-self: center;
+`
+const SliderText = styled(DefaultText)`
+  font-size:18;
+  margin: 0px;
+  color: #562f29;
 `
 
 const HeaderText = styled(DefaultText)`
-color: #906F63;
-font-size: 86;
-font-family: Futura;
-align-items: center;
+  color: #906F63;
+  font-size: 96;
+  align-items: center;
+  paddingTop: 30;
+  margin-bottom:20;
 `
 
 const styles = StyleSheet.create({
@@ -137,7 +150,7 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    backgroundColor: "#fffff4",
+    backgroundColor: "#D9D3BF",
     fontSize: 96,
     fontFamily: "BREVE2",
     margin: 20,
@@ -159,21 +172,30 @@ const styles = StyleSheet.create({
 
   sectionTitle: {
     //fontFamily: "BREVE2",
-    fontFamily: 'Futura',
+    fontFamily: 'futuraMdB',
     //fontSize: 36,
     fontSize: 24,
   },
 
   container: {
-    flex: 8,
-    backgroundColor: '#fffff4',
+    height: 300,
+    backgroundColor: '#D9D3BF',
     alignItems: 'center',
-    justifyContent: 'space-around', 
+    justifyContent: 'center',
+    marginTop: 50,
   },
 
   image: {
-    width: 100,
-    height: 100,
+    alignSelf: 'center',
+    marginVertical: 'auto',
+    //width: 250,
+    //height: 300,
+  },
+  imageCont: {
+    width: 250,
+    height: 300,
+    marginTop: 10,
+    //alignContent: 'center',
   },
 
   bottom: {
@@ -181,6 +203,21 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginBottom: 20,
   },
+  sectionTitle: {
+    fontFamily: "futuraMdB",
+    fontSize: 24,
+    margin: 10,
+    marginBottom: 20,
+    color: '#6D544A',
+  },
+
+  slider_label: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: 250,
+    justifyContent: 'space-between',
+  },
+
 });
 
 export default amountScreen;

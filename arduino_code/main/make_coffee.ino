@@ -5,7 +5,6 @@
  */
 void make_coffee()
 {
-  //Serial.println("Making coffee");
   /* 1. Pour coffee grounds by turning servo */
   dispense_coffee(grams_grounds);
   

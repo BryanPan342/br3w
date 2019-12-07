@@ -1,10 +1,11 @@
 void dispense_water()
 {
-  Serial.println("Dispensing water");
   digitalWrite(solenoidPin, HIGH); // Open solenoid valve
-  delay(time_sol*1000);
+  delay(1000);
+  Serial.println("w");
+  delay((time_sol-1)*1000);
   digitalWrite(solenoidPin, LOW);
-  Serial.println("Finished dispensing");
+  Serial.println("d");
 }
 
 /*
