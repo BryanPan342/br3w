@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
   buttonStyle: {
     flex: 1,
     width: Metrics.containerWidth / 2.7,
-    height: 46,
+    height: 37,
     justifyContent: 'center',
     alignItems: 'center'
   },

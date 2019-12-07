@@ -84,8 +84,8 @@ export default class Display extends React.Component {
             </View>
           )}
 
+          <TitleText>BR3W</TitleText>
           <View style={styles.body}>
-            <TitleText>BR3W</TitleText>
 
             <View style={styles.bodyText}>
               <TouchableOpacity
@@ -109,12 +109,10 @@ export default class Display extends React.Component {
                   navigate('amountScreen', { temperature: m_temperature, amount: m_amount, roast: m_isLight })
                 }}
               >
-                <DefaultText>Amount of Coffee: {m_amount} oz</DefaultText>
+                <DefaultText>Amount: {m_amount} oz</DefaultText>
               </TouchableOpacity>
               <MultiSwitch
                 style={{
-                  height: 70,
-                  width: 300,
                   marginVertical: 35,
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -130,8 +128,7 @@ export default class Display extends React.Component {
                 onStatusChanged={text => {
                   text == "Light" ? m_isLight = true : m_isLight = false;
                 }}
-               roast = {m_isLight}
-              />
+               roast = {m_isLight}/>
             </View>
             <TouchableOpacity
               title="start"
@@ -142,8 +139,8 @@ export default class Display extends React.Component {
                     console.log("Start coffee, sent ", ArduinoHelper.send_value(m_temperature, m_amount, m_isLight))
                     navigate('progressBar', { temperature: m_temperature, amount: m_amount, roast: m_isLight })
                   })
-              }}
-            >
+              }}>
+                <Image resizeMode={"contain"} style={styles.image} source={require('../assets/display-coffee.png')} />
             </TouchableOpacity>
           </View>
         </SafeAreaView>
@@ -159,15 +156,17 @@ export default class Display extends React.Component {
 const DefaultText = styled(Text)`
     color: #F5F0F5;
     font-size: 18;
-    font-family: Futura;
-    margin: 5px 0px;
+    margin-top: 8;
+    font-family: "futuraMdB";
     align-self: center;
     `
 const TitleText = styled(DefaultText)`
-    margin-top: 86;
+    flex: 1;
+    padding-top: 40;
     color: #906F63;
-    font-size: 80;
+    font-size: 96;
     position: relative;
+    font-family: "futuraMdB";
   `
 const SettingsImage = styled(Image)`
      width: 75px;
@@ -181,12 +180,13 @@ const styles = StyleSheet.create({
     right: 0,
   },
   container: {
+    color: "#E5E5E5",
     backgroundColor: "#E5E5E5"
   },
 
   body: {
     backgroundColor: "#fffff4",
-    flex: 1,
+    flex: 3,
     flexDirection: "column",
     alignItems: "center",
   },
@@ -214,11 +214,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
+  //futuraMdB
   text: {
     fontSize: 24,
     fontWeight: "bold",
-    fontFamily: "Cochin",
+    fontFamily: "futuraMdB",
   },
 
   title: {
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     flex: 1,
-    fontFamily: "breve2",
+    fontFamily: "futuraMdB",
   },
 
   temp_amt_button: {
@@ -260,4 +260,10 @@ const styles = StyleSheet.create({
     position: 'relative',
     alignSelf: 'center',
   },
+  image: {
+    alignSelf: 'center',
+    marginTop: 20,
+    width: 100,
+    height: 50
+  }
 });
