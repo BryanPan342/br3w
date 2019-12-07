@@ -148,7 +148,7 @@ const StartImage = styled(Image)`
 const HeaderText = styled(DefaultText)`
   color: #906F63;
   font-size: 96;
-  paddingTop: 30;
+  paddingTop: 40;
 `
 
 const styles = StyleSheet.create({
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     fontSize: 96,
     fontFamily: "BREVE2",
     color: "#bc846b",
-    // position: 'relative',
+    position: 'relative',
   },
 
   setTemp: {
