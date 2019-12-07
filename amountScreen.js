@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#D9D3BF",
     fontSize: 96,
     fontFamily: "BREVE2",
-    margin: 20,
+    marginBottom: 20,
     color: "#906F63",
     position: 'relative',
   },

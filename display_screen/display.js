@@ -160,12 +160,13 @@ const DefaultText = styled(Text)`
     font-family: "futuraMdB";
     align-self: center;
     `
-const TitleText = styled(DefaultText)`
+const TitleText = styled(Text)`
+    background-color: #D9D3BF;
+    text-align: center;
     flex: 1;
-    padding-top: 40;
+    padding-top: 50;
     color: #906F63;
     font-size: 96;
-    position: relative;
     font-family: "futuraMdB";
   `
 const SettingsImage = styled(Image)`
@@ -180,12 +181,14 @@ const styles = StyleSheet.create({
     right: 0,
   },
   container: {
-    color: "#E5E5E5",
-    backgroundColor: "#E5E5E5"
+    display: "flex",
+    justifyContent: "center",
+    color: "#D9D3BF",
+    backgroundColor: "#D9D3BF"
   },
 
   body: {
-    backgroundColor: "#fffff4",
+    backgroundColor: "#D9D3BF",
     flex: 3,
     flexDirection: "column",
     alignItems: "center",
@@ -263,7 +266,7 @@ const styles = StyleSheet.create({
   image: {
     alignSelf: 'center',
     marginTop: 20,
-    width: 100,
-    height: 50
+    width: 150,
+    height: 75
   }
 });
