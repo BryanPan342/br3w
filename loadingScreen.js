@@ -109,6 +109,7 @@ export default class Loading extends React.Component {
 const BackView = styled(View)`
   backgroundColor: #D9D3BF;
   align-items: center;
+  flex: 1;
 `
 const LoadText = styled(Text)`
   color: #bc846b;
