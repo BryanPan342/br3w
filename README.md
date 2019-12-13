@@ -77,19 +77,19 @@ Github: *@hubert94536*
 Github: *@paramshah10*  
 
 ### Hardware Team
-**Janice Tsai, Software Developer**  
+**Janice Tsai, Mechanical Engineer**  
 <img src="img/Janice.jpg" width="250">  
 Github: *@janicetsai1*
 
-**Meilin Cui, Software Developer**  
+**Meilin Cui, Mechanical Engineer**  
 <img src="img/Meilin.jpg" width="250">  
 Github: *@cuimeilin*  
 
-**Isha Gonugunta, Software Developer**  
+**Isha Gonugunta, Electrical Engineer**  
 <img src="img/Isha.jpg" width="250">  
 Github: *@ishagonu*
 
-**Monica Bellare, Software Developer**  
+**Monica Bellare, Software Engineer (Arduino Side)**  
 <img src="img/Monica.jpeg" width="250">  
 Github: *@monbell*
 
